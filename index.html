@@ -78,7 +78,7 @@ p{margin:0 0 1em}
 .hero-paisaje{position:absolute;inset:0;background:center/cover no-repeat}
 .hero-paisaje::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,57,63,.15),rgba(22,57,63,.05) 40%,rgba(22,57,63,.35))}
 .hero-foto{position:absolute;inset:0;will-change:clip-path;background:var(--piedra)}
-.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:center 24%}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:center 50%}
 .hero-foto::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(22,57,63,.45));opacity:var(--osc,0)}
 .hero-tit{position:absolute;left:0;right:0;top:clamp(48px,8vh,100px);text-align:center;color:#fff;padding:0 16px;will-change:transform,opacity;pointer-events:none}
 .hero-tit h1{font-size:clamp(56px,10vw,160px);line-height:.9;text-shadow:0 8px 40px rgba(22,57,63,.4)}
@@ -721,7 +721,7 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
         <li><button class="enlace" data-dlg="dlgFuentes">Fuentes y créditos</button></li></ul></div>
       <div><h4>Síguenos</h4><ul id="redesPie" data-render></ul></div>
     </div>
-    <div class="legal-final"><span>© 2026 Equipo Manos a la masa: Javiera Cerna, Catalina Lobos, Diego Maldonado e Ivanna Aros.</span><span>Fotografías con licencia libre; créditos en "Fuentes y créditos".</span></div>
+    <div class="legal-final"><span>© 2026 Equipo Manos a la masa: Javiera Cerna, Catalina Lobos, Diego Maldonado e Ivanna Aros.</span><span>Fotografías de Pexels y Wikimedia Commons; créditos en "Fuentes y créditos".</span></div>
   </div>
 </footer>
 
@@ -751,7 +751,7 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     <li><a href="https://www.cnnchile.com/tendencias/senderismo-cabalgatas-y-rafting-todos-los-tours-y-atractivos-del-cajon-del-maipo_20190524/" target="_blank" rel="noopener">CNN Chile (2019). Senderismo, cabalgatas y rafting en el Cajón del Maipo</a></li>
     <li><a href="https://www.sanjosedemaipo.cl/turismo/" target="_blank" rel="noopener">Municipalidad de San José de Maipo (s. f.). Turismo</a></li>
   </ul>
-  <p><b>Fotografías</b> (vía Wikimedia Commons)</p>
+  <p><b>Fotografías</b> (Pexels y Wikimedia Commons)</p>
   <ul class="creditos" id="creditos" data-render></ul></div>
   <form method="dialog"><button class="btn">Cerrar</button></form></dialog>
 
@@ -1090,28 +1090,29 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
 const D=JSON.parse(document.getElementById("datos").textContent);
 const IMG="https://manosalamasacajon.wordpress.com/wp-content/uploads/2026/10/";
 const F={
- tabla:["tabla-empanadas-pebre.jpg","Nicolas Barnao","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Tabla_de_Empanadas_y_pebre.jpg","Tabla de madera con empanadas de pino doradas y un pocillo de pebre"],
- yeso:["el-yeso-nevado.jpg","Pablo Acevedo","CC0","https://commons.wikimedia.org/wiki/File:El_Yeso_Dam,_Chile_(Unsplash).jpg","Embalse El Yeso de aguas azules rodeado de cumbres nevadas"],
- yesoT:["embalse-el-yeso.jpg","Deensel","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Embalse_El_Yeso,_Caj%C3%B3n_del_Maipo_(40186598701).jpg","Aguas turquesa del Embalse El Yeso al pie de cerros rojizos"],
- aerea:["laguna-negra-el-yeso-aerea.jpg","Diode","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Laguna_Negra_y_Embalse_El_Yeso.jpg","Vista aérea de la Laguna Negra y el Embalse El Yeso entre cerros"],
- laguna:["laguna-negra.jpg","Andesnahuel","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Laguna_Negra,_Chile_(Caj%C3%B3n_del_Maipo).JPG","Orilla de la Laguna Negra con laderas nevadas al fondo"],
- verde:["valle-verde-cajon.jpg","Nelson Pérez","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Caj%C3%B3n_Del_Maipo,_Regi%C3%B3n_Metropolitana,_Chile_-_panoramio_-_Nelson_P%C3%A9rez_(5).jpg","Valle verde del Cajón del Maipo al pie de un cerro con cielo celeste"],
- ladera:["ladera-verde-san-jose.jpg","Juan Villalobos","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Ribera_derecha_del_r%C3%ADo_Maipo_en_SJ_de_Maipo.jpg","Ladera verde junto al río Maipo en San José de Maipo"],
- cordillera:["cordillera-cajon-nevada.jpg","Rosario Nieto Chadwick","CC BY 3.0","https://commons.wikimedia.org/wiki/File:Vista_Al_Cajon_(76092661).jpeg","Cumbres nevadas sobre un valle verde del Cajón del Maipo"],
- corral:["corral-cordillera.jpg","Rosario Nieto Chadwick","CC BY 3.0","https://commons.wikimedia.org/wiki/File:Corral_En_La_Cordillera_(76470681).jpeg","Corral de palos en un llano con cumbres nevadas al fondo"],
- morado:["el-morado.jpg","AcrossTheMountains","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Monumento_Natural_El_Morado_1.jpg","Valle del Monumento Natural El Morado con cerros nevados"],
- iglesia:["iglesia-san-jose-de-maipo.jpg","Eduardo Villagrán Morales","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Iglesia_de_San_Jos%C3%A9_de_Maipo_-_Vista_desde_el_cerro.JPG","Iglesia de San José de Maipo, con techo rojo y cúpula verde"],
- amasar:["manos-amasando.jpg","Anna.Massini","CC BY 4.0","https://commons.wikimedia.org/wiki/File:Kneading_bread_by_hand.jpg","Manos amasando una masa sobre una tabla enharinada"],
- productora:["productora-amasando.jpg","Shixart1985","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Baker_woman%27s_hands_kneading_bread_dough.jpg","Mujer amasando a mano una masa de pan sobre una mesa enharinada"],
- bandeja:["empanadas-bandeja-horno.jpg","Picaza","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Empanadas_de_Horno.jpg","Bandeja de empanadas y panes recién horneados junto a un horno de barro"],
- horno:["empanadas-horno-de-barro.jpg","Marco Antonio Correa Flores","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Empanadas_en_horno_de_barro.JPG","Empanadas doradas dentro de un horno de barro encendido"],
- pebre:["pebre-chileno.jpg","Marco Antonio Correa Flores","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Pebre_chileno_01.jpg","Pebre de tomate, cebolla, cilantro y ají picados"],
- empanada:["empanada-con-pebre.jpg","Espiralespiral","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Empanadas_con_pebre.jpg","Empanada de pino en un plato con pebre"],
- pan:["pan-amasado.jpg","Alanis Galaz","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Pan_amasado,_Calbuco.JPG","Panes amasados crudos en una bandeja"],
- rafting:["rafting-referencial.jpg","Marco Antonio Correa Flores","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Rafting_en_R%C3%ADo_Trancura_01.JPG","Grupo con cascos y remos bajando rápidos en un bote de rafting (imagen referencial)"],
- canopy:["canopy-referencial.jpg","Costaricapro","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Zip_Line_Canopy_Tour_Costa_Rica.jpg","Persona deslizándose por un cable de canopy entre árboles (imagen referencial)"],
- caballos:["caballos-banos-morales.jpg","Rpinto","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Ba%C3%B1os_Morales_caballos.JPG","Caballos junto a un arroyo en Baños Morales con la cordillera al fondo"],
- termas:["termas-colina.jpg","Amitie 10g","CC BY 3.0","https://commons.wikimedia.org/wiki/File:Vista_de_piscinas_en_Termas_Valle_de_Colina_(1).JPG","Pozones termales en terrazas en Termas Valle de Colina"]
+ tabla:["px-empanadas-tabla.jpg", "Jessica Olivella", "Licencia Pexels", "https://www.pexels.com/photo/traditional-argentine-empanadas-on-wooden-board-36905236/", "Empanadas de horno doradas sobre una tabla de madera"],
+ yeso:["px-embalse-cordillera.jpg", "Claudio Vargas Gonzalez", "Licencia Pexels", "https://www.pexels.com/photo/scenic-view-of-a-reservoir-and-snowcapped-mountains-under-blue-sky-18008277/", "Embalse de aguas azules rodeado de cerros con cumbres nevadas"],
+ yesoT:["px-lago-nevado.jpg", "Rafael Paganotti", "Licencia Pexels", "https://www.pexels.com/photo/lake-near-mountains-covered-with-snow-6856264/", "Lago de alta montaña al pie de cerros cubiertos de nieve"],
+ aerea:["px-cerros-lago.jpg", "Jonathan Santos", "Licencia Pexels", "https://www.pexels.com/photo/scenic-view-of-mountains-during-daytime-2592086/", "Cerros de la cordillera junto a un lago bajo nubes blancas"],
+ laguna:["px-lago-nevado.jpg", "Rafael Paganotti", "Licencia Pexels", "https://www.pexels.com/photo/lake-near-mountains-covered-with-snow-6856264/", "Lago de alta montaña al pie de cerros cubiertos de nieve"],
+ verde:["px-valle-montanas.jpg", "Claudio Pino", "Licencia Pexels", "https://www.pexels.com/photo/valley-and-mountains-13980551/", "Valle verde entre cerros de la cordillera bajo un cielo despejado"],
+ ladera:["px-estero-montana.jpg", "RRodriguesIM", "Licencia Pexels", "https://www.pexels.com/photo/stream-in-mountains-18467404/", "Estero de agua clara bajando entre rocas y laderas de la cordillera"],
+ cordillera:["px-cumbres-nevadas.jpg", "Claudio Vargas Gonzalez", "Licencia Pexels", "https://www.pexels.com/photo/panoramic-view-of-snowcapped-mountains-18008279/", "Vista panorámica de cumbres nevadas de la cordillera de los Andes"],
+ corral:["px-camino-cordillera.jpg", "FrJuniorX", "Licencia Pexels", "https://www.pexels.com/photo/empty-road-6477732/", "Camino vacío que avanza entre cerros de la cordillera"],
+ morado:["el-morado.jpg", "AcrossTheMountains", "CC BY-SA 4.0 (Wikimedia Commons)", "https://commons.wikimedia.org/wiki/File:Monumento_Natural_El_Morado_1.jpg", "Valle del Monumento Natural El Morado con cerros nevados"],
+ iglesia:["iglesia-san-jose-de-maipo.jpg", "Eduardo Villagrán Morales", "CC BY-SA 3.0 (Wikimedia Commons)", "https://commons.wikimedia.org/wiki/File:Iglesia_de_San_Jos%C3%A9_de_Maipo_-_Vista_desde_el_cerro.JPG", "Iglesia de San José de Maipo, con techo rojo y cúpula verde"],
+ amasar:["px-amasando-madera.jpg", "Patricio Nahuelhual", "Licencia Pexels", "https://www.pexels.com/photo/person-kneading-the-dough-on-wooden-surface-10791772/", "Manos amasando una masa sobre una mesa de madera enharinada"],
+ productora:["px-masa-cocina.jpg", "Klaus Nielsen", "Licencia Pexels", "https://www.pexels.com/photo/chef-making-fresh-pastry-on-table-in-bakery-6287298/", "Persona preparando masa fresca sobre una tabla enharinada"],
+ bandeja:["px-manos-armando.jpg", "Cristian Rojas", "Licencia Pexels", "https://www.pexels.com/photo/hands-making-pastries-8279640/", "Manos rellenando y cerrando una empanada"],
+ horno:["px-horno-lena.jpg", "Marcelo González", "Licencia Pexels", "https://www.pexels.com/photo/rustic-outdoor-pizza-oven-with-burning-firewood-36214726/", "Horno rústico al aire libre con leña ardiendo"],
+ pebre:["pebre-chileno.jpg", "Marco Antonio Correa Flores", "CC BY-SA 4.0 (Wikimedia Commons)", "https://commons.wikimedia.org/wiki/File:Pebre_chileno_01.jpg", "Pebre de tomate, cebolla, cilantro y ají picados"],
+ empanada:["px-empanadas-doradas.jpg", "Lucas Porras", "Licencia Pexels", "https://www.pexels.com/photo/freshly-baked-empanadas-on-wooden-board-30771118/", "Empanadas recién horneadas y doradas sobre una tabla de madera"],
+ pan:["px-empanadas-crudas.jpg", "Cristian Rojas", "Licencia Pexels", "https://www.pexels.com/photo/empanadas-on-a-baking-tray-8279588/", "Empanadas crudas recién armadas sobre una bandeja enharinada"],
+ rafting:["px-rafting.jpg", "Dawinara", "Licencia Pexels", "https://www.pexels.com/photo/exciting-white-water-rafting-adventure-32651303/", "Grupo en un bote de rafting levantando los remos en los rápidos (imagen referencial)"],
+ canopy:["px-canopy.jpg", "Walther Camasca", "Licencia Pexels", "https://www.pexels.com/photo/climber-hanging-on-rope-6409811/", "Persona con casco deslizándose por un cable de canopy (imagen referencial)"],
+ caballos:["caballos-banos-morales.jpg", "Rpinto", "CC BY-SA 3.0 (Wikimedia Commons)", "https://commons.wikimedia.org/wiki/File:Ba%C3%B1os_Morales_caballos.JPG", "Caballos junto a un arroyo en Baños Morales con la cordillera al fondo"],
+ termas:["px-termas-cajon.jpg", "Maycon Alves", "Licencia Pexels", "https://www.pexels.com/photo/scenic-andes-hot-springs-in-cajon-del-maipo-chile-36555068/", "Pozones termales en la cordillera del Cajón del Maipo"],
+ horneando:["px-horneando-pan.jpg", "Gang Liang", "Licencia Pexels", "https://www.pexels.com/photo/artisan-baking-in-traditional-wood-fired-oven-37674541/", "Persona horneando pan en un horno tradicional a leña al aire libre"]
 };
 const src=(k,w=1600)=>IMG+F[k][0]+"?w="+w, alt=k=>F[k][4], cred=k=>`Foto: ${F[k][1]}, ${F[k][2]}`;
 
@@ -1181,7 +1182,7 @@ let tk=false;addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimatio
 addEventListener("resize",heroFrame);heroFrame();
 
 /* historia */
-$("#pol1").src=src("productora",900);$("#pol2").src=src("verde",900);
+$("#pol1").src=src("horneando",900);$("#pol1").alt=alt("horneando");$("#pol2").src=src("verde",900);
 
 /* experiencia */
 $("#historias").innerHTML=D.HIS.map((h,i)=>`<a class="hist" href="#trayecto"><div class="aro"><img src="${src(h[0],300)}" alt=""></div><span data-k="HIS.${i}.1">${esc(h[1])}</span></a>`).join("");
@@ -1246,7 +1247,7 @@ function cargarComentarios(e){const ul=$("#lc");
   }).catch(()=>{ul.innerHTML=`<li class="vacio">No pudimos cargar los comentarios. Puedes verlos en <a href="${e.wpUrl}#comments" target="_blank" rel="noopener">nuestra bitácora en WordPress</a>.</li>`})}
 function abrir(id){const i=E.findIndex(x=>x.id===id),e=E[i];if(!e)return;
   $("#artHero").style.backgroundImage=`url(${src(e.img,2000)})`;$("#artHero").setAttribute("aria-label",alt(e.img));
-  A.innerHTML=`<p class="meta">Escrito por <b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h1 id="artT" data-k="E.${i}.t">${esc(e.t)}</h1><figcaption>Imagen: ${alt(e.img)}. <a href="${F[e.img][3]}" target="_blank" rel="noopener">${cred(e.img)}, vía Wikimedia Commons</a></figcaption>
+  A.innerHTML=`<p class="meta">Escrito por <b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h1 id="artT" data-k="E.${i}.t">${esc(e.t)}</h1><figcaption>Imagen: ${alt(e.img)}. <a href="${F[e.img][3]}" target="_blank" rel="noopener">${cred(e.img)}</a></figcaption>
   <div data-k="E.${i}.c" data-html>${e.c}</div>
   <div class="fuentes"><strong>Fuentes de esta entrada</strong><ul>${e.f.map((x,j)=>`<li data-k="E.${i}.f.${j}">${esc(x)}</li>`).join("")}</ul></div>
   <div class="accion"><h2 data-k="E.${i}.a.0">${esc(e.a[0])}</h2><p data-k="E.${i}.a.1">${esc(e.a[1])}</p><a class="btn blanco" href="${e.a[2]}" data-ir data-k="E.${i}.a.3">${esc(e.a[3])}</a></div>
