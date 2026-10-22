@@ -750,13 +750,11 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     <label>Instagram (enlace)<input id="ed_instagram" placeholder="https://instagram.com/manosalamasa"></label>
     <label>TikTok (enlace)<input id="ed_tiktok" placeholder="https://tiktok.com/@manosalamasa"></label>
     <label>Facebook (enlace)<input id="ed_facebook" placeholder="https://facebook.com/manosalamasa"></label>
-    <label>Código de comentarios Cusdis (data-app-id)<input id="ed_cusdis" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></label>
   </div></div>
   <form method="dialog"><button class="btn borde chico" value="no">Cancelar</button> <button class="btn yeso chico" id="edAplicar">Aplicar</button></form></dialog>
 <script id="datos" type="application/json">
 {
  "contacto": {
-  "cusdis": "",
   "whatsapp": "",
   "correo": "",
   "instagram": "",
@@ -990,7 +988,9 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     "Revisa la ficha práctica con el acceso, el horario y el mapa.",
     "#ficha",
     "Ver la ficha práctica"
-   ]
+   ],
+   "wp": 28,
+   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/19/destino/"
   },
   {
    "id": "visitante",
@@ -1010,7 +1010,9 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     "Cuéntanos en los comentarios qué buscas en un panorama de medio día.",
     "#coment",
     "Dejar un comentario"
-   ]
+   ],
+   "wp": 30,
+   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/20/visitante/"
   },
   {
    "id": "mesa",
@@ -1029,7 +1031,9 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     "Juega Sabores del Cajón y descubre qué vas a cocinar.",
     "#juega",
     "Ir al juego"
-   ]
+   ],
+   "wp": 31,
+   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/21/mesa/"
   },
   {
    "id": "valle",
@@ -1048,7 +1052,9 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     "Escríbenos antes de reservar y te contamos qué podemos ofrecer.",
     "#contacto",
     "Escribirnos"
-   ]
+   ],
+   "wp": 32,
+   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/22/valle/"
   }
  ]
 }
@@ -1207,24 +1213,22 @@ $("#insta").innerHTML=["tabla","yesoT","amasar","verde","horno","aerea"].map(k=>
 const E=D.E;
 $("#entradas").innerHTML=E.map((e,i)=>`<a class="card" href="#/bitacora/${e.id}"><div class="foto"><img src="${src(e.img,1000)}" alt="${alt(e.img)}" loading="lazy"></div><div class="cuerpo"><p class="meta"><b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h3 data-k="E.${i}.t">${esc(e.t)}</h3><p data-k="E.${i}.r">${esc(e.r)}</p><span class="leer">leer la entrada</span></div></a>`).join("");
 const art=$("#articulo"),A=$("#art");
-const getC=id=>{try{return JSON.parse(localStorage.getItem("mam_c_"+id)||"[]")}catch(e){return[]}};
-function pintaC(id){const l=getC(id);$("#lc").innerHTML=l.length?l.map(c=>`<li><b>${esc(c.n)}</b>${esc(c.t)}</li>`).join(""):`<li class="vacio">Todavía no hay comentarios. Escribe el primero.</li>`}
-let cusdisListo=false;
-function cargarCusdis(){if(cusdisListo&&window.CUSDIS){window.CUSDIS.initial();return}
-  const l=document.createElement("script");l.src="https://cusdis.com/js/widget/lang/es.js";document.head.append(l);
-  const s=document.createElement("script");s.src="https://cusdis.com/js/cusdis.es.js";s.async=true;s.onload=()=>{cusdisListo=true;window.CUSDIS&&window.CUSDIS.initial()};document.head.append(s)}
+function cargarComentarios(e){const ul=$("#lc");
+  fetch(`https://public-api.wordpress.com/rest/v1.1/sites/258155277/posts/${e.wp}/replies/?order=ASC&number=100`).then(r=>r.json()).then(j=>{
+    const l=(j.comments||[]).filter(c=>c.status==="approved");
+    ul.innerHTML=l.length?l.map(c=>`<li><b>${esc(c.author&&c.author.name||"Visitante")}</b><span class="nota">${new Date(c.date).toLocaleDateString("es-CL",{day:"numeric",month:"long",year:"numeric"})}</span><div>${c.content}</div></li>`).join(""):`<li class="vacio">Todavía no hay comentarios. Escribe el primero.</li>`;
+  }).catch(()=>{ul.innerHTML=`<li class="vacio">No pudimos cargar los comentarios. Puedes verlos en <a href="${e.wpUrl}#comments" target="_blank" rel="noopener">nuestra bitácora en WordPress</a>.</li>`})}
 function abrir(id){const i=E.findIndex(x=>x.id===id),e=E[i];if(!e)return;
   $("#artHero").style.backgroundImage=`url(${src(e.img,2000)})`;$("#artHero").setAttribute("aria-label",alt(e.img));
   A.innerHTML=`<p class="meta">Escrito por <b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h1 id="artT" data-k="E.${i}.t">${esc(e.t)}</h1><figcaption>Imagen: ${alt(e.img)}. <a href="${F[e.img][3]}" target="_blank" rel="noopener">${cred(e.img)}, vía Wikimedia Commons</a></figcaption>
   <div data-k="E.${i}.c" data-html>${e.c}</div>
   <div class="fuentes"><strong>Fuentes de esta entrada</strong><ul>${e.f.map((x,j)=>`<li data-k="E.${i}.f.${j}">${esc(x)}</li>`).join("")}</ul></div>
   <div class="accion"><h2 data-k="E.${i}.a.0">${esc(e.a[0])}</h2><p data-k="E.${i}.a.1">${esc(e.a[1])}</p><a class="btn blanco" href="${e.a[2]}" data-ir data-k="E.${i}.a.3">${esc(e.a[3])}</a></div>
-  <section class="coment" id="coment"><h2>Comentarios</h2>${C.cusdis?`<div class="fc" data-noedit><div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="${esc(C.cusdis)}" data-page-id="${e.id}" data-page-url="${location.origin+location.pathname}#/bitacora/${e.id}" data-page-title="${esc(e.t)}" data-theme="light"></div></div><p class="nota" style="margin-top:10px">Los comentarios se publican después de una revisión del equipo.</p>`:`<form class="fc" id="fc" data-noedit><label class="sr" for="cN">Nombre</label><input id="cN" required placeholder="Tu nombre"><label class="sr" for="cT">Comentario</label><textarea id="cT" required placeholder="Escribe tu comentario"></textarea><button class="btn yeso" type="submit">Publicar comentario</button></form><ul class="lc" id="lc" data-noedit></ul>`}</section>
+  <section class="coment" id="coment"><h2>Comentarios</h2><div class="fc" data-noedit><ul class="lc" id="lc" style="margin:0"><li class="vacio">Cargando comentarios…</li></ul><a class="btn yeso" href="${e.wpUrl}#respond" target="_blank" rel="noopener" style="justify-self:start">Escribir un comentario</a><p class="nota" style="margin:0">Se abre nuestra bitácora en WordPress. Escribes tu nombre, tu correo y tu comentario, y aparece aquí cuando el equipo lo aprueba.</p></div></section>
   <div class="fc" style="margin-top:28px" data-noedit><h2 style="font-size:28px;margin:0">Suscríbete a la bitácora</h2><p class="nota" style="margin:0">Te avisamos por correo cuando publiquemos una entrada nueva.</p><form class="sus" id="formSusArt" action="https://subscribe.wordpress.com" method="post" target="_blank" accept-charset="utf-8"><input type="hidden" name="action" value="subscribe"><input type="hidden" name="blog_id" value="258155277"><input type="hidden" name="source" value="https://javiera965.github.io/manos-a-la-masa/"><input type="hidden" name="sub-type" value="widget"><input type="hidden" name="redirect_fragment" value="suscripcion"><label class="sr" for="correoArt">Tu correo</label><input id="correoArt" name="email" type="email" required placeholder="tu@correo.cl" autocomplete="email"><button class="btn yeso" type="submit">Suscribirme</button></form><p class="ok" id="okSusArt" hidden>Revisa tu correo: te enviamos un enlace para confirmar la suscripción.</p></div>`;
   art.hidden=false;document.body.style.overflow="hidden";art.scrollTop=0;
   susOk($("#formSusArt"),$("#okSusArt"));
-  if(C.cusdis){cargarCusdis()}else{pintaC(id);
-  $("#fc").onsubmit=ev=>{ev.preventDefault();const l=getC(id);l.push({n:$("#cN").value,t:$("#cT").value});try{localStorage.setItem("mam_c_"+id,JSON.stringify(l))}catch(x){}$("#cT").value="";pintaC(id)}};
+  cargarComentarios(e);
   A.querySelector("[data-ir]").onclick=ev=>{ev.preventDefault();if(document.body.classList.contains("editando"))return;const h=ev.currentTarget.getAttribute("href");if(h==="#coment"){$("#coment").scrollIntoView({behavior:"smooth"});return}cerrar();setTimeout(()=>$(h).scrollIntoView({behavior:"smooth"}),60)};
   if(document.body.classList.contains("editando"))activarEdicion();
   $("#cerrar").focus()}
@@ -1268,8 +1272,8 @@ if(PUEDE_EDITAR){
   addEventListener("beforeunload",e=>{if(cambios){e.preventDefault();e.returnValue=""}});
   /* datos de contacto */
   const dlg=$("#dlgEd");
-  $("#edContacto").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook","cusdis"].forEach(k=>$("#ed_"+k).value=C[k]||"");dlg.showModal()};
-  $("#edAplicar").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook","cusdis"].forEach(k=>C[k]=$("#ed_"+k).value.trim());pintaContacto();cambios=true;est.textContent="Tienes cambios sin guardar."};
+  $("#edContacto").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook"].forEach(k=>$("#ed_"+k).value=C[k]||"");dlg.showModal()};
+  $("#edAplicar").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook"].forEach(k=>C[k]=$("#ed_"+k).value.trim());pintaContacto();cambios=true;est.textContent="Tienes cambios sin guardar."};
   /* guardar: descarga el archivo con los cambios */
   $("#edGuardar").onclick=()=>{
     const estaba=document.body.classList.contains("editando");if(estaba)desactivarEdicion();
