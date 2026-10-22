@@ -662,8 +662,8 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
           <a class="btn miel" id="btnWsp2" href="#contacto">Escribir por WhatsApp</a>
           <h3 style="font-size:26px;margin:28px 0 4px">Recibe las novedades</h3>
           <p class="nota" style="margin:0">Te avisamos por correo cuando publiquemos en la bitácora o abramos fechas.</p>
-          <form class="sus" id="formSus"><label class="sr" for="correo">Tu correo</label><input id="correo" type="email" required placeholder="tu@correo.cl" autocomplete="email"><button class="btn yeso" type="submit">Suscribirme</button></form>
-          <p class="ok" id="okSus" hidden>Listo, quedaste suscrito.</p>
+          <form class="sus" id="formSus" action="https://subscribe.wordpress.com" method="post" target="_blank" accept-charset="utf-8" data-noedit><input type="hidden" name="action" value="subscribe"><input type="hidden" name="blog_id" value="258155277"><input type="hidden" name="source" value="https://javiera965.github.io/manos-a-la-masa/"><input type="hidden" name="sub-type" value="widget"><input type="hidden" name="redirect_fragment" value="suscripcion"><label class="sr" for="correo">Tu correo</label><input id="correo" name="email" type="email" required placeholder="tu@correo.cl" autocomplete="email"><button class="btn yeso" type="submit">Suscribirme</button></form>
+          <p class="ok" id="okSus" hidden>Revisa tu correo: te enviamos un enlace para confirmar la suscripción.</p>
         </div>
         <form class="blanco fcon" id="formCon">
           <h3 style="font-size:26px">Envíanos una consulta</h3>
@@ -750,11 +750,13 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     <label>Instagram (enlace)<input id="ed_instagram" placeholder="https://instagram.com/manosalamasa"></label>
     <label>TikTok (enlace)<input id="ed_tiktok" placeholder="https://tiktok.com/@manosalamasa"></label>
     <label>Facebook (enlace)<input id="ed_facebook" placeholder="https://facebook.com/manosalamasa"></label>
+    <label>Código de comentarios Cusdis (data-app-id)<input id="ed_cusdis" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></label>
   </div></div>
   <form method="dialog"><button class="btn borde chico" value="no">Cancelar</button> <button class="btn yeso chico" id="edAplicar">Aplicar</button></form></dialog>
 <script id="datos" type="application/json">
 {
  "contacto": {
+  "cusdis": "",
   "whatsapp": "",
   "correo": "",
   "instagram": "",
@@ -1085,6 +1087,7 @@ const $=s=>document.querySelector(s);
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),eio=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function susOk(f,ok){f.addEventListener("submit",()=>{ok.hidden=false;setTimeout(()=>f.reset(),300)})}
 const getP=p=>p.split(".").reduce((o,k)=>o[k],D);
 function setP(p,v){const ks=p.split("."),last=ks.pop();ks.reduce((o,k)=>o[k],D)[last]=v}
 
@@ -1206,15 +1209,22 @@ $("#entradas").innerHTML=E.map((e,i)=>`<a class="card" href="#/bitacora/${e.id}"
 const art=$("#articulo"),A=$("#art");
 const getC=id=>{try{return JSON.parse(localStorage.getItem("mam_c_"+id)||"[]")}catch(e){return[]}};
 function pintaC(id){const l=getC(id);$("#lc").innerHTML=l.length?l.map(c=>`<li><b>${esc(c.n)}</b>${esc(c.t)}</li>`).join(""):`<li class="vacio">Todavía no hay comentarios. Escribe el primero.</li>`}
+let cusdisListo=false;
+function cargarCusdis(){if(cusdisListo&&window.CUSDIS){window.CUSDIS.initial();return}
+  const l=document.createElement("script");l.src="https://cusdis.com/js/widget/lang/es.js";document.head.append(l);
+  const s=document.createElement("script");s.src="https://cusdis.com/js/cusdis.es.js";s.async=true;s.onload=()=>{cusdisListo=true;window.CUSDIS&&window.CUSDIS.initial()};document.head.append(s)}
 function abrir(id){const i=E.findIndex(x=>x.id===id),e=E[i];if(!e)return;
   $("#artHero").style.backgroundImage=`url(${src(e.img,2000)})`;$("#artHero").setAttribute("aria-label",alt(e.img));
   A.innerHTML=`<p class="meta">Escrito por <b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h1 id="artT" data-k="E.${i}.t">${esc(e.t)}</h1><figcaption>Imagen: ${alt(e.img)}. <a href="${F[e.img][3]}" target="_blank" rel="noopener">${cred(e.img)}, vía Wikimedia Commons</a></figcaption>
   <div data-k="E.${i}.c" data-html>${e.c}</div>
   <div class="fuentes"><strong>Fuentes de esta entrada</strong><ul>${e.f.map((x,j)=>`<li data-k="E.${i}.f.${j}">${esc(x)}</li>`).join("")}</ul></div>
   <div class="accion"><h2 data-k="E.${i}.a.0">${esc(e.a[0])}</h2><p data-k="E.${i}.a.1">${esc(e.a[1])}</p><a class="btn blanco" href="${e.a[2]}" data-ir data-k="E.${i}.a.3">${esc(e.a[3])}</a></div>
-  <section class="coment" id="coment"><h2>Comentarios</h2><form class="fc" id="fc" data-noedit><label class="sr" for="cN">Nombre</label><input id="cN" required placeholder="Tu nombre"><label class="sr" for="cT">Comentario</label><textarea id="cT" required placeholder="Escribe tu comentario"></textarea><button class="btn yeso" type="submit">Publicar comentario</button></form><ul class="lc" id="lc" data-noedit></ul></section>`;
-  art.hidden=false;document.body.style.overflow="hidden";art.scrollTop=0;pintaC(id);
-  $("#fc").onsubmit=ev=>{ev.preventDefault();const l=getC(id);l.push({n:$("#cN").value,t:$("#cT").value});try{localStorage.setItem("mam_c_"+id,JSON.stringify(l))}catch(x){}$("#cT").value="";pintaC(id)};
+  <section class="coment" id="coment"><h2>Comentarios</h2>${C.cusdis?`<div class="fc" data-noedit><div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="${esc(C.cusdis)}" data-page-id="${e.id}" data-page-url="${location.origin+location.pathname}#/bitacora/${e.id}" data-page-title="${esc(e.t)}" data-theme="light"></div></div><p class="nota" style="margin-top:10px">Los comentarios se publican después de una revisión del equipo.</p>`:`<form class="fc" id="fc" data-noedit><label class="sr" for="cN">Nombre</label><input id="cN" required placeholder="Tu nombre"><label class="sr" for="cT">Comentario</label><textarea id="cT" required placeholder="Escribe tu comentario"></textarea><button class="btn yeso" type="submit">Publicar comentario</button></form><ul class="lc" id="lc" data-noedit></ul>`}</section>
+  <div class="fc" style="margin-top:28px" data-noedit><h2 style="font-size:28px;margin:0">Suscríbete a la bitácora</h2><p class="nota" style="margin:0">Te avisamos por correo cuando publiquemos una entrada nueva.</p><form class="sus" id="formSusArt" action="https://subscribe.wordpress.com" method="post" target="_blank" accept-charset="utf-8"><input type="hidden" name="action" value="subscribe"><input type="hidden" name="blog_id" value="258155277"><input type="hidden" name="source" value="https://javiera965.github.io/manos-a-la-masa/"><input type="hidden" name="sub-type" value="widget"><input type="hidden" name="redirect_fragment" value="suscripcion"><label class="sr" for="correoArt">Tu correo</label><input id="correoArt" name="email" type="email" required placeholder="tu@correo.cl" autocomplete="email"><button class="btn yeso" type="submit">Suscribirme</button></form><p class="ok" id="okSusArt" hidden>Revisa tu correo: te enviamos un enlace para confirmar la suscripción.</p></div>`;
+  art.hidden=false;document.body.style.overflow="hidden";art.scrollTop=0;
+  susOk($("#formSusArt"),$("#okSusArt"));
+  if(C.cusdis){cargarCusdis()}else{pintaC(id);
+  $("#fc").onsubmit=ev=>{ev.preventDefault();const l=getC(id);l.push({n:$("#cN").value,t:$("#cT").value});try{localStorage.setItem("mam_c_"+id,JSON.stringify(l))}catch(x){}$("#cT").value="";pintaC(id)}};
   A.querySelector("[data-ir]").onclick=ev=>{ev.preventDefault();if(document.body.classList.contains("editando"))return;const h=ev.currentTarget.getAttribute("href");if(h==="#coment"){$("#coment").scrollIntoView({behavior:"smooth"});return}cerrar();setTimeout(()=>$(h).scrollIntoView({behavior:"smooth"}),60)};
   if(document.body.classList.contains("editando"))activarEdicion();
   $("#cerrar").focus()}
@@ -1224,7 +1234,8 @@ addEventListener("keydown",e=>{if(e.key==="Escape"&&!art.hidden&&!document.body.
 function ruta(){const m=location.hash.match(/^#\/bitacora\/(.+)$/);if(m)abrir(m[1]);else if(!art.hidden){art.hidden=true;document.body.style.overflow=""}}
 addEventListener("hashchange",ruta);ruta();
 
-$("#formSus").onsubmit=e=>{e.preventDefault();$("#okSus").hidden=false;e.target.reset()};
+susOk($("#formSus"),$("#okSus"));
+susOk($("#formSus"),$("#okSus"));
 $("#formCon").onsubmit=e=>{e.preventDefault();$("#okCon").hidden=false;e.target.reset()};
 
 /* ================= MODO EDICIÓN =================
@@ -1257,8 +1268,8 @@ if(PUEDE_EDITAR){
   addEventListener("beforeunload",e=>{if(cambios){e.preventDefault();e.returnValue=""}});
   /* datos de contacto */
   const dlg=$("#dlgEd");
-  $("#edContacto").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook"].forEach(k=>$("#ed_"+k).value=C[k]||"");dlg.showModal()};
-  $("#edAplicar").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook"].forEach(k=>C[k]=$("#ed_"+k).value.trim());pintaContacto();cambios=true;est.textContent="Tienes cambios sin guardar."};
+  $("#edContacto").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook","cusdis"].forEach(k=>$("#ed_"+k).value=C[k]||"");dlg.showModal()};
+  $("#edAplicar").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook","cusdis"].forEach(k=>C[k]=$("#ed_"+k).value.trim());pintaContacto();cambios=true;est.textContent="Tienes cambios sin guardar."};
   /* guardar: descarga el archivo con los cambios */
   $("#edGuardar").onclick=()=>{
     const estaba=document.body.classList.contains("editando");if(estaba)desactivarEdicion();
