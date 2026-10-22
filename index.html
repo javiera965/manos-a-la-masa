@@ -1,0 +1,1280 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manos a la masa · Cocina de campo en el Cajón del Maipo</title>
+<meta name="description" content="Una mañana en San José de Maipo amasando pan y armando tus empanadas de pino para el horno de barro, con pebre del huerto y la cordillera de fondo.">
+<meta property="og:title" content="Manos a la masa · Cocina de campo en el Cajón del Maipo">
+<meta property="og:description" content="Amasa, arma tus empanadas de pino y almuerza lo que cocinaste, con la cordillera de fondo.">
+<meta property="og:image" content="https://manosalamasacajon.wordpress.com/wp-content/uploads/2026/10/tabla-empanadas-pebre.jpg?w=1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nieve:#f7fbfa;
+  --niebla:#e3f2f6;      /* celeste niebla de la mañana */
+  --celeste:#9fd6ea;
+  --yeso:#3fb5ad;        /* turquesa del Embalse El Yeso */
+  --yeso-hondo:#1d6b73;
+  --ladera:#93c47d;      /* verde de las laderas en primavera */
+  --musgo:#4d7c4a;
+  --piedra:#ece5d8;      /* piedra y harina */
+  --miel:#e7a248;        /* empanada recién horneada */
+  --tinta:#16393f;
+  --tinta-2:#4f6d71;
+  --vidrio:rgba(255,255,255,.8);
+  --linea:rgba(22,57,63,.12);
+  --serif:"DM Serif Display",Georgia,serif;
+  --sans:"Manrope",system-ui,sans-serif;
+  --mano:"Caveat",cursive;
+  --r:30px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--niebla);color:var(--tinta);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--yeso);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.02;letter-spacing:-.01em}
+p{margin:0 0 1em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;z-index:999}.skip:focus{left:16px;top:16px;background:#fff;padding:8px 12px}
+
+/* fondo de paisajes que cambia */
+.fondos{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.fondos div{position:absolute;inset:-30px;background:center/cover no-repeat;filter:blur(3px) saturate(1.1);opacity:0;transition:opacity 1.2s ease;transform:scale(1.04)}
+.fondos div.on{opacity:1}
+.fondos::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,251,250,.28),rgba(227,242,246,.42))}
+
+/* aviso y nav */
+.aviso{background:var(--yeso-hondo);color:#e9f7f6;font-size:13.5px;text-align:center;padding:8px 16px;position:relative;z-index:61}
+.nav{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px clamp(16px,3vw,32px);background:rgba(247,251,250,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--linea)}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-size:24px;white-space:nowrap}
+.marca svg{width:36px;height:36px;flex:none}
+.nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;white-space:nowrap;text-decoration:none;font-size:14px;font-weight:600;padding:8px 9px;border-radius:999px;color:var(--tinta-2)}
+.nav ul a:hover{background:#fff;color:var(--tinta)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:700 15.5px/1 var(--sans);text-decoration:none;padding:15px 26px;border-radius:999px;background:var(--tinta);color:#fff;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(22,57,63,.6)}
+.btn.miel{background:var(--miel);color:#3b2200}
+.btn.yeso{background:var(--yeso);color:#fff}
+.btn.blanco{background:#fff;color:var(--tinta)}
+.btn.borde{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.btn.chico{padding:11px 18px;font-size:14.5px}
+.menu-btn{display:none;background:#fff;border:0;border-radius:999px;padding:10px 16px;font-weight:700;color:var(--tinta)}
+@media (max-width:1340px){
+  .nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--nieve);padding:8px 16px 16px;border-bottom:1px solid var(--linea)}
+  .nav ul.open{display:flex}.nav ul a{font-size:18px;padding:12px}
+  .menu-btn{display:block}.nav>.btn{display:none}
+}
+
+/* inicio */
+.hero{height:250vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--celeste)}
+.hero-paisaje{position:absolute;inset:0;background:center/cover no-repeat}
+.hero-paisaje::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,57,63,.15),rgba(22,57,63,.05) 40%,rgba(22,57,63,.35))}
+.hero-foto{position:absolute;inset:0;will-change:clip-path;background:var(--piedra)}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.hero-foto::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(22,57,63,.45));opacity:var(--osc,0)}
+.hero-tit{position:absolute;left:0;right:0;top:clamp(48px,8vh,100px);text-align:center;color:#fff;padding:0 16px;will-change:transform,opacity;pointer-events:none}
+.hero-tit h1{font-size:clamp(56px,10vw,160px);line-height:.9;text-shadow:0 8px 40px rgba(22,57,63,.4)}
+.hero-tit p{font:700 clamp(15px,1.4vw,18px) var(--sans);margin-top:12px;text-shadow:0 2px 14px rgba(22,57,63,.6)}
+.sticker{position:absolute;left:50%;top:56%;width:clamp(84px,8.5vw,128px);aspect-ratio:1;will-change:transform,opacity;pointer-events:none}
+.sticker img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:5px solid #fff;box-shadow:0 18px 40px -14px rgba(22,57,63,.55);background:#fff}
+.sticker span{position:absolute;left:50%;top:100%;transform:translateX(-50%) rotate(-4deg);margin-top:6px;font:700 clamp(20px,2vw,28px)/1 var(--mano);color:#fff;white-space:nowrap;text-shadow:0 2px 10px rgba(22,57,63,.8)}
+.hero-final{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:0 16px;opacity:0;will-change:opacity}
+.hero-final h2{font-size:clamp(40px,6vw,92px);line-height:.98;max-width:13ch;margin:0 auto 26px;text-shadow:0 6px 40px rgba(22,57,63,.7)}
+.hero-final .acc{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.pista{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);color:#fff;font:700 13.5px var(--sans);text-shadow:0 1px 8px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px}
+.pista i{width:20px;height:32px;border:2px solid #fff;border-radius:12px;position:relative}
+.pista i::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;border-radius:2px;background:#fff;animation:rueda 1.6s infinite}
+@keyframes rueda{to{opacity:0;transform:translateY(10px)}}
+
+/* secciones */
+.sec{padding:clamp(64px,9vw,130px) 0;position:relative}
+.tarjeta{background:var(--vidrio);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--r);box-shadow:0 30px 70px -36px rgba(22,57,63,.45);padding:clamp(22px,4vw,56px)}
+.etiqueta{display:inline-block;font:700 13px/1 var(--sans);color:var(--yeso-hondo);background:var(--niebla);padding:8px 14px;border-radius:999px;margin-bottom:18px}
+.h2{font-size:clamp(38px,5.4vw,78px);max-width:16ch}
+.h2 em{font-style:italic;color:var(--yeso-hondo)}
+.bajada{font-size:clamp(17px,1.5vw,20px);color:var(--tinta-2);max-width:56ch}
+.nota-mano{font:700 27px/1.15 var(--mano);color:var(--yeso-hondo)}
+.cab{display:flex;justify-content:space-between;align-items:end;gap:28px;flex-wrap:wrap;margin-bottom:clamp(26px,4vw,46px)}
+
+/* historia */
+.historia{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center}
+@media (max-width:900px){.historia{grid-template-columns:1fr}}
+.historia .texto p{font-size:17.5px;color:var(--tinta-2)}
+.historia .texto p.grande{font-family:var(--serif);font-size:clamp(24px,2.3vw,31px);line-height:1.25;color:var(--tinta)}
+.polas{position:relative;min-height:520px}
+.pola{position:absolute;background:#fff;padding:12px 12px 52px;border-radius:6px;box-shadow:0 24px 50px -24px rgba(22,57,63,.55);margin:0}
+.pola img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;background:var(--niebla)}
+.pola figcaption{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:700 24px/1 var(--mano);color:var(--tinta)}
+.pola.p1{width:62%;left:0;top:20px;transform:rotate(-5deg)}
+.pola.p2{width:56%;right:0;top:170px;transform:rotate(4deg)}
+@media (max-width:560px){.polas{min-height:400px}}
+.pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+@media (max-width:640px){.pilares{grid-template-columns:1fr}}
+.pilar{background:#fff;border-radius:22px;padding:18px}
+.pilar b{display:block;font:400 22px var(--serif);margin-bottom:4px}
+.pilar span{font-size:14.5px;color:var(--tinta-2);line-height:1.45;display:block}
+
+/* experiencia */
+.historias{display:flex;gap:18px;overflow-x:auto;padding:4px 2px 18px;margin-bottom:10px;scrollbar-width:none}
+.historias::-webkit-scrollbar{display:none}
+.hist{flex:none;text-align:center;width:92px;text-decoration:none;color:var(--tinta)}
+.hist .aro{width:86px;height:86px;border-radius:50%;padding:3px;background:conic-gradient(var(--miel),var(--yeso),var(--ladera),var(--miel));margin:0 auto 6px}
+.hist .aro img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #fff;background:var(--niebla)}
+.hist span{font-size:13px;font-weight:700}
+.grilla{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:700px){.grilla{grid-template-columns:repeat(2,1fr)}}
+.post{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;color:#fff;isolation:isolate;margin:0;background:var(--yeso-hondo)}
+.post img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1s ease}
+.post:hover img{transform:scale(1.05)}
+.post::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(22,57,63,.8),transparent 55%)}
+.post figcaption{position:absolute;left:18px;right:18px;bottom:16px}
+.post b{display:block;font:400 clamp(21px,2vw,28px)/1.05 var(--serif)}
+.post small{display:block;font-size:14px;opacity:.92;margin-top:4px;line-height:1.35}
+.incluye{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+@media (max-width:700px){.incluye{grid-template-columns:1fr}}
+.incluye>div{background:#fff;border-radius:22px;padding:20px 22px}
+.incluye h3{font-size:24px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:14px;font-weight:600;padding:7px 13px;border-radius:999px;background:var(--niebla)}
+.chips.no span{background:var(--piedra);color:#6b5a3f}
+
+/* trayecto */
+.trayecto{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,3vw,36px);align-items:start}
+@media (max-width:960px){.trayecto{grid-template-columns:1fr}}
+.mapa-ruta{position:relative;border-radius:26px;overflow:hidden;background:#b8d9a8;aspect-ratio:640/420}
+.mapa-ruta svg{width:100%;height:100%;display:block}
+.parada{cursor:pointer}
+.parada circle.base{fill:#fff;stroke:var(--yeso-hondo);stroke-width:3;transition:fill .3s}
+.parada.hecha circle.base{fill:var(--ladera)}
+.parada.actual circle.base{fill:var(--miel)}
+.parada text{font:800 13px var(--sans);fill:var(--tinta);paint-order:stroke;stroke:#fff;stroke-width:4px}
+.parada:focus-visible{outline:none}.parada:focus-visible circle.base{stroke:var(--miel);stroke-width:5}
+.inicio-ruta{position:absolute;inset:0;display:grid;place-items:center;background:rgba(247,251,250,.6);backdrop-filter:blur(4px);text-align:center;padding:20px}
+.inicio-ruta[hidden]{display:none}
+.inicio-ruta p{font:700 32px/1.1 var(--mano);color:var(--tinta);margin-bottom:16px}
+.panel-ruta{background:#fff;border-radius:26px;overflow:hidden;display:flex;flex-direction:column}
+.panel-ruta .foto{aspect-ratio:16/10;position:relative;background:var(--niebla)}
+.panel-ruta .foto img{width:100%;height:100%;object-fit:cover}
+.panel-ruta .hora{position:absolute;left:16px;top:16px;background:#fff;border-radius:999px;padding:7px 14px;font:800 14px var(--sans)}
+.panel-ruta .cuerpo{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.panel-ruta .num{font:700 22px var(--mano);color:var(--yeso-hondo)}
+.panel-ruta h3{font-size:32px;margin-bottom:8px}
+.panel-ruta blockquote{margin:0 0 10px;font:700 23px/1.2 var(--mano);color:var(--yeso-hondo)}
+.panel-ruta p{color:var(--tinta-2);font-size:16px}
+.progreso{height:6px;border-radius:3px;background:var(--niebla);margin:auto 0 16px;overflow:hidden}
+.progreso i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--yeso),var(--ladera),var(--miel));transition:width .5s}
+.controles{display:flex;gap:10px;justify-content:space-between}
+.controles .btn:disabled{opacity:.35;pointer-events:none}
+
+/* quiénes somos */
+.equipo{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media (max-width:980px){.equipo{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.equipo{grid-template-columns:1fr}}
+.per{background:#fff;padding:12px 12px 20px;border-radius:8px;box-shadow:0 24px 46px -26px rgba(22,57,63,.5);transition:transform .3s}
+.per:nth-child(odd){transform:rotate(-1.5deg)}.per:nth-child(even){transform:rotate(1.5deg)}
+.per:hover{transform:rotate(0) translateY(-4px)}
+.per .ret{position:relative;aspect-ratio:4/5;border-radius:3px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(160deg,var(--niebla),var(--celeste));margin-bottom:14px}
+.per:nth-child(2) .ret{background:linear-gradient(160deg,#e6f3e2,var(--ladera))}
+.per:nth-child(3) .ret{background:linear-gradient(160deg,#d6f0ee,var(--yeso))}
+.per:nth-child(4) .ret{background:linear-gradient(160deg,#f6ecdc,var(--miel))}
+.per .ret b{font:400 64px var(--serif);color:#fff}
+.per .ret small{position:absolute;bottom:10px;left:0;right:0;text-align:center;font:700 20px var(--mano);color:#fff}
+.per .ret img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.per h3{font-size:25px;padding:0 6px}
+.per .rol{display:block;font:700 22px/1.1 var(--mano);color:var(--yeso-hondo);padding:2px 6px 8px}
+.per p{font-size:14.5px;color:var(--tinta-2);margin:0;padding:0 6px;line-height:1.5}
+.compromisos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+@media (max-width:980px){.compromisos{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.compromisos{grid-template-columns:1fr}}
+.comp{background:#fff;border-radius:22px;padding:18px;display:flex;gap:12px}
+.comp svg{flex:none;width:40px;height:40px}
+.comp b{display:block;font-weight:800;font-size:15.5px;margin-bottom:2px}
+.comp span{font-size:14px;color:var(--tinta-2);line-height:1.4;display:block}
+
+/* complementa */
+.actividades{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:960px){.actividades{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.actividades{grid-template-columns:1fr}}
+.act{background:#fff;border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.act .foto{aspect-ratio:4/3;position:relative;background:var(--niebla)}
+.act .foto img{width:100%;height:100%;object-fit:cover}
+.act .tag{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.92);border-radius:999px;padding:6px 12px;font:800 12.5px var(--sans)}
+.act .cuerpo{padding:18px 20px 20px}
+.act h3{font-size:26px;margin-bottom:6px}
+.act p{font-size:15px;color:var(--tinta-2);margin:0 0 10px}
+.act small{display:block;font-size:12.5px;color:var(--tinta-2);line-height:1.4}
+.aviso-act{margin:22px 0 0;font-size:14.5px;color:var(--tinta-2);background:#fff;border-radius:18px;padding:14px 18px}
+
+/* reserva y ficha */
+.reserva{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,36px);align-items:start}
+@media (max-width:960px){.reserva{grid-template-columns:1fr}}
+.blanco{background:#fff;border-radius:26px;padding:clamp(20px,3vw,32px)}
+fieldset{border:0;padding:0;margin:0 0 22px}
+legend{font:800 16px var(--sans);margin-bottom:10px;padding:0}
+.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.op{position:relative}.op input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer;width:100%;height:100%}
+.op label{display:block;height:100%;padding:13px 15px;border-radius:16px;border:1.5px solid var(--linea);cursor:pointer;transition:.2s}
+.op label b{display:block;font-size:15.5px}.op label small{display:block;font-size:13px;color:var(--tinta-2);line-height:1.35}
+.op input:checked+label{border-color:var(--yeso);background:#e8f7f5}
+.op input:focus-visible+label{outline:3px solid var(--yeso);outline-offset:2px}
+.cont{display:flex;align-items:center;gap:14px}
+.cont button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--linea);background:#fff;font-size:22px;cursor:pointer;color:var(--tinta)}
+.cont button:disabled{opacity:.35}
+.cont output{font:400 44px var(--serif);min-width:2ch;text-align:center}
+.ticket{background:var(--tinta);color:#eaf6f5}
+.ticket .foto{aspect-ratio:16/9;border-radius:18px;overflow:hidden;margin-bottom:16px;background:var(--yeso-hondo)}
+.ticket .foto img{width:100%;height:100%;object-fit:cover}
+.ticket h3{font-size:30px}
+.ticket ul{list-style:none;padding:0;margin:16px 0;border-top:1px solid rgba(255,255,255,.15)}
+.ticket li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:15px}
+.ticket li span:first-child{color:#a9d3d2}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:2px 0 18px}
+.total b{font:400 48px var(--serif);color:var(--miel)}
+.nota{font-size:13px;line-height:1.5;color:var(--tinta-2)}
+.ticket .nota{color:#a9d3d2}
+.enlace{background:none;border:0;padding:0;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;font:inherit}
+.ficha{margin-top:clamp(18px,3vw,36px);display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(18px,3vw,36px)}
+@media (max-width:960px){.ficha{grid-template-columns:1fr}}
+.ficha dl{margin:0;display:grid;grid-template-columns:minmax(110px,170px) 1fr}
+.ficha dt,.ficha dd{margin:0;padding:12px 0;border-bottom:1px solid var(--linea)}
+.ficha dt{font-weight:800;font-size:14.5px;padding-right:12px}
+.ficha dd{font-size:15.5px;color:var(--tinta-2)}
+.ficha h3{font-size:34px;margin-bottom:10px}
+.estado{display:inline-block;background:#fff1d9;color:#7a4a00;font-weight:800;font-size:12.5px;padding:3px 10px;border-radius:999px;margin-right:6px}
+.mapa{border-radius:22px;overflow:hidden;aspect-ratio:1;background:var(--niebla)}
+.mapa iframe{width:100%;height:100%;border:0}
+@media (max-width:560px){.ficha dl{grid-template-columns:1fr}.ficha dt{border:0;padding-bottom:0}}
+
+/* juego */
+.juego{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(20px,4vw,56px);align-items:center}
+@media (max-width:900px){.juego{grid-template-columns:1fr}}
+.pantalla{aspect-ratio:16/10;border-radius:24px;overflow:hidden;background:var(--tinta);border:8px solid #fff;box-shadow:0 30px 60px -30px rgba(22,57,63,.6)}
+.pantalla iframe{width:100%;height:100%;border:0}
+
+/* bitácora */
+.entradas{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media (max-width:760px){.entradas{grid-template-columns:1fr}}
+.card{display:block;text-decoration:none;background:#fff;border-radius:26px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -28px rgba(22,57,63,.5)}
+.card .foto{aspect-ratio:16/9;overflow:hidden;background:var(--niebla)}
+.card img{width:100%;height:100%;object-fit:cover}
+.card .cuerpo{padding:20px 24px 24px}
+.card h3{font-size:clamp(24px,2.2vw,30px);margin:6px 0 8px}
+.card p{color:var(--tinta-2);margin:0;font-size:15.5px}
+.meta{font-size:13.5px;color:var(--tinta-2)}.meta b{color:var(--tinta)}
+.leer{display:inline-block;margin-top:12px;font:700 22px var(--mano);color:var(--yeso-hondo)}
+
+/* artículo */
+.articulo[hidden]{display:none}
+.articulo{position:fixed;inset:0;z-index:90;background:var(--nieve);overflow-y:auto}
+.art-bar{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px clamp(16px,4vw,40px);background:rgba(247,251,250,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.art-bar button{background:var(--niebla);border:0;border-radius:999px;padding:11px 18px;font-weight:700;color:var(--tinta);cursor:pointer}
+.art-hero{height:58vh;min-height:320px;background:var(--celeste) center/cover;position:relative}
+.art-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--nieve),transparent 55%)}
+.art{width:min(720px,100% - 32px);margin:-100px auto 0;position:relative;padding-bottom:96px;font-size:18px;line-height:1.78}
+.art h1{font-size:clamp(38px,5.4vw,62px);line-height:1.02;margin:10px 0 16px}
+.art h2{font-size:32px;margin:42px 0 10px}
+.art figcaption{font-size:13px;color:var(--tinta-2)}.art figcaption a{color:var(--tinta-2)}
+.fuentes{margin-top:40px;padding:20px 22px;border-radius:20px;background:#fff;font-size:15px;color:var(--tinta-2)}
+.fuentes ul{padding-left:18px;margin:8px 0 0}
+.accion{margin-top:24px;padding:28px;border-radius:26px;background:linear-gradient(120deg,var(--yeso-hondo),var(--yeso));color:#fff}
+.accion h2{margin:0 0 6px;font-size:32px}
+.accion p{margin-bottom:16px}
+.coment{margin-top:52px}
+.fc{display:grid;gap:12px;background:#fff;border-radius:22px;padding:20px}
+input,textarea,select{font:inherit;font-size:16px;padding:13px 15px;border-radius:14px;border:1.5px solid var(--linea);background:var(--nieve);color:var(--tinta);width:100%}
+textarea{min-height:110px;resize:vertical}
+.fc .btn{justify-self:start}
+.lc{list-style:none;padding:0;margin:20px 0 0}
+.lc li{padding:14px 0;border-bottom:1px solid var(--linea);font-size:16px}
+.lc li b{display:block;font-size:14.5px}
+.vacio{color:var(--tinta-2)}
+
+/* preguntas */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(20px,4vw,60px)}
+@media (max-width:900px){.faq{grid-template-columns:1fr}}
+details{border-bottom:1px solid var(--linea)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font:400 23px/1.2 var(--serif)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:300 30px/0.8 var(--sans);color:var(--yeso);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--tinta-2);margin:0 0 18px;max-width:62ch}
+
+/* comunidad */
+.insta{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media (max-width:820px){.insta{grid-template-columns:repeat(3,1fr)}}
+.insta img{aspect-ratio:1;object-fit:cover;border-radius:14px;width:100%;background:var(--niebla)}
+.redes{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.red{display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:999px;padding:9px 18px 9px 9px;text-decoration:none;font-weight:700;font-size:15px}
+.red svg{width:30px;height:30px}
+.red small{font-weight:600;color:var(--tinta-2)}
+
+/* contacto */
+.contacto{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,36px)}
+@media (max-width:900px){.contacto{grid-template-columns:1fr}}
+.datos{list-style:none;padding:0;margin:0 0 18px}
+.datos li{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--linea);font-size:15.5px}
+.datos li span:first-child{font-weight:800}
+.datos li span:last-child{color:var(--tinta-2);text-align:right}
+.fcon{display:grid;gap:10px;align-content:start}
+.fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.fila{grid-template-columns:1fr}}
+.ok{color:var(--musgo);font-weight:700;font-size:15px;margin:10px 0 0}
+.sus{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.sus input{flex:1 1 220px;width:auto}
+
+/* pie */
+footer{background:rgba(22,57,63,.95);color:#bfdcda;padding:64px 0 36px;font-size:14.5px}
+.pie{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px}
+@media (max-width:900px){.pie{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.pie{grid-template-columns:1fr}}
+footer h4{font:400 21px var(--serif);color:#fff;margin:0 0 12px}
+footer ul{list-style:none;padding:0;margin:0}footer li{margin-bottom:8px;line-height:1.4}
+footer a,footer .enlace{color:#bfdcda;text-decoration:underline;text-underline-offset:3px}
+footer .marca{color:#fff;margin-bottom:12px}
+.legal-final{border-top:1px solid rgba(255,255,255,.15);margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px}
+
+/* diálogos */
+dialog{border:0;border-radius:26px;padding:0;max-width:680px;width:calc(100% - 32px);max-height:86vh;color:var(--tinta)}
+dialog::backdrop{background:rgba(22,57,63,.5);backdrop-filter:blur(4px)}
+dialog .in{padding:28px 30px 8px}
+dialog h2{font-size:34px;margin-bottom:12px}
+dialog p,dialog li{font-size:15px;color:var(--tinta-2)}
+dialog li{margin-bottom:6px}
+dialog form{text-align:right;padding:8px 30px 26px}
+.creditos{font-size:13px}
+
+
+/* modo edición */
+.editor{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:200;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;background:rgba(22,57,63,.94);color:#e9f7f6;padding:10px 14px;border-radius:22px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);width:max-content;max-width:calc(100% - 24px);font-size:13.5px}
+.editor[hidden]{display:none}
+.editor span{max-width:340px;line-height:1.35}
+body.editando [contenteditable="true"]{outline:2px dashed rgba(63,181,173,.75);outline-offset:3px;border-radius:4px;cursor:text}
+body.editando [contenteditable="true"]:hover,body.editando [contenteditable="true"]:focus{outline-style:solid;outline-color:var(--miel);background:rgba(231,162,72,.08)}
+.campos{display:grid;gap:12px;margin-top:10px}
+.campos label{display:grid;gap:4px;font-weight:700;font-size:14px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="fondos" aria-hidden="true"><div id="fA"></div><div id="fB"></div></div>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="aviso">Propuesta académica: experiencia en etapa de diseño, aún sin fechas confirmadas ni acuerdos con colaboradores.</div>
+
+<nav class="nav" aria-label="Principal">
+  <a class="marca" href="#inicio" aria-label="Manos a la masa, inicio">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#3fb5ad"/><path d="M5 27 15 13l5 7 4-5 11 12Z" fill="#f7fbfa"/><path d="M9 28c4-6 18-6 22 0Z" fill="#e7a248"/></svg>
+    Manos a la masa</a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menú</button>
+  <ul id="menu">
+    <li><a href="#historia">Nuestra historia</a></li>
+    <li><a href="#experiencia">La experiencia</a></li>
+    <li><a href="#trayecto">Tu mañana</a></li>
+    <li><a href="#quienes">Quiénes somos</a></li>
+    <li><a href="#complementa">Complementa tu día</a></li>
+    <li><a href="#reserva">Reserva</a></li>
+    <li><a href="#bitacora">Bitácora</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="btn chico miel" href="#reserva">Reservar</a>
+</nav>
+
+<!-- INICIO -->
+<header class="hero" id="inicio">
+  <div class="stage">
+    <div class="hero-paisaje" id="heroPaisaje" role="img" aria-label="Embalse El Yeso rodeado de cumbres nevadas, en el Cajón del Maipo"></div>
+    <div class="hero-foto" id="heroFoto"><img id="heroImg" alt="Tabla de madera con empanadas de pino doradas y un pocillo de pebre"></div>
+    <div id="stickers" data-render></div>
+    <div class="hero-tit" id="heroTit">
+      <h1>Manos a la masa</h1>
+      <p>Cocina de campo en el Cajón del Maipo</p>
+    </div>
+    <div class="hero-final" id="heroFinal">
+      <div>
+        <h2>Tu empanada, tu pebre y la cordillera de fondo</h2>
+        <div class="acc"><a class="btn miel" href="#reserva">Reserva tu mañana</a><a class="btn blanco" href="#historia">Conoce nuestra historia</a></div>
+      </div>
+    </div>
+    <div class="pista" id="pista"><i></i>Baja para descubrir</div>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- HISTORIA -->
+<section class="sec" id="historia" data-fondo="verde">
+  <div class="wrap">
+    <div class="tarjeta historia">
+      <div class="texto">
+        <span class="etiqueta">Nuestra historia</span>
+        <h2 class="h2">Queremos que el Cajón se <em>cocine</em>, no solo se mire</h2>
+        <p class="grande" style="margin-top:22px">Casi todas las excursiones al Cajón del Maipo son de aventura y paisaje. La comida llega hecha, como un trámite entre una parada y otra.</p>
+        <p>Nosotros pensamos al revés. La empanada de horno de barro, el pan amasado y los frutos secos de las huertas son parte de la identidad del valle, y quisimos ponerlos al centro. Por eso creamos una mañana en San José de Maipo donde cocinas junto a una productora local, aprendes una receta que puedes repetir en casa y almuerzas lo que hiciste con tus manos.</p>
+        <p class="nota-mano">Nuestro objetivo: que te lleves el sabor del valle, y que lo que gastes se quede en el valle.</p>
+        <div class="pilares">
+          <div class="pilar"><b>Aprender haciendo</b><span>Amasas, rellenas y cierras tus propias empanadas.</span></div>
+          <div class="pilar"><b>Cocina del valle</b><span>Empanada de horno de barro, pan amasado y pebre del huerto.</span></div>
+          <div class="pilar"><b>Beneficio local</b><span>Una productora del pueblo guía el taller y los ingredientes se compran ahí.</span></div>
+        </div>
+      </div>
+      <div class="polas">
+        <figure class="pola p1"><img id="pol1" alt="Mujer amasando a mano una masa de pan sobre una mesa enharinada"><figcaption>la masa, con tus manos</figcaption></figure>
+        <figure class="pola p2"><img id="pol2" alt="Valle verde del Cajón del Maipo al pie de un cerro con cielo celeste"><figcaption>y el valle de fondo</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section class="sec" id="experiencia" data-fondo="yesoT">
+  <div class="wrap">
+    <div class="tarjeta">
+      <div class="cab">
+        <div><span class="etiqueta">La experiencia</span><h2 class="h2">Una mañana para cocinar tu propio almuerzo</h2></div>
+        <p class="bajada">Tres horas y media en San José de Maipo, de 10:30 a 14:00, en grupos de máximo 10 personas. $28.000 por persona, con el almuerzo incluido.</p>
+      </div>
+      <div class="historias" id="historias" data-render aria-label="Momentos destacados"></div>
+      <div class="grilla" id="grilla" data-render></div>
+      <div class="incluye">
+        <div><h3>Incluye</h3><div class="chips"><span>Té de bienvenida</span><span>Taller guiado</span><span>Delantal y utensilios</span><span>Recorrido por el huerto</span><span>Almuerzo con jugo</span><span>Frutos secos y té</span><span>Tarjeta con la receta</span></div></div>
+        <div><h3>No incluye</h3><div class="chips no"><span>Traslado</span><span>Alojamiento</span><span>Bebidas alcohólicas</span><span>Compras de productos locales</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAYECTO -->
+<section class="sec" id="trayecto" data-fondo="ladera">
+  <div class="wrap">
+    <div class="tarjeta">
+      <div class="cab">
+        <div><span class="etiqueta">Tu mañana</span><h2 class="h2">Recorre el día, parada por parada</h2></div>
+        <p class="bajada">Pincha "Comenzar mi mañana" y avanza por el camino. Son seis paradas que suman 210 minutos, desde que llegas hasta que te vas con la receta.</p>
+      </div>
+      <div class="trayecto">
+        <div class="mapa-ruta">
+          <svg id="ruta" viewBox="0 0 640 420" preserveAspectRatio="xMidYMid slice" role="group" aria-label="Mapa del trayecto con seis paradas">
+            <rect width="640" height="420" fill="#d9eef5"/><path d="M0 150 L70 90 L120 120 L190 40 L260 110 L320 60 L400 130 L470 50 L540 120 L600 80 L640 110 L640 0 L0 0Z" fill="#b9dbe6"/>
+            <path d="M190 40 l-18 22 h36Z M470 50 l-16 20 h32Z M320 60 l-14 16 h28Z" fill="#fff"/>
+            <path d="M0 250 Q160 200 320 240 T640 220 L640 420 L0 420Z" fill="#cfe6c3"/>
+            <path d="M0 330 Q200 300 360 340 T640 320 L640 420 L0 420Z" fill="#b8d9a8"/>
+            <path d="M-10 385 Q120 355 220 377 T420 365 T650 350" fill="none" stroke="#6fc4bd" stroke-width="10" stroke-linecap="round" opacity=".8"/>
+            <path id="camino" d="M60 300 C120 230 170 330 230 270 S330 170 380 230 S470 330 520 250 S590 150 600 170" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+            <path d="M60 300 C120 230 170 330 230 270 S330 170 380 230 S470 330 520 250 S590 150 600 170" fill="none" stroke="#e7a248" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+            <path id="hecho" d="M60 300 C120 230 170 330 230 270 S330 170 380 230 S470 330 520 250 S590 150 600 170" fill="none" stroke="#3fb5ad" stroke-width="6" stroke-linecap="round"/>
+            <g id="paradas" data-render></g>
+            <g id="marcador" transform="translate(60 300)"><circle r="16" fill="#16393f"/><circle r="7" fill="#e7a248"/></g>
+          </svg>
+          <div class="inicio-ruta" id="inicioRuta"><div><p>Son las 10:30 en San José de Maipo…</p><button class="btn miel" id="comenzar">Comenzar mi mañana</button></div></div>
+        </div>
+        <div class="panel-ruta" aria-live="polite">
+          <div class="foto"><img id="rImg" alt=""><span class="hora" id="rHora">10:30</span></div>
+          <div class="cuerpo">
+            <span class="num" id="rNum" data-noedit>parada 1 de 6</span>
+            <h3 id="rTit">Bienvenida</h3>
+            <blockquote id="rCita"></blockquote>
+            <p id="rTxt"></p>
+            <div class="progreso"><i id="rProg"></i></div>
+            <div class="controles"><button class="btn borde chico" id="rAnt">Anterior</button><button class="btn yeso chico" id="rSig">Siguiente parada</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section class="sec" id="quienes" data-fondo="verde">
+  <div class="wrap">
+    <div class="tarjeta">
+      <div class="cab">
+        <div><span class="etiqueta">Quiénes somos</span><h2 class="h2">Cuatro amantes de la cocina chilena</h2></div>
+        <p class="bajada">Somos Javiera, Catalina, Diego e Ivanna, estudiantes de Gastronomía. Diseñamos cada detalle de esta mañana: investigamos el valle, calculamos cada costo, probamos la receta y pensamos qué hacer si algo cambia.</p>
+      </div>
+      <div class="equipo" id="equipo" data-render></div>
+      <div class="compromisos">
+        <div class="comp"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#3fb5ad"/><circle cx="14" cy="16" r="4.5" fill="#fff"/><circle cx="26" cy="16" r="4.5" fill="#fff"/><path d="M7 29c1-6 13-6 14 0M19 29c1-6 13-6 14 0" stroke="#fff" stroke-width="3" fill="none"/></svg><div><b>Grupos pequeños</b><span>Máximo 10 personas, para que todos cocinen.</span></div></div>
+        <div class="comp"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#e7a248"/><path d="M20 9v22M25.5 13.5c-2-2-10-3-10 3s10 3 10 8.5-8 4.5-11 2" stroke="#3b2200" stroke-width="3" fill="none" stroke-linecap="round"/></svg><div><b>Precio claro</b><span>$28.000 por persona, con abono y saldo informados.</span></div></div>
+        <div class="comp"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#93c47d"/><path d="M12 21l5 5 11-12" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Te avisamos si algo cambia</b><span>Con 48 horas si no se completa el grupo.</span></div></div>
+        <div class="comp"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#9fd6ea"/><path d="M12 28V17l8-6 8 6v11Z" fill="#16393f"/><rect x="17" y="21" width="6" height="7" fill="#9fd6ea"/></svg><div><b>Cocina de la zona</b><span>Una productora local guía el taller.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLEMENTA -->
+<section class="sec" id="complementa" data-fondo="morado">
+  <div class="wrap">
+    <div class="tarjeta">
+      <div class="cab">
+        <div><span class="etiqueta">Complementa tu día</span><h2 class="h2">Después de la empanada, sigue el valle</h2></div>
+        <p class="bajada">Terminamos a las 14:00, así que tienes la tarde libre. Estas son algunas ideas para seguir recorriendo el Cajón del Maipo.</p>
+      </div>
+      <div class="actividades" id="actividades" data-render></div>
+      <p class="aviso-act">Son panoramas de terceros y no están incluidos en Manos a la masa. Revisa horarios, precios y el estado del camino con cada operador antes de ir; en invierno algunos accesos cierran por nieve.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVA -->
+<section class="sec" id="reserva" data-fondo="yeso">
+  <div class="wrap">
+    <div class="tarjeta">
+      <div class="cab">
+        <div><span class="etiqueta">Reserva</span><h2 class="h2">Arma tu mañana en el Cajón</h2></div>
+        <p class="bajada">Elige el día, cuántos vienen y tu empanada. El total se calcula al instante y la reserva se confirma por WhatsApp.</p>
+      </div>
+      <div class="reserva">
+        <form class="blanco" id="armaForm" onsubmit="return false">
+          <fieldset><legend>¿Qué día prefieres?</legend><div class="ops">
+            <div class="op"><input type="radio" name="dia" id="d1" value="sábado" checked><label for="d1"><b>Sábado</b><small>10:30 a 14:00</small></label></div>
+            <div class="op"><input type="radio" name="dia" id="d2" value="domingo"><label for="d2"><b>Domingo</b><small>10:30 a 14:00</small></label></div>
+            <div class="op"><input type="radio" name="dia" id="d3" value="festivo"><label for="d3"><b>Festivo</b><small>Según calendario</small></label></div></div></fieldset>
+          <fieldset><legend>¿Cuántas personas?</legend><div class="cont"><button type="button" id="menos" aria-label="Quitar una persona">−</button><output id="personas" aria-live="polite">2</output><button type="button" id="mas" aria-label="Agregar una persona">+</button><span class="nota">Máximo 10 por salida</span></div></fieldset>
+          <fieldset><legend>¿Qué empanada vas a armar?</legend><div class="ops">
+            <div class="op"><input type="radio" name="emp" id="e1" value="pino" checked><label for="e1"><b>De pino</b><small>Carne, cebolla, huevo y aceituna</small></label></div>
+            <div class="op"><input type="radio" name="emp" id="e2" value="queso"><label for="e2"><b>De queso</b><small>Vegetariana, masa con aceite</small></label></div></div></fieldset>
+          <p class="nota" style="margin:0">La masa lleva trigo: no es apta para celíacos y no hay opción vegana. En una cocina compartida no se puede asegurar que no haya trazas.</p>
+        </form>
+        <aside class="blanco ticket" aria-live="polite" data-noedit>
+          <div class="foto"><img id="tImg" alt=""></div>
+          <h3 id="tTit">Tu mañana del sábado</h3>
+          <ul><li><span>Personas</span><span id="tPer"></span></li><li><span>Empanada</span><span id="tEmp"></span></li><li><span>Abono para reservar</span><span id="tAbo"></span></li><li><span>Saldo el mismo día</span><span id="tSal"></span></li></ul>
+          <div class="total"><span>Total</span><b id="tTot"></b></div>
+          <a class="btn miel" id="btnWsp" href="#contacto" style="width:100%">Reservar por WhatsApp</a>
+          <p class="nota" style="margin:12px 0 0">Precio referencial de $28.000 CLP por persona, estimado en septiembre de 2026. Revisa las <button class="enlace" type="button" data-dlg="dlgCond">condiciones de reserva</button>.</p>
+        </aside>
+      </div>
+      <div class="ficha" id="ficha">
+        <div class="blanco">
+          <h3>Ficha práctica</h3>
+          <dl>
+            <dt>Destino</dt><dd>Cajón del Maipo, comuna de San José de Maipo, Región Metropolitana</dd>
+            <dt>Lugar</dt><dd>Casa o taller de una productora local con horno de barro en San José de Maipo (dirección por definir)</dd>
+            <dt>Cómo llegar</dt><dd>En auto por el Camino al Volcán, unos 48 km desde Santiago, o en transporte público, que llega hasta San José de Maipo. El traslado es por tu cuenta.</dd>
+            <dt>Horario</dt><dd>10:30 a 14:00 (3 horas y 30 minutos)</dd>
+            <dt>Temporada</dt><dd>Primavera, de septiembre a noviembre</dd>
+            <dt>Cupo</dt><dd>De 7 a 10 personas por salida</dd>
+            <dt>Precio</dt><dd>$28.000 CLP por persona (referencial, septiembre de 2026). Abono de $8.000 y saldo de $20.000 el mismo día.</dd>
+            <dt>Incluye</dt><dd>Té de bienvenida, taller guiado, delantal y utensilios, recorrido por el huerto, almuerzo (empanada, pan amasado y pebre) con jugo, frutos secos y té, y la tarjeta con la receta</dd>
+            <dt>No incluye</dt><dd>Traslado, alojamiento, bebidas alcohólicas y compras de productos locales</dd>
+            <dt>Restricciones</dt><dd>Opción vegetariana de queso. No apta para celíacos ni veganos. Acceso sin escalones por confirmar.</dd>
+            <dt>Disponibilidad</dt><dd><span class="estado">Propuesta académica</span>Aún no hay salidas confirmadas.</dd>
+            <dt>Consultas</dt><dd><a href="#contacto">WhatsApp, correo o formulario de contacto</a></dd>
+          </dl>
+        </div>
+        <div><div class="mapa"><iframe title="Mapa de San José de Maipo" loading="lazy" src="https://www.google.com/maps?q=San%20Jos%C3%A9%20de%20Maipo%2C%20Chile&z=11&output=embed"></iframe></div><p class="nota" style="margin-top:8px">San José de Maipo, punto de encuentro. Mapa: Google Maps.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JUEGA -->
+<section class="sec" id="juega" data-fondo="aerea">
+  <div class="wrap">
+    <div class="tarjeta juego">
+      <div>
+        <span class="etiqueta">Antes de venir</span>
+        <h2 class="h2">Juega Sabores del Cajón</h2>
+        <p class="bajada" style="margin-top:16px">El chef perdió la receta. Reúne los sabores de la empanada de pino con pebre en cuatro desafíos y llega sabiendo qué vas a cocinar.</p>
+        <div class="chips" style="margin:16px 0 22px"><span>4 desafíos</span><span>5 a 10 minutos</span><span>Computador o celular</span><span>Optativo</span></div>
+        <a class="btn yeso" href="https://view.genially.com/6ad590b2c118ff6be5063087" target="_blank" rel="noopener">Jugar en pantalla completa</a>
+        <p class="nota" style="margin-top:14px">¿Prefieres no jugar en pantalla? Te enviamos el "Recetario del Cajón" imprimible con la confirmación.</p>
+      </div>
+      <div class="pantalla"><iframe title="Juego Sabores del Cajón, escape room sobre la empanada de pino" src="https://view.genially.com/6ad590b2c118ff6be5063087" loading="lazy" allowfullscreen></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- BITÁCORA -->
+<section class="sec" id="bitacora" data-fondo="laguna">
+  <div class="wrap">
+    <div class="tarjeta">
+      <div class="cab">
+        <div><span class="etiqueta">Bitácora</span><h2 class="h2">Historias del valle y de la cocina</h2></div>
+        <p class="bajada">Cuatro entradas escritas por nuestro equipo. Comenta en cada una y suscríbete para recibir las nuevas.</p>
+      </div>
+      <div class="entradas" id="entradas" data-render></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREGUNTAS -->
+<section class="sec" id="preguntas" data-fondo="cordillera">
+  <div class="wrap">
+    <div class="tarjeta faq">
+      <div><span class="etiqueta">Preguntas frecuentes</span><h2 class="h2">Lo que más nos preguntan</h2></div>
+      <div>
+        <details><summary>¿Hay que saber cocinar?</summary><p>No. La productora enseña paso a paso y cada uno va a su ritmo. Las primeras empanadas nunca salen perfectas, y no importa.</p></details>
+        <details><summary>¿Qué pasa si llueve o se corta el camino?</summary><p>Si se corta el camino te avisamos con anticipación y puedes reprogramar sin costo o pedir la devolución del abono. Si llueve, el paso por el huerto se acorta y el resto se hace bajo techo.</p></details>
+        <details><summary>¿Hay opción vegetariana?</summary><p>Sí, empanada de queso con masa de aceite vegetal. Lleva huevo y queso, así que no hay opción vegana. Avísanos al reservar.</p></details>
+        <details><summary>¿Pueden venir niños?</summary><p>Sí, familias con hijos que puedan trabajar en la cocina. Cada niño ocupa un cupo del grupo.</p></details>
+        <details><summary>¿Me puedo llevar la receta y lo que sobre?</summary><p>Sí. Al final recibes una tarjeta con la receta y, si sobra algo, te pasamos una bolsa de papel.</p></details>
+        <details><summary>¿Qué pasa si no se completa el grupo?</summary><p>La salida necesita al menos 7 personas. Si no se llega, te avisamos con 48 horas y te ofrecemos otra fecha o la devolución del abono.</p></details>
+        <details><summary>¿Qué hago en la tarde?</summary><p>Mira <a href="#complementa">Complementa tu día</a>: rafting, canopy, cabalgatas, el Embalse El Yeso, El Morado o las termas.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDAD -->
+<section class="sec" id="comunidad" data-fondo="yesoT">
+  <div class="wrap">
+    <div class="tarjeta">
+      <div class="cab">
+        <div><span class="etiqueta">#ManosALaMasa</span><h2 class="h2">Comparte tu mañana en el Cajón</h2></div>
+        <p class="bajada">Sube tu foto con tu empanada y el paisaje de fondo, etiquétanos y usa #ManosALaMasa.</p>
+      </div>
+      <div class="insta" id="insta" data-render></div>
+      <div class="redes" id="redes" data-render></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="sec" id="contacto" data-fondo="corral">
+  <div class="wrap">
+    <div class="tarjeta">
+      <div class="cab">
+        <div><span class="etiqueta">Contacto</span><h2 class="h2">Escríbenos y reserva tu mañana</h2></div>
+        <p class="bajada">Te respondemos con la hora, el punto de encuentro y cómo llegar, y te preguntamos por restricciones alimentarias.</p>
+      </div>
+      <div class="contacto">
+        <div class="blanco">
+          <ul class="datos" data-noedit>
+            <li><span>WhatsApp</span><span id="wspTxt">Pronto</span></li>
+            <li><span>Correo</span><span id="mailTxt">Pronto</span></li>
+            <li><span>Punto de encuentro</span><span>San José de Maipo</span></li>
+            <li><span>Horario</span><span>Sábados, domingos y festivos, 10:30 a 14:00</span></li>
+            <li><span>Temporada</span><span>Septiembre a noviembre</span></li>
+          </ul>
+          <a class="btn miel" id="btnWsp2" href="#contacto">Escribir por WhatsApp</a>
+          <h3 style="font-size:26px;margin:28px 0 4px">Recibe las novedades</h3>
+          <p class="nota" style="margin:0">Te avisamos por correo cuando publiquemos en la bitácora o abramos fechas.</p>
+          <form class="sus" id="formSus"><label class="sr" for="correo">Tu correo</label><input id="correo" type="email" required placeholder="tu@correo.cl" autocomplete="email"><button class="btn yeso" type="submit">Suscribirme</button></form>
+          <p class="ok" id="okSus" hidden>Listo, quedaste suscrito.</p>
+        </div>
+        <form class="blanco fcon" id="formCon">
+          <h3 style="font-size:26px">Envíanos una consulta</h3>
+          <div class="fila"><label class="sr" for="cnom">Nombre</label><input id="cnom" required placeholder="Nombre" autocomplete="name"><label class="sr" for="cmail">Correo</label><input id="cmail" type="email" required placeholder="Correo" autocomplete="email"></div>
+          <label class="sr" for="ctema">Tema</label><select id="ctema"><option>Quiero reservar</option><option>Restricción alimentaria</option><option>Grupo o empresa</option><option>Otra consulta</option></select>
+          <label class="sr" for="cmsj">Mensaje</label><textarea id="cmsj" required placeholder="Cuéntanos qué fecha te interesa y cuántas personas vienen"></textarea>
+          <label style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--tinta-2)"><input type="checkbox" required style="width:auto;margin-top:3px"> <span>Acepto la <button type="button" class="enlace" data-dlg="dlgPriv">política de privacidad</button>.</span></label>
+          <button class="btn" type="submit" style="justify-self:start">Enviar consulta</button>
+          <p class="ok" id="okCon" hidden>Recibimos tu consulta. Te responderemos pronto.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="pie">
+      <div>
+        <p class="marca">Manos a la masa</p>
+        <p>Cocina de campo en el Cajón del Maipo. Una mañana para amasar, armar tus empanadas de pino y almorzar con la cordillera de fondo.</p>
+        <p style="font-size:13px">Propuesta académica en etapa de diseño. Aún no existe oferta confirmada ni acuerdos con productores o comercios.</p>
+      </div>
+      <div><h4>Mapa del sitio</h4><ul>
+        <li><a href="#historia">Nuestra historia</a></li><li><a href="#experiencia">La experiencia</a></li><li><a href="#trayecto">Tu mañana</a></li><li><a href="#quienes">Quiénes somos</a></li><li><a href="#complementa">Complementa tu día</a></li><li><a href="#reserva">Reserva y ficha práctica</a></li><li><a href="#juega">Juega</a></li><li><a href="#bitacora">Bitácora</a></li><li><a href="#preguntas">Preguntas frecuentes</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+      <div><h4>Información</h4><ul>
+        <li><button class="enlace" data-dlg="dlgCond">Condiciones de reserva y cancelación</button></li>
+        <li><button class="enlace" data-dlg="dlgPriv">Política de privacidad</button></li>
+        <li><button class="enlace" data-dlg="dlgFuentes">Fuentes y créditos</button></li></ul></div>
+      <div><h4>Síguenos</h4><ul id="redesPie" data-render></ul></div>
+    </div>
+    <div class="legal-final"><span>© 2026 Equipo Manos a la masa: Javiera Cerna, Catalina Lobos, Diego Maldonado e Ivanna Aros.</span><span>Fotografías con licencia libre; créditos en "Fuentes y créditos".</span></div>
+  </div>
+</footer>
+
+<dialog id="dlgCond"><div class="in"><h2>Condiciones de reserva</h2>
+  <ul><li>La reserva se confirma con un abono de $8.000 por persona; el saldo de $20.000 se paga el mismo día.</li>
+  <li>Cada salida necesita al menos 7 personas. Si no se completa, avisamos con 48 horas y ofrecemos otra fecha o la devolución del abono.</li>
+  <li>Si se corta el camino o hay mal tiempo, avisamos con anticipación y puedes reprogramar sin costo o pedir la devolución del abono.</li>
+  <li>Las restricciones alimentarias se informan al reservar. La masa lleva trigo, manteca y huevo; no es apta para celíacos ni veganos.</li>
+  <li>El traslado hasta San José de Maipo es por cuenta de cada visitante.</li>
+  <li>Esta es una propuesta académica: aún no hay salidas confirmadas.</li></ul></div>
+  <form method="dialog"><button class="btn">Cerrar</button></form></dialog>
+<dialog id="dlgPriv"><div class="in"><h2>Política de privacidad</h2>
+  <p>Usamos tu nombre, correo y teléfono solo para responder tus consultas, coordinar tu reserva y, si te suscribes, enviarte novedades de Manos a la masa.</p>
+  <p>No compartimos tus datos con terceros. Puedes pedir que los borremos o darte de baja cuando quieras, escribiéndonos por los canales de contacto.</p>
+  <p>Los comentarios que publiques en la bitácora son visibles para otros visitantes.</p></div>
+  <form method="dialog"><button class="btn">Cerrar</button></form></dialog>
+<dialog id="dlgFuentes"><div class="in"><h2>Fuentes y créditos</h2>
+  <p><b>Fuentes</b></p>
+  <ul>
+    <li><a href="https://all.accor.com/es/sudamerica/magazine/one-hour-one-day-one-week/que-hacer-en-cajon-del-maipo-cd206.shtml" target="_blank" rel="noopener">Accor (s. f.). ¿Qué hacer en Cajón del Maipo?</a></li>
+    <li><a href="https://chile.travel/en/where-to-go/destination/cajon-del-maipo" target="_blank" rel="noopener">Chile Travel (s. f.). Cajón del Maipo</a></li>
+    <li><a href="https://chile.travel/blog/la-empanada-sabor-unico-de-la-tradicion-chilena/" target="_blank" rel="noopener">Chile Travel (2023). La empanada, sabor único de la tradición chilena</a></li>
+    <li><a href="https://lahora.cl/cronica/2022/11/15/10-lugares-turisticos-en-cajon-del-maipo-que-debes-visitar/" target="_blank" rel="noopener">La Hora (2022). 10 lugares turísticos en Cajón del Maipo</a></li>
+    <li><a href="https://www.meteored.cl/noticias/actualidad/cajon-del-maipo-5-lugares-para-conocer-los-andes-desde-santiago-de-chile.html" target="_blank" rel="noopener">Meteored (s. f.-a). Cajón del Maipo: 5 lugares para conocer los Andes</a></li>
+    <li><a href="https://www.meteored.cl/noticias/actualidad/a-dos-horas-de-santiago-el-monumento-natural-con-laguna-glaciar-y-espectaculares-vistas-para-cerrar-el-verano.html" target="_blank" rel="noopener">Meteored (2025). El monumento natural con laguna y glaciar a dos horas de Santiago</a></li>
+    <li><a href="https://www.calendariochile.com/turismo/que-ver-en-el-cajon-del-maipo-guia-de-atractivos-rutas-y-consejos-para-una-escapada-cerca-de-santiago" target="_blank" rel="noopener">Calendario Chile (2026). Qué ver en el Cajón del Maipo</a></li>
+    <li><a href="https://www.cnnchile.com/tendencias/senderismo-cabalgatas-y-rafting-todos-los-tours-y-atractivos-del-cajon-del-maipo_20190524/" target="_blank" rel="noopener">CNN Chile (2019). Senderismo, cabalgatas y rafting en el Cajón del Maipo</a></li>
+    <li><a href="https://www.sanjosedemaipo.cl/turismo/" target="_blank" rel="noopener">Municipalidad de San José de Maipo (s. f.). Turismo</a></li>
+  </ul>
+  <p><b>Fotografías</b> (vía Wikimedia Commons)</p>
+  <ul class="creditos" id="creditos" data-render></ul></div>
+  <form method="dialog"><button class="btn">Cerrar</button></form></dialog>
+
+<div class="articulo" id="articulo" hidden role="dialog" aria-modal="true" aria-labelledby="artT">
+  <div class="art-bar"><span class="marca" style="font-size:20px">Bitácora</span><button id="cerrar">Volver al sitio</button></div>
+  <div class="art-hero" id="artHero" role="img"></div>
+  <article class="art" id="art" data-render></article>
+</div>
+
+<div class="editor" id="editor" hidden data-noedit>
+  <button class="btn yeso chico" id="edToggle" type="button">Editar textos</button>
+  <button class="btn blanco chico" id="edContacto" type="button">Datos de contacto</button>
+  <button class="btn miel chico" id="edGuardar" type="button">Guardar cambios</button>
+  <span id="edEstado">Modo edición: solo tú lo ves, porque abriste el archivo desde tu computador.</span>
+</div>
+<dialog id="dlgEd"><div class="in"><h2>Datos de contacto</h2>
+  <p>Escribe los datos tal como quieres que aparezcan. Deja en blanco lo que todavía no tengan.</p>
+  <div class="campos">
+    <label>WhatsApp (con código de país)<input id="ed_whatsapp" placeholder="56912345678" inputmode="tel"></label>
+    <label>Correo<input id="ed_correo" type="email" placeholder="hola@manosalamasa.cl"></label>
+    <label>Instagram (enlace)<input id="ed_instagram" placeholder="https://instagram.com/manosalamasa"></label>
+    <label>TikTok (enlace)<input id="ed_tiktok" placeholder="https://tiktok.com/@manosalamasa"></label>
+    <label>Facebook (enlace)<input id="ed_facebook" placeholder="https://facebook.com/manosalamasa"></label>
+  </div></div>
+  <form method="dialog"><button class="btn borde chico" value="no">Cancelar</button> <button class="btn yeso chico" id="edAplicar">Aplicar</button></form></dialog>
+<script id="datos" type="application/json">
+{
+ "contacto": {
+  "whatsapp": "",
+  "correo": "",
+  "instagram": "",
+  "tiktok": "",
+  "facebook": ""
+ },
+ "ST": [
+  [
+   "pebre",
+   "pebre del huerto",
+   -1.05,
+   -0.3,
+   -12
+  ],
+  [
+   "pan",
+   "pan amasado",
+   1.05,
+   -0.4,
+   10
+  ],
+  [
+   "horno",
+   "horno de barro",
+   -1.1,
+   0.6,
+   8
+  ],
+  [
+   "amasar",
+   "con tus manos",
+   1.1,
+   0.55,
+   -8
+  ]
+ ],
+ "HIS": [
+  [
+   "amasar",
+   "Masa"
+  ],
+  [
+   "bandeja",
+   "Pino"
+  ],
+  [
+   "horno",
+   "Horno"
+  ],
+  [
+   "pebre",
+   "Huerto"
+  ],
+  [
+   "tabla",
+   "Mesa"
+  ],
+  [
+   "iglesia",
+   "El pueblo"
+  ]
+ ],
+ "POST": [
+  [
+   "amasar",
+   "Amasas con tus manos",
+   "Harina, manteca y agua tibia, paso a paso."
+  ],
+  [
+   "bandeja",
+   "Armas tus empanadas",
+   "Pino, huevo, aceituna y el repulgue."
+  ],
+  [
+   "horno",
+   "Horno de barro",
+   "Unos 20 minutos a leña."
+  ],
+  [
+   "pebre",
+   "Pebre del huerto",
+   "Con cilantro que recoges tú."
+  ],
+  [
+   "tabla",
+   "Mesa compartida",
+   "Almuerzas lo que cocinó el grupo."
+  ],
+  [
+   "pan",
+   "Te llevas la receta",
+   "Para repetirla en casa."
+  ]
+ ],
+ "PAR": [
+  {
+   "h": "10:30",
+   "t": "Llegas a San José de Maipo",
+   "img": "iglesia",
+   "c": "«Pónganse el delantal y tómense un tecito.»",
+   "x": "La productora te recibe en el patio con té. El horno de barro ya está prendido desde temprano. Dura 20 minutos."
+  },
+  {
+   "h": "10:50",
+   "t": "Manos a la masa",
+   "img": "amasar",
+   "c": "«Amasen hasta que no se les pegue en las manos.»",
+   "x": "Harina, sal, manteca derretida y agua tibia de a poco. Primero la masa de las empanadas y después la del pan. Dura 45 minutos."
+  },
+  {
+   "h": "11:35",
+   "t": "El pino y el repulgue",
+   "img": "bandeja",
+   "c": "«Una cucharada de pino, un trozo de huevo y una aceituna.»",
+   "x": "Rellenas y cierras tus dos empanadas doblando el borde con los dedos. Las primeras nunca salen perfectas. Dura 45 minutos."
+  },
+  {
+   "h": "12:20",
+   "t": "Horno y huerto",
+   "img": "pebre",
+   "c": "«Vamos al huerto a buscar cilantro para el pebre.»",
+   "x": "Mientras las empanadas se hornean unos 20 minutos, recoges hierbas, picas el pebre y miras la cordillera. Dura 35 minutos."
+  },
+  {
+   "h": "12:55",
+   "t": "La mesa compartida",
+   "img": "tabla",
+   "c": "«Todo esto lo cocinaron ustedes.»",
+   "x": "Empanadas y pan recién salidos del horno, pebre y jugo de fruta en una mesa larga con mantel de tela. Dura 50 minutos."
+  },
+  {
+   "h": "13:45",
+   "t": "Te vas con la receta",
+   "img": "corral",
+   "c": "«Les dejo frutos secos de las huertas de aquí.»",
+   "x": "Te despides con frutos secos, té y la tarjeta con la receta. A las 14:00 termina tu mañana y la tarde queda libre para seguir recorriendo el valle."
+  }
+ ],
+ "EQ": [
+  {
+   "n": "Javiera Cerna",
+   "ini": "JC",
+   "rol": "el destino y sus sabores",
+   "foto": "equipo/javiera.jpg",
+   "t": "Investigó el Cajón del Maipo, su cocina y cómo llegar, y cuidó que cada dato del sitio sea correcto."
+  },
+  {
+   "n": "Catalina Lobos",
+   "ini": "CL",
+   "rol": "el visitante y el precio",
+   "foto": "equipo/catalina.jpg",
+   "t": "Pensó en quién viene, calculó costos y precio, y organizó la prueba de la receta."
+  },
+  {
+   "n": "Diego Maldonado",
+   "ini": "DM",
+   "rol": "el recorrido y el juego",
+   "foto": "equipo/diego.jpg",
+   "t": "Armó el recorrido de la mañana y creó el juego Sabores del Cajón."
+  },
+  {
+   "n": "Ivanna Aros",
+   "ini": "IA",
+   "rol": "el cuidado del valle",
+   "foto": "equipo/ivanna.jpg",
+   "t": "Planificó qué hacer si llueve o se corta el camino, las restricciones alimentarias y cómo cuidar el valle."
+  }
+ ],
+ "ACT": [
+  {
+   "img": "rafting",
+   "t": "Rafting en el río Maipo",
+   "tag": "Aventura",
+   "x": "Bajadas en bote por los rápidos del río, en sectores como San Alfonso y El Melocotón, con rápidos de clase III y IV.",
+   "f": "Calendario Chile (2026); CNN Chile (2019). Imagen referencial"
+  },
+  {
+   "img": "canopy",
+   "t": "Canopy en San Alfonso",
+   "tag": "Aventura",
+   "x": "Deslizarte por cables sobre el río o entre los bosques de San Alfonso, a pocos minutos de San José de Maipo.",
+   "f": "Calendario Chile (2026). Imagen referencial"
+  },
+  {
+   "img": "caballos",
+   "t": "Cabalgatas con arrieros",
+   "tag": "Tranquilo",
+   "x": "Rutas guiadas a caballo por arrieros locales hacia miradores del valle.",
+   "f": "Calendario Chile (2026); CNN Chile (2019)"
+  },
+  {
+   "img": "yesoT",
+   "t": "Embalse El Yeso",
+   "tag": "Paisaje",
+   "x": "Aguas turquesa a unos 2.500 metros de altura, rodeadas de cerros. El camino tiene tramos de ripio: ve con precaución.",
+   "f": "Calendario Chile (2026)"
+  },
+  {
+   "img": "morado",
+   "t": "Monumento Natural El Morado",
+   "tag": "Naturaleza",
+   "x": "Sendero hacia la Laguna Morales y el glaciar, cerca de Baños Morales. Mejor época: de octubre a abril.",
+   "f": "Meteored (2025); Calendario Chile (2026)"
+  },
+  {
+   "img": "termas",
+   "t": "Termas Valle de Colina",
+   "tag": "Relajo",
+   "x": "Pozones termales en terrazas de la ladera, con agua de hasta 50 °C, en lo alto del valle.",
+   "f": "Calendario Chile (2026)"
+  }
+ ],
+ "E": [
+  {
+   "id": "destino",
+   "autor": "Javiera Cerna",
+   "fecha": "19 de octubre de 2026",
+   "img": "iglesia",
+   "t": "San José de Maipo: por qué cocinar aquí",
+   "r": "Cercanía, empanadas de horno de barro y un pueblo con historia desde 1792.",
+   "c": "\u003cp>Cuando pensamos dónde hacer una experiencia de cocina de campo, el Cajón del Maipo apareció primero por algo simple: está a unos 48 km de Santiago, así que una mañana completa cabe en un día sin apuro (Accor, s. f.).\u003c/p>\u003ch2>Lo que se come en el valle\u003c/h2>\u003cp>La comida del Cajón se reparte en pequeños locales a lo largo del camino y destaca por las empanadas cocidas en horno de barro, el pan amasado y los frutos secos de huertas caseras (Chile Travel, s. f.; La Hora, 2022). Esos tres sabores son la base de nuestra experiencia.\u003c/p>\u003ch2>Un pueblo con relato propio\u003c/h2>\u003cp>La villa de San José de Maipo fue fundada el 16 de julio de 1792 (Municipalidad de San José de Maipo, s. f.). La elegimos como punto de encuentro también por el acceso: el transporte público llega hasta ahí (Meteored, s. f.-a).\u003c/p>\u003ch2>La oportunidad y el límite\u003c/h2>\u003cp>El Cajón se presenta sobre todo como destino de aventura (Chile Travel, s. f.). Hay espacio para algo más tranquilo, donde la comida sea lo principal. El límite es el acceso: en otoño e invierno algunos caminos cierran por lluvia o nieve (Meteored, s. f.-b). Por eso la experiencia es en primavera.\u003c/p>",
+   "f": [
+    "Accor. (s. f.). ¿Qué hacer en Cajón del Maipo?",
+    "Chile Travel. (s. f.). Cajón del Maipo [Ficha de destino].",
+    "La Hora. (15 de noviembre de 2022). 10 lugares turísticos en Cajón del Maipo que debes visitar.",
+    "Meteored. (s. f.-a; s. f.-b). Notas sobre el Cajón del Maipo.",
+    "Municipalidad de San José de Maipo. (s. f.). Turismo."
+   ],
+   "a": [
+    "¿Cómo se llega?",
+    "Revisa la ficha práctica con el acceso, el horario y el mapa.",
+    "#ficha",
+    "Ver la ficha práctica"
+   ]
+  },
+  {
+   "id": "visitante",
+   "autor": "Catalina Lobos",
+   "fecha": "20 de octubre de 2026",
+   "img": "productora",
+   "t": "Para quien prefiere cocinar antes que mirar",
+   "r": "Conoce a Fernanda, la visitante que imaginamos, y cómo definió la duración, el cupo y el precio.",
+   "c": "\u003cp>Para diseñar la experiencia imaginamos a Fernanda, un personaje ficticio: tiene 34 años, trabaja en una oficina en Santiago y un sábado de primavera quiere salir de la ciudad con su pareja sin pasar todo el día en un bus.\u003c/p>\u003ch2>Lo que necesita\u003c/h2>\u003cp>Una actividad de medio día que le deje la tarde libre y le permita volver antes del tráfico. Y, sobre todo, participar con sus manos, no solo mirar o recibir la comida hecha.\u003c/p>\u003ch2>Lo que decidimos por ella\u003c/h2>\u003cp>De ahí salen tres decisiones: la experiencia dura de 10:30 a 14:00; el grupo es de máximo 10 personas y todos cocinan; y el punto de encuentro es San José de Maipo, adonde llega el transporte público.\u003c/p>\u003ch2>Cuánto cuesta y por qué\u003c/h2>\u003cp>El precio referencial es de $28.000 por persona. Una excursión de día completo con transporte y almuerzo cuesta $39.000 (Tur.com, s. f.). Con 7 personas los ingresos cubren los costos estimados de una salida; con 6 no, por eso el mínimo es 7.\u003c/p>\u003cp>Todavía son supuestos: queremos validar si pagarías ese precio y si prefieres medio día a un día completo.\u003c/p>",
+   "f": [
+    "Tur.com. (s. f.). Cajón del Maipo and El Yeso Reservoir Tour from Santiago.",
+    "Expedia. (s. f.). Cajón del Maipo Including Wine with Picnic and Empanada.",
+    "Equipo Manos a la masa. (2026). Estimación de costos."
+   ],
+   "a": [
+    "¿Te pasa lo mismo que a Fernanda?",
+    "Cuéntanos en los comentarios qué buscas en un panorama de medio día.",
+    "#coment",
+    "Dejar un comentario"
+   ]
+  },
+  {
+   "id": "mesa",
+   "autor": "Diego Maldonado",
+   "fecha": "21 de octubre de 2026",
+   "img": "horno",
+   "t": "De la masa a la mesa: cómo armamos la experiencia",
+   "r": "Por qué el horno de barro es el hilo de la mañana y para qué creamos un juego.",
+   "c": "\u003cp>La experiencia sigue el orden natural de una comida: masa, relleno, horno y mesa. El hilo conductor es el horno de barro, que está presente desde la bienvenida hasta el cierre.\u003c/p>\u003ch2>210 minutos bien repartidos\u003c/h2>\u003cp>Bienvenida (20 min), masa (45 min), pino y armado (45 min), horno y huerto (35 min), almuerzo (50 min) y cierre (15 min). En total, 3 horas y 30 minutos.\u003c/p>\u003ch2>Aprender y escaparse un rato\u003c/h2>\u003cp>Según Pine y Gilmore (1998), una experiencia puede ser de educación, escapismo, estética o entretenimiento. La nuestra integra dos: educación, porque aprendes una técnica que puedes repetir en casa, y escapismo, porque dejas de ser turista y cocinas en la casa de una productora del valle.\u003c/p>\u003ch2>Un juego antes de venir\u003c/h2>\u003cp>Creamos Sabores del Cajón, un escape room en Genially con cuatro desafíos: trivia del territorio, preparar ingredientes, cocinar en orden y montar el plato. Sirve para llegar sabiendo qué vas a cocinar. Es optativo y tiene una versión imprimible.\u003c/p>",
+   "f": [
+    "Pine, B. J., y Gilmore, J. H. (1998). Welcome to the experience economy. Harvard Business Review, 76(4), 97-105.",
+    "Equipo Manos a la masa. (2026). Sabores del Cajón [Juego en Genially]."
+   ],
+   "a": [
+    "Pruébalo tú",
+    "Juega Sabores del Cajón y descubre qué vas a cocinar.",
+    "#juega",
+    "Ir al juego"
+   ]
+  },
+  {
+   "id": "valle",
+   "autor": "Ivanna Aros",
+   "fecha": "22 de octubre de 2026",
+   "img": "ladera",
+   "t": "Cuidar el valle y planificar bien tu visita",
+   "r": "Compost, leña de origen conocido, qué pasa si llueve y lo que aprendimos probando la masa.",
+   "c": "\u003cp>Una experiencia en el Cajón tiene que dejar algo en el valle y no quitarle. Por eso definimos medidas concretas.\u003c/p>\u003ch2>Lo que cuidamos\u003c/h2>\u003cp>Las cáscaras y restos de verduras se compostan en el huerto de la productora. El horno usa leña de proveedores identificados, sin bosque nativo. Los ingredientes se compran en el comercio de San José de Maipo y la productora recibe un pago por cada salida.\u003c/p>\u003ch2>Si algo sale distinto\u003c/h2>\u003cp>Si se corta el camino, avisamos con anticipación y puedes reprogramar sin costo. Si el horno no alcanza temperatura, se usa el horno a gas de la cocina. Si llueve, el paso por el huerto se acorta y el resto se hace bajo techo.\u003c/p>\u003ch2>Lo que aprendimos probando\u003c/h2>\u003cp>Ensayamos en una cocina de casa la masa y el armado. Se hizo en unos 40 minutos, dentro de los 90 que planificamos, pero un mesón de casa alcanza para una sola persona. Por eso el taller necesita un mesón largo, con un puesto cada dos personas.\u003c/p>",
+   "f": [
+    "Meteored. (s. f.-b). Cajón del Maipo: escapada a los Andes a menos de una hora de Santiago.",
+    "Equipo Manos a la masa. (2026). Prueba de masa y armado, octubre de 2026."
+   ],
+   "a": [
+    "¿Tienes una restricción alimentaria?",
+    "Escríbenos antes de reservar y te contamos qué podemos ofrecer.",
+    "#contacto",
+    "Escribirnos"
+   ]
+  }
+ ]
+}
+</script>
+<script>
+/* Los textos del sitio están en el bloque "datos" de arriba. Se pueden cambiar con el modo edición. */
+const D=JSON.parse(document.getElementById("datos").textContent);
+const IMG="https://manosalamasacajon.wordpress.com/wp-content/uploads/2026/10/";
+const F={
+ tabla:["tabla-empanadas-pebre.jpg","Nicolas Barnao","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Tabla_de_Empanadas_y_pebre.jpg","Tabla de madera con empanadas de pino doradas y un pocillo de pebre"],
+ yeso:["el-yeso-nevado.jpg","Pablo Acevedo","CC0","https://commons.wikimedia.org/wiki/File:El_Yeso_Dam,_Chile_(Unsplash).jpg","Embalse El Yeso de aguas azules rodeado de cumbres nevadas"],
+ yesoT:["embalse-el-yeso.jpg","Deensel","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Embalse_El_Yeso,_Caj%C3%B3n_del_Maipo_(40186598701).jpg","Aguas turquesa del Embalse El Yeso al pie de cerros rojizos"],
+ aerea:["laguna-negra-el-yeso-aerea.jpg","Diode","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Laguna_Negra_y_Embalse_El_Yeso.jpg","Vista aérea de la Laguna Negra y el Embalse El Yeso entre cerros"],
+ laguna:["laguna-negra.jpg","Andesnahuel","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Laguna_Negra,_Chile_(Caj%C3%B3n_del_Maipo).JPG","Orilla de la Laguna Negra con laderas nevadas al fondo"],
+ verde:["valle-verde-cajon.jpg","Nelson Pérez","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Caj%C3%B3n_Del_Maipo,_Regi%C3%B3n_Metropolitana,_Chile_-_panoramio_-_Nelson_P%C3%A9rez_(5).jpg","Valle verde del Cajón del Maipo al pie de un cerro con cielo celeste"],
+ ladera:["ladera-verde-san-jose.jpg","Juan Villalobos","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Ribera_derecha_del_r%C3%ADo_Maipo_en_SJ_de_Maipo.jpg","Ladera verde junto al río Maipo en San José de Maipo"],
+ cordillera:["cordillera-cajon-nevada.jpg","Rosario Nieto Chadwick","CC BY 3.0","https://commons.wikimedia.org/wiki/File:Vista_Al_Cajon_(76092661).jpeg","Cumbres nevadas sobre un valle verde del Cajón del Maipo"],
+ corral:["corral-cordillera.jpg","Rosario Nieto Chadwick","CC BY 3.0","https://commons.wikimedia.org/wiki/File:Corral_En_La_Cordillera_(76470681).jpeg","Corral de palos en un llano con cumbres nevadas al fondo"],
+ morado:["el-morado.jpg","AcrossTheMountains","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Monumento_Natural_El_Morado_1.jpg","Valle del Monumento Natural El Morado con cerros nevados"],
+ iglesia:["iglesia-san-jose-de-maipo.jpg","Eduardo Villagrán Morales","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Iglesia_de_San_Jos%C3%A9_de_Maipo_-_Vista_desde_el_cerro.JPG","Iglesia de San José de Maipo, con techo rojo y cúpula verde"],
+ amasar:["manos-amasando.jpg","Anna.Massini","CC BY 4.0","https://commons.wikimedia.org/wiki/File:Kneading_bread_by_hand.jpg","Manos amasando una masa sobre una tabla enharinada"],
+ productora:["productora-amasando.jpg","Shixart1985","CC BY 2.0","https://commons.wikimedia.org/wiki/File:Baker_woman%27s_hands_kneading_bread_dough.jpg","Mujer amasando a mano una masa de pan sobre una mesa enharinada"],
+ bandeja:["empanadas-bandeja-horno.jpg","Picaza","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Empanadas_de_Horno.jpg","Bandeja de empanadas y panes recién horneados junto a un horno de barro"],
+ horno:["empanadas-horno-de-barro.jpg","Marco Antonio Correa Flores","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Empanadas_en_horno_de_barro.JPG","Empanadas doradas dentro de un horno de barro encendido"],
+ pebre:["pebre-chileno.jpg","Marco Antonio Correa Flores","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Pebre_chileno_01.jpg","Pebre de tomate, cebolla, cilantro y ají picados"],
+ empanada:["empanada-con-pebre.jpg","Espiralespiral","CC BY-SA 4.0","https://commons.wikimedia.org/wiki/File:Empanadas_con_pebre.jpg","Empanada de pino en un plato con pebre"],
+ pan:["pan-amasado.jpg","Alanis Galaz","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Pan_amasado,_Calbuco.JPG","Panes amasados crudos en una bandeja"],
+ rafting:["rafting-referencial.jpg","Marco Antonio Correa Flores","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Rafting_en_R%C3%ADo_Trancura_01.JPG","Grupo con cascos y remos bajando rápidos en un bote de rafting (imagen referencial)"],
+ canopy:["canopy-referencial.jpg","Costaricapro","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Zip_Line_Canopy_Tour_Costa_Rica.jpg","Persona deslizándose por un cable de canopy entre árboles (imagen referencial)"],
+ caballos:["caballos-banos-morales.jpg","Rpinto","CC BY-SA 3.0","https://commons.wikimedia.org/wiki/File:Ba%C3%B1os_Morales_caballos.JPG","Caballos junto a un arroyo en Baños Morales con la cordillera al fondo"],
+ termas:["termas-colina.jpg","Amitie 10g","CC BY 3.0","https://commons.wikimedia.org/wiki/File:Vista_de_piscinas_en_Termas_Valle_de_Colina_(1).JPG","Pozones termales en terrazas en Termas Valle de Colina"]
+};
+const src=(k,w=1600)=>IMG+F[k][0]+"?w="+w, alt=k=>F[k][4], cred=k=>`Foto: ${F[k][1]}, ${F[k][2]}`;
+
+const $=s=>document.querySelector(s);
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),eio=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const getP=p=>p.split(".").reduce((o,k)=>o[k],D);
+function setP(p,v){const ks=p.split("."),last=ks.pop();ks.reduce((o,k)=>o[k],D)[last]=v}
+
+$("#creditos").innerHTML=Object.keys(F).map(k=>`<li><a href="${F[k][3]}" target="_blank" rel="noopener">${F[k][4]}</a>: ${F[k][1]}, ${F[k][2]}</li>`).join("");
+
+/* menú */
+const menu=$("#menu"),mb=$("#menuBtn");
+mb.onclick=()=>{const o=menu.classList.toggle("open");mb.setAttribute("aria-expanded",o)};
+menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{menu.classList.remove("open");mb.setAttribute("aria-expanded","false")}));
+
+/* contacto y redes */
+const C=D.contacto;
+const wsp=m=>C.whatsapp?`https://wa.me/${C.whatsapp.replace(/\D/g,"")}?text=${encodeURIComponent(m)}`:"#contacto";
+const ICO={instagram:`<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="15" fill="#e1306c"/><rect x="8" y="8" width="14" height="14" rx="4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="15" cy="15" r="3.4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="19.3" cy="10.7" r="1" fill="#fff"/></svg>`,
+ tiktok:`<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="15" fill="#16393f"/><path d="M17 8v10a3 3 0 1 1-3-3" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M17 8c.5 2.5 2 4 4.5 4" stroke="#6fe3e0" stroke-width="2" fill="none"/></svg>`,
+ facebook:`<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="15" fill="#1877f2"/><path d="M16.5 23v-7h2.3l.4-2.8h-2.7v-1.7c0-.8.3-1.4 1.4-1.4h1.4V7.6a18 18 0 0 0-2.1-.1c-2 0-3.4 1.2-3.4 3.5v2.2h-2.3V16h2.3v7Z" fill="#fff"/></svg>`};
+const NOM={instagram:"Instagram",tiktok:"TikTok",facebook:"Facebook"};
+function pintaContacto(){
+  $("#btnWsp2").href=wsp("Hola, quiero consultar fechas para Manos a la masa en el Cajón del Maipo.");
+  ["#btnWsp","#btnWsp2"].forEach(s=>{if(C.whatsapp){$(s).target="_blank";$(s).rel="noopener"}else{$(s).removeAttribute("target")}});
+  $("#wspTxt").textContent=C.whatsapp?"+"+C.whatsapp.replace(/\D/g,""):"Pronto";
+  $("#mailTxt").innerHTML=C.correo?`<a href="mailto:${esc(C.correo)}">${esc(C.correo)}</a>`:"Pronto";
+  $("#redes").innerHTML=Object.keys(ICO).map(r=>C[r]?`<a class="red" href="${esc(C[r])}" target="_blank" rel="noopener">${ICO[r]}${NOM[r]}</a>`:`<span class="red">${ICO[r]}${NOM[r]} <small>pronto</small></span>`).join("");
+  $("#redesPie").innerHTML=Object.keys(ICO).map(r=>`<li>${C[r]?`<a href="${esc(C[r])}" target="_blank" rel="noopener">${NOM[r]}</a>`:`${NOM[r]} (pronto)`}</li>`).join("")+`<li>#ManosALaMasa</li>`;
+  if(typeof arma==="function")arma();
+}
+document.querySelectorAll("[data-dlg]").forEach(b=>b.addEventListener("click",()=>{if(document.body.classList.contains("editando")&&!b.closest("#editor"))return;const d=document.getElementById(b.dataset.dlg);d.showModal?d.showModal():d.setAttribute("open","")}));
+
+/* fondos de paisaje por sección */
+const fA=$("#fA"),fB=$("#fB");let fOn=fA,fActual="";
+function fondo(k){if(!k||k===fActual)return;fActual=k;const sig=fOn===fA?fB:fA;sig.style.backgroundImage=`url(${src(k,1400)})`;sig.classList.add("on");fOn.classList.remove("on");fOn=sig}
+const ioF=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)fondo(e.target.dataset.fondo)}),{rootMargin:"-45% 0px -45% 0px"});
+document.querySelectorAll("[data-fondo]").forEach(s=>ioF.observe(s));fondo("verde");
+
+/* INICIO */
+$("#heroPaisaje").style.backgroundImage=`url(${src("yeso",2000)})`;
+$("#heroImg").src=src("tabla",1600);
+$("#stickers").innerHTML=D.ST.map((s,i)=>`<div class="sticker" id="st${i}"><img src="${src(s[0],400)}" alt=""><span data-k="ST.${i}.1">${esc(s[1])}</span></div>`).join("");
+const hero=$(".hero"),hf=$("#heroFoto"),ht=$("#heroTit"),hfin=$("#heroFinal"),pista=$("#pista");
+function heroFrame(){
+  const r=hero.getBoundingClientRect(),tot=hero.offsetHeight-innerHeight;if(r.bottom<0)return;
+  const p=reduce?0:cl(-r.top/tot),a=eio(cl(p/.7));
+  const W=innerWidth,H=innerHeight,mob=W<700;
+  const fw=mob?W*.64:Math.min(W*.3,420),fh=mob?H*.4:H*.5;
+  const top0=H*.6-fh/2, side0=(W-fw)/2, bot0=Math.max(0,H-(top0+fh));
+  const t=top0*(1-a),s=side0*(1-a),b=bot0*(1-a),rad=(fw/2)*(1-a),rb=24*(1-a);
+  hf.style.clipPath=`inset(${t}px ${s}px ${b}px ${s}px round ${rad}px ${rad}px ${rb}px ${rb}px)`;
+  hf.style.setProperty("--osc",cl((p-.5)/.3));
+  ht.style.opacity=1-cl(p/.3);ht.style.transform=`translateY(${-p*140}px)`;
+  pista.style.opacity=1-cl(p/.08);
+  const R=mob?W*.36:Math.min(W*.27,400),Ry=mob?H*.27:H*.3;
+  D.ST.forEach((s,i)=>{const el=document.getElementById("st"+i),k=eio(cl((p-.02-i*.03)/.45));
+    const x=s[2]*R*(1+k*.7),y=s[3]*Ry*(1+k*.5)+H*.1;
+    el.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px) rotate(${s[4]*(1+k)}deg) scale(${1+k*.15})`;
+    el.style.opacity=1-cl((p-.3)/.25)});
+  hfin.style.opacity=cl((p-.66)/.2);hfin.style.pointerEvents=p>.75?"auto":"none";
+}
+let tk=false;addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{heroFrame();tk=false})},{passive:true});
+addEventListener("resize",heroFrame);heroFrame();
+
+/* historia */
+$("#pol1").src=src("productora",900);$("#pol2").src=src("verde",900);
+
+/* experiencia */
+$("#historias").innerHTML=D.HIS.map((h,i)=>`<a class="hist" href="#trayecto"><div class="aro"><img src="${src(h[0],300)}" alt=""></div><span data-k="HIS.${i}.1">${esc(h[1])}</span></a>`).join("");
+$("#grilla").innerHTML=D.POST.map((p,i)=>`<figure class="post"><img src="${src(p[0],900)}" alt="${alt(p[0])}" loading="lazy"><figcaption><b data-k="POST.${i}.1">${esc(p[1])}</b><small data-k="POST.${i}.2">${esc(p[2])}</small></figcaption></figure>`).join("");
+
+/* trayecto interactivo */
+const PAR=D.PAR;
+const camino=$("#camino"),hecho=$("#hecho"),LEN=camino.getTotalLength(),marc=$("#marcador");
+const POS=PAR.map((_,i)=>i/(PAR.length-1)*LEN);
+$("#paradas").innerHTML=PAR.map((p,i)=>{const pt=camino.getPointAtLength(POS[i]);const up=i%2?-1:1;
+  return `<g class="parada" id="pa${i}" tabindex="0" role="button" aria-label="Parada ${i+1}: ${esc(p.t)}, ${esc(p.h)}" transform="translate(${pt.x} ${pt.y})"><circle class="base" r="13"/><text y="${up*-26}" text-anchor="middle">${esc(p.h)}</text></g>`}).join("");
+hecho.style.strokeDasharray=LEN;hecho.style.strokeDashoffset=LEN;
+let paso=0,anim=null,posAct=0;
+function mover(dest){cancelAnimationFrame(anim);const ini=posAct,t0=performance.now(),d=reduce?1:900;
+  (function f(now){const k=Math.min(1,(now-t0)/d),e=eio(k);posAct=ini+(dest-ini)*e;const pt=camino.getPointAtLength(posAct);
+    marc.setAttribute("transform",`translate(${pt.x} ${pt.y})`);hecho.style.strokeDashoffset=LEN-posAct;if(k<1)anim=requestAnimationFrame(f)})(performance.now())}
+function ir(i){paso=Math.max(0,Math.min(PAR.length-1,i));const p=PAR[paso];
+  $("#rImg").src=src(p.img,1000);$("#rImg").alt=alt(p.img);
+  [["#rHora","h"],["#rTit","t"],["#rCita","c"],["#rTxt","x"]].forEach(([s,k])=>{const el=$(s);el.textContent=p[k];el.dataset.k=`PAR.${paso}.${k}`});
+  $("#rNum").textContent=paso===PAR.length-1?"última parada":`parada ${paso+1} de ${PAR.length}`;
+  $("#rProg").style.width=((paso+1)/PAR.length*100)+"%";
+  PAR.forEach((_,j)=>{const g=$("#pa"+j);g.classList.toggle("hecha",j<paso);g.classList.toggle("actual",j===paso)});
+  $("#rAnt").disabled=paso===0;
+  const sig=$("#rSig");if(paso===PAR.length-1){sig.textContent="Reservar esta mañana";sig.onclick=()=>$("#reserva").scrollIntoView({behavior:"smooth"})}else{sig.textContent="Siguiente parada";sig.onclick=()=>ir(paso+1)}
+  mover(POS[paso])}
+$("#rAnt").onclick=()=>ir(paso-1);
+const empezar=j=>{$("#inicioRuta").hidden=true;ir(j)};
+$("#comenzar").onclick=()=>{empezar(0);$("#rSig").focus()};
+PAR.forEach((_,j)=>{const g=$("#pa"+j);g.addEventListener("click",()=>empezar(j));g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();empezar(j)}})});
+ir(0);
+
+/* quiénes somos: las fotos van en la carpeta "equipo" junto a este archivo */
+$("#equipo").innerHTML=D.EQ.map((p,i)=>`<article class="per"><div class="ret"><b>${esc(p.ini)}</b><small>foto pronto</small>${p.foto?`<img src="${esc(p.foto)}" alt="Foto de ${esc(p.n)}" onerror="this.remove()">`:""}</div><h3 data-k="EQ.${i}.n">${esc(p.n)}</h3><span class="rol" data-k="EQ.${i}.rol">${esc(p.rol)}</span><p data-k="EQ.${i}.t">${esc(p.t)}</p></article>`).join("");
+
+/* complementa tu día */
+$("#actividades").innerHTML=D.ACT.map((a,i)=>`<article class="act"><div class="foto"><img src="${src(a.img,900)}" alt="${alt(a.img)}" loading="lazy"><span class="tag" data-k="ACT.${i}.tag">${esc(a.tag)}</span></div><div class="cuerpo"><h3 data-k="ACT.${i}.t">${esc(a.t)}</h3><p data-k="ACT.${i}.x">${esc(a.x)}</p><small>Fuente: ${esc(a.f)}. ${cred(a.img)}.</small></div></article>`).join("");
+
+/* reserva */
+let n=2;const fmt=v=>"$"+v.toLocaleString("es-CL");
+function arma(){const dia=document.querySelector("input[name=dia]:checked").value,e=document.querySelector("input[name=emp]:checked").value;
+  $("#personas").textContent=n;$("#tPer").textContent=n+(n===1?" persona":" personas");$("#tEmp").textContent=e==="pino"?"De pino":"De queso";
+  $("#tTit").textContent=dia==="festivo"?"Tu mañana de festivo":`Tu mañana del ${dia}`;
+  $("#tAbo").textContent=fmt(8000*n);$("#tSal").textContent=fmt(20000*n);$("#tTot").textContent=fmt(28000*n);
+  const k=e==="pino"?"bandeja":"pan";$("#tImg").src=src(k,900);$("#tImg").alt=alt(k);
+  $("#btnWsp").href=wsp(`Hola, quiero reservar Manos a la masa: ${dia}, ${n} ${n===1?"persona":"personas"}, empanada de ${e}. Total ${fmt(28000*n)}.`);
+  $("#menos").disabled=n<=1;$("#mas").disabled=n>=10}
+$("#menos").onclick=()=>{n=Math.max(1,n-1);arma()};$("#mas").onclick=()=>{n=Math.min(10,n+1);arma()};
+$("#armaForm").addEventListener("change",arma);
+pintaContacto();
+
+/* comunidad */
+$("#insta").innerHTML=["tabla","yesoT","amasar","verde","horno","aerea"].map(k=>`<img src="${src(k,500)}" alt="${alt(k)}" loading="lazy">`).join("");
+
+/* bitácora */
+const E=D.E;
+$("#entradas").innerHTML=E.map((e,i)=>`<a class="card" href="#/bitacora/${e.id}"><div class="foto"><img src="${src(e.img,1000)}" alt="${alt(e.img)}" loading="lazy"></div><div class="cuerpo"><p class="meta"><b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h3 data-k="E.${i}.t">${esc(e.t)}</h3><p data-k="E.${i}.r">${esc(e.r)}</p><span class="leer">leer la entrada</span></div></a>`).join("");
+const art=$("#articulo"),A=$("#art");
+const getC=id=>{try{return JSON.parse(localStorage.getItem("mam_c_"+id)||"[]")}catch(e){return[]}};
+function pintaC(id){const l=getC(id);$("#lc").innerHTML=l.length?l.map(c=>`<li><b>${esc(c.n)}</b>${esc(c.t)}</li>`).join(""):`<li class="vacio">Todavía no hay comentarios. Escribe el primero.</li>`}
+function abrir(id){const i=E.findIndex(x=>x.id===id),e=E[i];if(!e)return;
+  $("#artHero").style.backgroundImage=`url(${src(e.img,2000)})`;$("#artHero").setAttribute("aria-label",alt(e.img));
+  A.innerHTML=`<p class="meta">Escrito por <b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h1 id="artT" data-k="E.${i}.t">${esc(e.t)}</h1><figcaption>Imagen: ${alt(e.img)}. <a href="${F[e.img][3]}" target="_blank" rel="noopener">${cred(e.img)}, vía Wikimedia Commons</a></figcaption>
+  <div data-k="E.${i}.c" data-html>${e.c}</div>
+  <div class="fuentes"><strong>Fuentes de esta entrada</strong><ul>${e.f.map((x,j)=>`<li data-k="E.${i}.f.${j}">${esc(x)}</li>`).join("")}</ul></div>
+  <div class="accion"><h2 data-k="E.${i}.a.0">${esc(e.a[0])}</h2><p data-k="E.${i}.a.1">${esc(e.a[1])}</p><a class="btn blanco" href="${e.a[2]}" data-ir data-k="E.${i}.a.3">${esc(e.a[3])}</a></div>
+  <section class="coment" id="coment"><h2>Comentarios</h2><form class="fc" id="fc" data-noedit><label class="sr" for="cN">Nombre</label><input id="cN" required placeholder="Tu nombre"><label class="sr" for="cT">Comentario</label><textarea id="cT" required placeholder="Escribe tu comentario"></textarea><button class="btn yeso" type="submit">Publicar comentario</button></form><ul class="lc" id="lc" data-noedit></ul></section>`;
+  art.hidden=false;document.body.style.overflow="hidden";art.scrollTop=0;pintaC(id);
+  $("#fc").onsubmit=ev=>{ev.preventDefault();const l=getC(id);l.push({n:$("#cN").value,t:$("#cT").value});try{localStorage.setItem("mam_c_"+id,JSON.stringify(l))}catch(x){}$("#cT").value="";pintaC(id)};
+  A.querySelector("[data-ir]").onclick=ev=>{ev.preventDefault();if(document.body.classList.contains("editando"))return;const h=ev.currentTarget.getAttribute("href");if(h==="#coment"){$("#coment").scrollIntoView({behavior:"smooth"});return}cerrar();setTimeout(()=>$(h).scrollIntoView({behavior:"smooth"}),60)};
+  if(document.body.classList.contains("editando"))activarEdicion();
+  $("#cerrar").focus()}
+function cerrar(){art.hidden=true;document.body.style.overflow="";if(location.hash.startsWith("#/"))history.replaceState(null,"",location.pathname+location.search+"#bitacora")}
+$("#cerrar").onclick=()=>{cerrar();$("#bitacora").scrollIntoView()};
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!art.hidden&&!document.body.classList.contains("editando"))$("#cerrar").click()});
+function ruta(){const m=location.hash.match(/^#\/bitacora\/(.+)$/);if(m)abrir(m[1]);else if(!art.hidden){art.hidden=true;document.body.style.overflow=""}}
+addEventListener("hashchange",ruta);ruta();
+
+$("#formSus").onsubmit=e=>{e.preventDefault();$("#okSus").hidden=false;e.target.reset()};
+$("#formCon").onsubmit=e=>{e.preventDefault();$("#okCon").hidden=false;e.target.reset()};
+
+/* ================= MODO EDICIÓN =================
+   Aparece al abrir el archivo desde tu computador (o con ?editar al final de la dirección). */
+const PUEDE_EDITAR=location.protocol==="file:"||new URLSearchParams(location.search).has("editar");
+let cambios=false;
+const SEL="h1,h2,h3,h4,p,li,dt,dd,summary,figcaption,blockquote,.etiqueta,.chips span,.btn,.pilar b,.pilar span,.comp b,.comp span,.marca,[data-k]";
+function candidatos(){
+  const lista=[...document.querySelectorAll(SEL)].filter(el=>{
+    if(el.closest("[data-noedit],#editor,#dlgEd,script,svg"))return false;
+    if(el.closest("[data-render]")&&!el.hasAttribute("data-k"))return false;
+    if(el.querySelector("input,select,textarea,img,svg"))return false;
+    return true});
+  return lista.filter(el=>!lista.some(o=>o!==el&&o.contains(el)));
+}
+function activarEdicion(){candidatos().forEach(el=>{el.setAttribute("contenteditable","true");el.setAttribute("spellcheck","true")})}
+function desactivarEdicion(){document.querySelectorAll("[contenteditable]").forEach(el=>{el.removeAttribute("contenteditable");el.removeAttribute("spellcheck")})}
+if(PUEDE_EDITAR){
+  $("#editor").hidden=false;
+  const tog=$("#edToggle"),est=$("#edEstado");
+  tog.onclick=()=>{const on=!document.body.classList.contains("editando");document.body.classList.toggle("editando",on);
+    if(on){activarEdicion();tog.textContent="Terminar de editar";est.textContent="Haz clic en cualquier texto y escríbelo de nuevo. Luego pincha Guardar cambios."}
+    else{desactivarEdicion();tog.textContent="Editar textos";est.textContent=cambios?"Tienes cambios sin guardar.":"Listo."}};
+  document.addEventListener("click",e=>{if(!document.body.classList.contains("editando"))return;
+    const t=e.target.closest("a,button,[role=button],label");if(t&&!t.closest("#editor,#dlgEd,.art-bar")){e.preventDefault()}},true);
+  document.addEventListener("input",e=>{const el=e.target.closest("[data-k]");if(el&&el.isContentEditable)setP(el.dataset.k,el.hasAttribute("data-html")?el.innerHTML:el.textContent.trim());
+    if(e.target.closest("[contenteditable]")){cambios=true;est.textContent="Tienes cambios sin guardar."}});
+  document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.isContentEditable&&!e.target.hasAttribute("data-html")){e.preventDefault()}});
+  document.addEventListener("paste",e=>{if(!e.target.closest("[contenteditable]"))return;e.preventDefault();document.execCommand("insertText",false,(e.clipboardData||window.clipboardData).getData("text"))});
+  addEventListener("beforeunload",e=>{if(cambios){e.preventDefault();e.returnValue=""}});
+  /* datos de contacto */
+  const dlg=$("#dlgEd");
+  $("#edContacto").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook"].forEach(k=>$("#ed_"+k).value=C[k]||"");dlg.showModal()};
+  $("#edAplicar").onclick=()=>{["whatsapp","correo","instagram","tiktok","facebook"].forEach(k=>C[k]=$("#ed_"+k).value.trim());pintaContacto();cambios=true;est.textContent="Tienes cambios sin guardar."};
+  /* guardar: descarga el archivo con los cambios */
+  $("#edGuardar").onclick=()=>{
+    const estaba=document.body.classList.contains("editando");if(estaba)desactivarEdicion();
+    const doc=document.documentElement.cloneNode(true);
+    if(estaba)activarEdicion();
+    doc.querySelectorAll("[data-render]").forEach(el=>el.innerHTML="");
+    doc.querySelector("#datos").textContent="\n"+JSON.stringify(D,null,1).replace(/</g,"\\u003c")+"\n";
+    const b=doc.querySelector("body");b.classList.remove("editando");b.removeAttribute("style");
+    doc.querySelector("#articulo").hidden=true;doc.querySelector("#inicioRuta").hidden=false;doc.querySelector("#editor").hidden=true;
+    doc.querySelectorAll("dialog[open]").forEach(d=>d.removeAttribute("open"));
+    doc.querySelectorAll("#okSus,#okCon").forEach(p=>p.hidden=true);
+    const html="<!doctype html>\n"+doc.outerHTML;
+    const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([html],{type:"text/html"}));a.download="index.html";$("#editor").append(a);a.click();a.remove();
+    cambios=false;est.textContent="Guardado. Reemplaza tu archivo index.html por el que se descargó."};
+}
+
+</script>
+</body>
+</html>
