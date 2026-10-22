@@ -353,6 +353,18 @@ dialog form{text-align:right;padding:8px 30px 26px}
 .creditos{font-size:13px}
 
 
+
+/* contador en vivo */
+.contador-vivo{display:grid;grid-template-columns:1fr 1fr 2fr auto;gap:12px;margin-bottom:16px}
+@media (max-width:900px){.contador-vivo{grid-template-columns:1fr 1fr}.contador-vivo .compartir,.contador-vivo .qr{grid-column:span 2}}
+.cv{background:#fff;border-radius:22px;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.cv b{font:400 clamp(44px,5vw,64px)/1 var(--serif);color:var(--yeso-hondo);font-variant-numeric:tabular-nums}
+.cv span{font-size:14px;font-weight:700;color:var(--tinta-2)}
+.acc-comp{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.cv.qr{align-items:center;text-align:center}
+.cv.qr canvas{width:120px;height:120px}
+.ncom{display:inline-block;margin-left:10px;font-size:13px;font-weight:700;color:var(--yeso-hondo);background:var(--niebla);padding:3px 10px;border-radius:999px}
+
 /* modo edición */
 .editor{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:200;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;background:rgba(22,57,63,.94);color:#e9f7f6;padding:10px 14px;border-radius:22px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);width:max-content;max-width:calc(100% - 24px);font-size:13.5px}
 .editor[hidden]{display:none}
@@ -636,6 +648,15 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
         <div><span class="etiqueta">#ManosALaMasa</span><h2 class="h2">Comparte tu mañana en el Cajón</h2></div>
         <p class="bajada">Sube tu foto con tu empanada y el paisaje de fondo, etiquétanos y usa #ManosALaMasa.</p>
       </div>
+      <div class="contador-vivo" data-noedit>
+        <div class="cv"><b id="nSus">–</b><span>suscriptores a la bitácora</span></div>
+        <div class="cv"><b id="nCom">–</b><span>comentarios en la bitácora</span></div>
+        <div class="cv compartir"><span>Ayúdanos a llegar a más personas</span>
+          <div class="acc-comp"><a class="btn miel chico" id="shWsp" target="_blank" rel="noopener">Compartir por WhatsApp</a><button class="btn blanco chico" id="shCopy" type="button">Copiar link</button><a class="btn yeso chico" href="#contacto">Suscribirme</a></div>
+          <small id="shOk" class="ok" hidden>Link copiado.</small></div>
+        <div class="cv qr"><canvas id="qr" width="132" height="132" aria-label="Código QR del sitio Manos a la masa"></canvas><span>Escanea para abrir el sitio</span></div>
+      </div>
+      <p class="nota" style="margin:-6px 0 18px">Números en vivo desde nuestra bitácora en WordPress.</p>
       <div class="insta" id="insta" data-render></div>
       <div class="redes" id="redes" data-render></div>
     </div>
@@ -752,6 +773,7 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     <label>Facebook (enlace)<input id="ed_facebook" placeholder="https://facebook.com/manosalamasa"></label>
   </div></div>
   <form method="dialog"><button class="btn borde chico" value="no">Cancelar</button> <button class="btn yeso chico" id="edAplicar">Aplicar</button></form></dialog>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script id="datos" type="application/json">
 {
  "contacto": {
@@ -1211,7 +1233,7 @@ $("#insta").innerHTML=["tabla","yesoT","amasar","verde","horno","aerea"].map(k=>
 
 /* bitácora */
 const E=D.E;
-$("#entradas").innerHTML=E.map((e,i)=>`<a class="card" href="#/bitacora/${e.id}"><div class="foto"><img src="${src(e.img,1000)}" alt="${alt(e.img)}" loading="lazy"></div><div class="cuerpo"><p class="meta"><b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h3 data-k="E.${i}.t">${esc(e.t)}</h3><p data-k="E.${i}.r">${esc(e.r)}</p><span class="leer">leer la entrada</span></div></a>`).join("");
+$("#entradas").innerHTML=E.map((e,i)=>`<a class="card" href="#/bitacora/${e.id}"><div class="foto"><img src="${src(e.img,1000)}" alt="${alt(e.img)}" loading="lazy"></div><div class="cuerpo"><p class="meta"><b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h3 data-k="E.${i}.t">${esc(e.t)}</h3><p data-k="E.${i}.r">${esc(e.r)}</p><span class="leer">leer la entrada</span><span class="ncom" data-wp="${e.wp}"></span></div></a>`).join("");
 const art=$("#articulo"),A=$("#art");
 function cargarComentarios(e){const ul=$("#lc");
   fetch(`https://public-api.wordpress.com/rest/v1.1/sites/258155277/posts/${e.wp}/replies/?order=ASC&number=100`).then(r=>r.json()).then(j=>{
@@ -1241,6 +1263,21 @@ addEventListener("hashchange",ruta);ruta();
 susOk($("#formSus"),$("#okSus"));
 susOk($("#formSus"),$("#okSus"));
 $("#formCon").onsubmit=e=>{e.preventDefault();$("#okCon").hidden=false;e.target.reset()};
+
+/* números en vivo, compartir y QR */
+const SITIO="https://javiera965.github.io/manos-a-la-masa/";
+fetch("https://public-api.wordpress.com/rest/v1.1/sites/258155277?fields=subscribers_count").then(r=>r.json()).then(j=>{$("#nSus").textContent=(j.subscribers_count??0).toLocaleString("es-CL")}).catch(()=>{});
+fetch("https://public-api.wordpress.com/rest/v1.1/sites/258155277/posts/?number=50&fields=ID,discussion").then(r=>r.json()).then(j=>{
+  const ids=D.E.map(e=>e.wp);let tot=0;
+  (j.posts||[]).forEach(p=>{if(!ids.includes(p.ID))return;const n=p.discussion?p.discussion.comment_count:0;tot+=n;
+    document.querySelectorAll(`.ncom[data-wp="${p.ID}"]`).forEach(s=>s.textContent=n===1?"1 comentario":`${n} comentarios`)});
+  $("#nCom").textContent=tot.toLocaleString("es-CL")}).catch(()=>{});
+$("#shWsp").href="https://wa.me/?text="+encodeURIComponent("Mira Manos a la masa: una mañana cocinando empanadas de horno de barro en el Cajón del Maipo. Comenta y suscríbete 👉 "+SITIO);
+$("#shCopy").onclick=()=>{const ok=()=>{$("#shOk").hidden=false;setTimeout(()=>$("#shOk").hidden=true,2500)};
+  (navigator.clipboard?navigator.clipboard.writeText(SITIO):Promise.reject()).then(ok).catch(()=>{const t=document.createElement("textarea");t.value=SITIO;document.body.append(t);t.select();try{document.execCommand("copy");ok()}catch(e){}t.remove()})};
+if(window.qrcode){const q=qrcode(0,"M");q.addData(SITIO);q.make();const c=$("#qr"),x=c.getContext("2d"),n=q.getModuleCount(),s=c.width/(n+4);
+  x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.fillStyle="#16393f";
+  for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(q.isDark(r,k))x.fillRect(Math.floor((k+2)*s),Math.floor((r+2)*s),Math.ceil(s),Math.ceil(s))}
 
 /* ================= MODO EDICIÓN =================
    Aparece al abrir el archivo desde tu computador (o con ?editar al final de la dirección). */
