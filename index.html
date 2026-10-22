@@ -414,7 +414,7 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     <div class="hero-tit" id="heroTit">
       <h1>Manos a la masa</h1>
       <p>Cocina de campo en el Cajón del Maipo</p>
-      <a class="pastilla" href="#comunidad" data-noedit><b id="hSus">–</b> suscriptores <i></i> <b id="hCom">–</b> comentarios</a>
+      <a class="pastilla" href="#comunidad" data-noedit><b id="hSus">–</b> <span id="hSusT">suscriptores</span> <i></i> <b id="hCom">–</b> <span id="hComT">comentarios</span></a>
     </div>
     <div class="hero-final" id="heroFinal">
       <div>
@@ -1270,12 +1270,12 @@ $("#formCon").onsubmit=e=>{e.preventDefault();$("#okCon").hidden=false;e.target.
 
 /* números en vivo, compartir y QR */
 const SITIO="https://javiera965.github.io/manos-a-la-masa/";
-fetch("https://public-api.wordpress.com/rest/v1.1/sites/258155277?fields=subscribers_count").then(r=>r.json()).then(j=>{const v=(j.subscribers_count??0).toLocaleString("es-CL");$("#nSus").textContent=v;$("#hSus").textContent=v}).catch(()=>{});
+fetch("https://public-api.wordpress.com/rest/v1.1/sites/258155277?fields=subscribers_count").then(r=>r.json()).then(j=>{const v=(j.subscribers_count??0).toLocaleString("es-CL");$("#nSus").textContent=v;$("#hSus").textContent=v;if(j.subscribers_count===1){$("#hSusT").textContent="suscriptor";$("#nSus").nextElementSibling.textContent="suscriptor a la bitácora"}}).catch(()=>{});
 fetch("https://public-api.wordpress.com/rest/v1.1/sites/258155277/posts/?number=50&fields=ID,discussion").then(r=>r.json()).then(j=>{
   const ids=D.E.map(e=>e.wp);let tot=0;
   (j.posts||[]).forEach(p=>{if(!ids.includes(p.ID))return;const n=p.discussion?p.discussion.comment_count:0;tot+=n;
     document.querySelectorAll(`.ncom[data-wp="${p.ID}"]`).forEach(s=>s.textContent=n===1?"1 comentario":`${n} comentarios`)});
-  $("#nCom").textContent=tot.toLocaleString("es-CL");$("#hCom").textContent=tot.toLocaleString("es-CL")}).catch(()=>{});
+  $("#nCom").textContent=tot.toLocaleString("es-CL");$("#hCom").textContent=tot.toLocaleString("es-CL");if(tot===1){$("#hComT").textContent="comentario";$("#nCom").nextElementSibling.textContent="comentario en la bitácora"}}).catch(()=>{});
 $("#shWsp").href="https://wa.me/?text="+encodeURIComponent("Mira Manos a la masa: una mañana cocinando empanadas de horno de barro en el Cajón del Maipo. Comenta y suscríbete 👉 "+SITIO);
 $("#shCopy").onclick=()=>{const ok=()=>{$("#shOk").hidden=false;setTimeout(()=>$("#shOk").hidden=true,2500)};
   (navigator.clipboard?navigator.clipboard.writeText(SITIO):Promise.reject()).then(ok).catch(()=>{const t=document.createElement("textarea");t.value=SITIO;document.body.append(t);t.select();try{document.execCommand("copy");ok()}catch(e){}t.remove()})};
