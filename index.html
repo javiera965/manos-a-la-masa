@@ -74,14 +74,21 @@ p{margin:0 0 1em}
 }
 
 /* inicio */
-.hero{height:250vh;position:relative}
+.hero{height:300vh;position:relative}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:linear-gradient(180deg,#fdf3ee,#f6e4dd 55%,#e9f1ec)}
 .hero-paisaje{position:absolute;inset:0;background:center/cover no-repeat;filter:saturate(.62) brightness(1.08) contrast(.92)}
 .hero-paisaje::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,243,238,.9) 0%,rgba(250,232,226,.55) 42%,rgba(253,243,238,.88) 100%)}
-.hero-marco{position:absolute;inset:0;background:#fffaf6;box-shadow:0 0 0 1px rgba(196,135,125,.25);will-change:clip-path}
-.hero-foto{position:absolute;inset:0;will-change:clip-path;background:var(--piedra)}
-.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:center 50%}
-.hero-foto::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(70,40,34,.25) 20%,rgba(70,40,34,.55));opacity:var(--osc,0)}
+.plato{position:absolute;left:50%;top:0;width:var(--d,380px);height:var(--d,380px);margin-left:calc(var(--d,380px)/-2);will-change:transform}
+.mitad{position:absolute;inset:0;filter:drop-shadow(0 26px 34px rgba(120,72,60,.28));will-change:transform}
+.corte{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#fffaf6;border:clamp(8px,1.2vw,14px) solid #fffaf6}
+.corte img{position:absolute;max-width:none;width:var(--iw);left:var(--il);top:var(--it)}
+.izq .corte{clip-path:polygon(0 0,49% 0,53% 8%,47% 17%,54% 26%,46% 36%,53% 45%,47% 55%,54% 64%,46% 73%,53% 82%,47% 91%,51% 100%,0 100%)}
+.der .corte{clip-path:polygon(100% 0,49% 0,53% 8%,47% 17%,54% 26%,46% 36%,53% 45%,47% 55%,54% 64%,46% 73%,53% 82%,47% 91%,51% 100%,100% 100%)}
+.brillo{position:absolute;left:50%;top:50%;width:70%;height:70%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,214,170,.95),rgba(246,190,170,.55) 45%,transparent 70%);filter:blur(6px);opacity:0}
+.vapor{position:absolute;left:50%;top:30%;width:0;height:0;opacity:0}
+.vapor i{position:absolute;width:46px;height:46px;margin:-23px;border-radius:50%;background:rgba(255,255,255,.85);filter:blur(10px);animation:vapor 3.2s ease-in infinite}
+.vapor i:nth-child(2){left:-30px;animation-delay:1s;width:36px;height:36px}.vapor i:nth-child(3){left:28px;animation-delay:2s}
+@keyframes vapor{0%{transform:translateY(20px) scale(.6);opacity:0}30%{opacity:.9}100%{transform:translateY(-120px) scale(1.6);opacity:0}}
 .hero-tit{position:absolute;left:0;right:0;top:clamp(48px,8vh,100px);text-align:center;color:var(--tinta);padding:0 16px;will-change:transform,opacity;pointer-events:none}
 .hero-tit h1{font-size:clamp(54px,9vw,150px);line-height:.9;letter-spacing:-.01em}
 .hero-tit h1 em{color:#c4877d;font-style:italic}
@@ -89,11 +96,17 @@ p{margin:0 0 1em}
 .pastilla{display:inline-flex;align-items:center;gap:6px;margin-top:16px;background:rgba(255,255,255,.92);color:var(--tinta);padding:9px 16px;border-radius:999px;font:600 14.5px var(--sans);text-decoration:none;text-shadow:none;pointer-events:auto;box-shadow:0 10px 30px -12px rgba(22,57,63,.5)}
 .pastilla b{font:600 22px/1 var(--serif);color:#c4877d;font-variant-numeric:tabular-nums}
 .pastilla i{width:4px;height:4px;border-radius:50%;background:var(--tinta-2);margin:0 4px}
-.sticker{position:absolute;left:50%;top:56%;width:clamp(84px,8.5vw,128px);aspect-ratio:1;will-change:transform,opacity;pointer-events:none}
-.sticker img{width:100%;height:100%;object-fit:cover;border-radius:22px;border:6px solid #fffaf6;box-shadow:0 18px 36px -16px rgba(91,63,58,.45);background:#fff}
-.sticker span{position:absolute;left:50%;top:100%;transform:translateX(-50%) rotate(-4deg);margin-top:8px;font:400 clamp(25px,2vw,35px)/1 var(--mano);color:var(--tinta);white-space:nowrap}
-.hero-final{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:0 16px;opacity:0;will-change:opacity}
-.hero-final h2{font-size:clamp(38px,5.4vw,84px);line-height:1;max-width:13ch;margin:0 auto 26px;text-shadow:0 4px 30px rgba(70,40,34,.6)}
+.ingr{position:absolute;left:50%;top:0;width:var(--s,96px);margin-left:calc(var(--s,96px)/-2);will-change:transform,opacity;pointer-events:none;opacity:0}
+.ingr .flota{animation:flota 4.6s ease-in-out infinite;animation-delay:var(--dl,0s)}
+.ingr img{width:100%;height:auto;filter:drop-shadow(0 16px 18px rgba(120,72,60,.25))}
+.ingr span{display:block;width:max-content;margin:2px auto 0;font:400 clamp(24px,2.1vw,32px)/1 var(--mano);color:var(--tinta);background:rgba(255,250,246,.8);padding:4px 12px 6px;border-radius:999px;backdrop-filter:blur(4px)}
+.ingr.deco span{display:none}
+@keyframes flota{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){.ingr .flota,.vapor i{animation:none}}
+.hero-final{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--tinta);padding:0 16px;opacity:0;will-change:opacity}
+.hero-final h2{font-size:clamp(38px,5.4vw,84px);line-height:1;max-width:13ch;margin:0 auto 26px}
+.hero-final h2 em{color:#c4877d}
+.hero-final>div{padding:clamp(20px,4vw,48px);border-radius:50%;background:radial-gradient(closest-side,rgba(253,243,238,.95),rgba(253,243,238,.75) 70%,transparent)}
 .hero-final .acc{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .pista{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);color:var(--tinta);font:700 13.5px var(--sans);display:flex;align-items:center;gap:8px}
 .pista i{width:20px;height:32px;border:2px solid var(--tinta);border-radius:12px;position:relative}
@@ -439,8 +452,12 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
 <header class="hero" id="inicio">
   <div class="stage">
     <div class="hero-paisaje" id="heroPaisaje" role="img" aria-label="Embalse El Yeso rodeado de cumbres nevadas, en el Cajón del Maipo"></div>
-    <div class="hero-marco" id="heroMarco"></div>
-    <div class="hero-foto" id="heroFoto"><img id="heroImg" alt="Empanadas de horno doradas con perejil fresco en un plato"></div>
+    <div class="plato" id="plato" role="img" aria-label="Plato de empanadas de horno que se abre y deja salir sus ingredientes">
+      <div class="brillo" id="brillo"></div>
+      <div class="mitad izq" id="mIzq"><div class="corte"><img class="heroImg" alt=""></div></div>
+      <div class="mitad der" id="mDer"><div class="corte"><img class="heroImg" alt=""></div></div>
+      <div class="vapor" id="vapor"><i></i><i></i><i></i></div>
+    </div>
     <div id="stickers" data-render></div>
     <div class="hero-tit" id="heroTit">
       <h1>Manos <em>a la masa</em></h1>
@@ -449,7 +466,7 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     </div>
     <div class="hero-final" id="heroFinal">
       <div>
-        <h2>Tu empanada, tu pebre y la cordillera de fondo</h2>
+        <h2>Tu empanada, tu pebre y <em>la cordillera de fondo</em></h2>
         <div class="acc"><a class="btn miel" href="#reserva">Reserva tu mañana</a><a class="btn blanco" href="#historia">Conoce nuestra historia</a></div>
       </div>
     </div>
@@ -783,7 +800,8 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     <li><a href="https://www.sanjosedemaipo.cl/turismo/" target="_blank" rel="noopener">Municipalidad de San José de Maipo (s. f.). Turismo</a></li>
   </ul>
   <p><b>Fotografías</b> (Pexels, Unsplash y Wikimedia Commons)</p>
-  <ul class="creditos" id="creditos" data-render></ul></div>
+  <ul class="creditos" id="creditos" data-render></ul>
+  <p><b>Ilustraciones 3D de ingredientes</b>: <a href="https://github.com/microsoft/fluentui-emoji" target="_blank" rel="noopener">Fluent Emoji, Microsoft (licencia MIT)</a></p></div>
   <form method="dialog"><button class="btn">Cerrar</button></form></dialog>
 
 <div class="articulo" id="articulo" hidden role="dialog" aria-modal="true" aria-labelledby="artT">
@@ -818,36 +836,6 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
   "tiktok": "",
   "facebook": ""
  },
- "ST": [
-  [
-   "pebre",
-   "pebre del huerto",
-   -1.05,
-   -0.3,
-   -12
-  ],
-  [
-   "pan",
-   "pan amasado",
-   1.05,
-   -0.4,
-   10
-  ],
-  [
-   "horno",
-   "horno de barro",
-   -1.1,
-   0.6,
-   8
-  ],
-  [
-   "amasar",
-   "con tus manos",
-   1.1,
-   0.55,
-   -8
-  ]
- ],
  "HIS": [
   [
    "amasar",
@@ -1123,6 +1111,104 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
    "cat": "Turismo responsable",
    "min": 3
   }
+ ],
+ "ING": [
+  [
+   "carne",
+   "pino",
+   -158,
+   1.0,
+   104,
+   -14
+  ],
+  [
+   "cebolla",
+   "cebolla",
+   -122,
+   0.95,
+   92,
+   10
+  ],
+  [
+   "huevo",
+   "huevo",
+   -60,
+   0.95,
+   84,
+   -8
+  ],
+  [
+   "aceituna",
+   "aceituna",
+   -22,
+   1.0,
+   74,
+   12
+  ],
+  [
+   "aji",
+   "ají",
+   18,
+   1.0,
+   92,
+   -18
+  ],
+  [
+   "tomate",
+   "tomate",
+   58,
+   0.95,
+   96,
+   8
+  ],
+  [
+   "cilantro",
+   "cilantro",
+   122,
+   0.95,
+   104,
+   -10
+  ],
+  [
+   "ajo",
+   "ajo",
+   160,
+   1.0,
+   84,
+   14
+  ],
+  [
+   "flor",
+   "",
+   -92,
+   0.62,
+   56,
+   20
+  ],
+  [
+   "brillo",
+   "",
+   -38,
+   0.62,
+   48,
+   0
+  ],
+  [
+   "flor",
+   "",
+   88,
+   0.6,
+   48,
+   -16
+  ],
+  [
+   "brillo",
+   "",
+   -140,
+   0.6,
+   52,
+   0
+  ]
  ]
 }
 </script>
@@ -1198,28 +1284,31 @@ document.querySelectorAll("[data-fondo]").forEach(s=>ioF.observe(s));fondo("verd
 
 /* INICIO */
 $("#heroPaisaje").style.backgroundImage=`url(${src("yeso",2000)})`;
-$("#heroImg").src=src("tabla",1600);
-$("#stickers").innerHTML=D.ST.map((s,i)=>`<div class="sticker" id="st${i}"><img src="${src(s[0],400)}" alt=""><span data-k="ST.${i}.1">${esc(s[1])}</span></div>`).join("");
-const hm=$("#heroMarco"),hero=$(".hero"),hf=$("#heroFoto"),ht=$("#heroTit"),hfin=$("#heroFinal"),pista=$("#pista");
+document.querySelectorAll(".heroImg").forEach(im=>im.src=src("tabla",1400));
+$("#stickers").innerHTML=D.ING.map((s,i)=>`<div class="ingr${s[1]?"":" deco"}" id="st${i}" style="--dl:${(i*.37)%2}s"><div class="flota"><img src="img/3d/${s[0]}.png" alt="" style="${s[0]==="aceituna"?"filter:brightness(.42) saturate(.5) drop-shadow(0 16px 18px rgba(120,72,60,.25))":""}">${s[1]?`<span data-k="ING.${i}.1">${esc(s[1])}</span>`:""}</div></div>`).join("");
+const hero=$(".hero"),plato=$("#plato"),mI=$("#mIzq"),mD=$("#mDer"),brillo=$("#brillo"),vapor=$("#vapor"),ht=$("#heroTit"),hfin=$("#heroFinal"),pista=$("#pista");
 function heroFrame(){
   const r=hero.getBoundingClientRect(),tot=hero.offsetHeight-innerHeight;if(r.bottom<0)return;
-  const p=reduce?0:cl(-r.top/tot),a=eio(cl(p/.7));
+  const p=reduce?0:cl(-r.top/tot);
   const W=innerWidth,H=innerHeight,mob=W<700;
-  const fw=mob?W*.64:Math.min(W*.3,420),fh=mob?H*.4:H*.5;
-  const top0=H*.6-fh/2, side0=(W-fw)/2, bot0=Math.max(0,H-(top0+fh));
-  const fs=mob?14:Math.max(28,(W-1240)/2),ft=mob?72:88,fb=mob?14:28,fr=mob?22:32;
-  const t=top0+(ft-top0)*a,s=side0+(fs-side0)*a,b=bot0+(fb-bot0)*a,rad=fw/2+(fr-fw/2)*a,rb=24+(fr-24)*a,m=10;
-  hf.style.clipPath=`inset(${t}px ${s}px ${b}px ${s}px round ${rad}px ${rad}px ${rb}px ${rb}px)`;
-  hm.style.clipPath=`inset(${t-m}px ${s-m}px ${b-m}px ${s-m}px round ${rad+m}px ${rad+m}px ${rb+m}px ${rb+m}px)`;
-  hf.style.setProperty("--osc",cl((p-.5)/.3));
-  ht.style.opacity=1-cl(p/.3);ht.style.transform=`translateY(${-p*140}px)`;
-  pista.style.opacity=1-cl(p/.08);
-  const R=mob?W*.36:Math.min(W*.27,400),Ry=mob?H*.27:H*.3;
-  D.ST.forEach((s,i)=>{const el=document.getElementById("st"+i),k=eio(cl((p-.02-i*.03)/.45));
-    const x=s[2]*R*(1+k*.7),y=s[3]*Ry*(1+k*.5)+H*.1;
-    el.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px) rotate(${s[4]*(1+k)}deg) scale(${1+k*.15})`;
-    el.style.opacity=1-cl((p-.3)/.25)});
-  hfin.style.opacity=cl((p-.66)/.2);hfin.style.pointerEvents=p>.75?"auto":"none";
+  const d=Math.round(mob?Math.min(W*.64,H*.34):Math.min(W*.3,H*.44,440));
+  plato.style.setProperty("--d",d+"px");
+  const iw=d*1.12;plato.style.setProperty("--iw",iw+"px");plato.style.setProperty("--il",(d/2-.56*iw)+"px");plato.style.setProperty("--it",(d/2-.44*iw*1.25)+"px");
+  const a=eio(cl((p-.04)/.36)),f=cl((p-.56)/.14),cy=H*(.67-.15*a);
+  plato.style.transform=`translateY(${cy-d/2}px) scale(${1-a*.1})`;
+  const sx=d*(mob?.2:.32),rt=mob?10:16;mI.style.transform=`translateX(${-a*sx}px) rotate(${-a*rt}deg)`;mD.style.transform=`translateX(${a*sx}px) rotate(${a*rt}deg)`;
+  mI.style.opacity=mD.style.opacity=1-f;
+  brillo.style.opacity=a*(1-f);vapor.style.opacity=a*(1-f);
+  ht.style.opacity=1-cl(p/.22);ht.style.transform=`translateY(${-p*160}px)`;
+  pista.style.opacity=1-cl(p/.06);
+  const Rx=mob?W*.37:Math.min(W*.34,520),Ry=mob?H*.22:H*.23;
+  D.ING.forEach((s,i)=>{const el=document.getElementById("st"+i),k=eio(cl((p-.1-i*.018)/.38));
+    const ang=s[2]*Math.PI/180,x=Math.cos(ang)*Rx*s[3]*k,y=Math.sin(ang)*Ry*s[3]*k;
+    const fin=eio(cl((p-.6)/.18)),sp=1+fin*(mob?.06:.42),yy=cy+y*(1+fin*.08)+fin*(H*.5-cy);
+    el.style.setProperty("--s",Math.round((mob?.62:1)*s[4])+"px");
+    el.style.transform=`translate(${x*sp}px,${yy-((mob?.62:1)*s[4])/2}px) rotate(${s[5]*k}deg) scale(${.2+.8*k})`;
+    el.style.opacity=cl(k*1.6)*(1-fin*(s[1]?(mob?.55:0):1))});
+  hfin.style.opacity=cl((p-.68)/.14);hfin.style.pointerEvents=p>.76?"auto":"none";
 }
 let tk=false;addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{heroFrame();tk=false})},{passive:true});
 addEventListener("resize",heroFrame);heroFrame();
