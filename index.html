@@ -268,6 +268,25 @@ legend{font:800 16px var(--sans);margin-bottom:10px;padding:0}
 .entradas{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 @media (max-width:760px){.entradas{grid-template-columns:1fr}}
 .card{display:block;text-decoration:none;background:#fff;border-radius:26px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.entradas .destacada{grid-column:1/-1;display:grid;grid-template-columns:1.25fr 1fr}
+.destacada .foto{aspect-ratio:auto;min-height:340px}
+.destacada .cuerpo{padding:clamp(24px,3.4vw,44px);align-self:center}
+.destacada h3{font-size:clamp(30px,3.4vw,46px);line-height:1.04}
+.destacada p{font-size:17px}
+@media (max-width:760px){.entradas .destacada{grid-template-columns:1fr}.destacada .foto{min-height:240px}}
+.card .foto{position:relative}
+.card .num{position:absolute;left:18px;bottom:10px;font:400 clamp(44px,5vw,72px)/1 var(--serif);color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.35)}
+.card .cat{position:absolute;left:16px;top:16px;background:rgba(255,250,246,.92);color:#5b3f3a;font:700 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.card .foto img{transition:transform .6s}.card:hover .foto img{transform:scale(1.05)}
+.art-cat{font:700 12.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#c4877d;margin:0 0 4px}
+.art-bajada{font-size:21px;line-height:1.5;color:var(--tinta-2);margin:0 0 14px}
+.art .entra::first-letter{float:left;font:400 84px/.8 var(--serif);color:#c4877d;margin:8px 12px 0 0}
+.art .entra{font-size:19.5px}
+.cita{margin:38px 0;padding:6px 0 6px 26px;border-left:4px solid #c4877d;font:400 italic clamp(26px,3vw,34px)/1.25 var(--serif);color:var(--tinta)}
+.dato{display:flex;gap:18px;align-items:center;margin:30px 0;padding:20px 24px;border-radius:22px;background:linear-gradient(120deg,#fdf1ec,#eef6f0)}
+.dato b{font:400 clamp(36px,4.4vw,52px)/1 var(--serif);color:#c4877d;white-space:nowrap}
+.dato span{font-size:16px;line-height:1.5;color:var(--tinta-2)}
+@media (max-width:520px){.dato{flex-direction:column;align-items:flex-start;gap:6px}}
 .card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -28px rgba(22,57,63,.5)}
 .card .foto{aspect-ratio:16/9;overflow:hidden;background:var(--niebla)}
 .card img{width:100%;height:100%;object-fit:cover}
@@ -621,8 +640,8 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
   <div class="wrap">
     <div class="tarjeta">
       <div class="cab">
-        <div><span class="etiqueta">Bitácora</span><h2 class="h2">Historias del valle y de la cocina</h2></div>
-        <p class="bajada">Cuatro entradas escritas por nuestro equipo. Comenta en cada una y suscríbete para recibir las nuevas.</p>
+        <div><span class="etiqueta">Bitácora</span><h2 class="h2">Lo que no cabe en una foto</h2></div>
+        <p class="bajada">El valle, quien viene, la cocina por dentro y lo que cuidamos: cuatro historias contadas por quienes diseñamos esta mañana. Léelas, déjanos tu comentario y suscríbete para recibir las próximas.</p>
       </div>
       <div class="entradas" id="entradas" data-render></div>
     </div>
@@ -1001,10 +1020,10 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
    "id": "destino",
    "autor": "Javiera Cerna",
    "fecha": "19 de octubre de 2026",
-   "img": "iglesia",
-   "t": "San José de Maipo: por qué cocinar aquí",
-   "r": "Cercanía, empanadas de horno de barro y un pueblo con historia desde 1792.",
-   "c": "\u003cp>Cuando pensamos dónde hacer una experiencia de cocina de campo, el Cajón del Maipo apareció primero por algo simple: está a unos 48 km de Santiago, así que una mañana completa cabe en un día sin apuro (Accor, s. f.).\u003c/p>\u003ch2>Lo que se come en el valle\u003c/h2>\u003cp>La comida del Cajón se reparte en pequeños locales a lo largo del camino y destaca por las empanadas cocidas en horno de barro, el pan amasado y los frutos secos de huertas caseras (Chile Travel, s. f.; La Hora, 2022). Esos tres sabores son la base de nuestra experiencia.\u003c/p>\u003ch2>Un pueblo con relato propio\u003c/h2>\u003cp>La villa de San José de Maipo fue fundada el 16 de julio de 1792 (Municipalidad de San José de Maipo, s. f.). La elegimos como punto de encuentro también por el acceso: el transporte público llega hasta ahí (Meteored, s. f.-a).\u003c/p>\u003ch2>La oportunidad y el límite\u003c/h2>\u003cp>El Cajón se presenta sobre todo como destino de aventura (Chile Travel, s. f.). Hay espacio para algo más tranquilo, donde la comida sea lo principal. El límite es el acceso: en otoño e invierno algunos caminos cierran por lluvia o nieve (Meteored, s. f.-b). Por eso la experiencia es en primavera.\u003c/p>",
+   "img": "aerea",
+   "t": "A 48 kilómetros, otro ritmo",
+   "r": "Sales de Santiago con la ciudad encima y, una hora después, el aire huele a leña y a pan. Por qué elegimos cocinar en San José de Maipo.",
+   "c": "<p class=\"entra\">Hay un momento, subiendo por el camino al Volcán, en que la ciudad se queda atrás de golpe. Los cerros se cierran, el río Maipo suena más fuerte que el tráfico y aparecen los letreros escritos a mano: <em>empanadas de horno<\/em>, <em>pan amasado<\/em>, <em>nueces<\/em>. Ahí entendimos que la experiencia tenía que ser aquí.<\/p><h2>Cerca para ir, lejos para desconectarse<\/h2><p>El Cajón del Maipo está a unos 48 km de Santiago (Accor, s. f.). Es lo bastante cerca para ir y volver en el día sin apuro, y lo bastante lejos para que se sienta como un viaje. Eso pesó mucho: queríamos una mañana completa, no una jornada de bus.<\/p><aside class=\"dato\"><b>48 km<\/b><span>separan Santiago del Cajón del Maipo. Una mañana de cocina cabe sin perder el día.<\/span><\/aside><h2>El sabor está al borde del camino<\/h2><p>En el Cajón la comida no está escondida en restaurantes: se reparte en pequeños locales a lo largo de la ruta. Lo que más se repite son las empanadas cocidas en horno de barro, el pan amasado y los frutos secos de huertas caseras (Chile Travel, s. f.; La Hora, 2022). No inventamos un menú: tomamos esos tres sabores y los pusimos en tus manos.<\/p><blockquote class=\"cita\">No inventamos un menú. Tomamos lo que el valle ya cocina y lo pusimos en tus manos.<\/blockquote><h2>Un pueblo con más de dos siglos<\/h2><p>La villa de San José de Maipo fue fundada el 16 de julio de 1792 (Municipalidad de San José de Maipo, s. f.). Es nuestro punto de encuentro por su historia y también por algo práctico: el transporte público llega hasta ahí (Meteored, s. f.-a).<\/p><h2>Por qué en primavera<\/h2><p>El Cajón suele mostrarse como destino de aventura: rafting, trekking, canopy (Chile Travel, s. f.). Vimos espacio para algo más pausado, donde la comida sea la protagonista. Pero el valle pone sus reglas: en otoño e invierno algunos caminos se cierran por lluvia o nieve (Meteored, s. f.-b). En primavera, en cambio, el huerto tiene hierbas frescas y los frutales están en flor. Por eso cocinamos en esa época.<\/p>",
    "f": [
     "Accor. (s. f.). ¿Qué hacer en Cajón del Maipo?",
     "Chile Travel. (s. f.). Cajón del Maipo [Ficha de destino].",
@@ -1013,77 +1032,86 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     "Municipalidad de San José de Maipo. (s. f.). Turismo."
    ],
    "a": [
-    "¿Cómo se llega?",
-    "Revisa la ficha práctica con el acceso, el horario y el mapa.",
+    "¿Te imaginas aquí?",
+    "En la ficha práctica están el acceso, el horario y el mapa para llegar.",
     "#ficha",
     "Ver la ficha práctica"
    ],
    "wp": 28,
-   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/19/destino/"
+   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/19/destino/",
+   "cat": "El territorio",
+   "min": 4
   },
   {
    "id": "visitante",
    "autor": "Catalina Lobos",
    "fecha": "20 de octubre de 2026",
-   "img": "productora",
-   "t": "Para quien prefiere cocinar antes que mirar",
-   "r": "Conoce a Fernanda, la visitante que imaginamos, y cómo definió la duración, el cupo y el precio.",
-   "c": "\u003cp>Para diseñar la experiencia imaginamos a Fernanda, un personaje ficticio: tiene 34 años, trabaja en una oficina en Santiago y un sábado de primavera quiere salir de la ciudad con su pareja sin pasar todo el día en un bus.\u003c/p>\u003ch2>Lo que necesita\u003c/h2>\u003cp>Una actividad de medio día que le deje la tarde libre y le permita volver antes del tráfico. Y, sobre todo, participar con sus manos, no solo mirar o recibir la comida hecha.\u003c/p>\u003ch2>Lo que decidimos por ella\u003c/h2>\u003cp>De ahí salen tres decisiones: la experiencia dura de 10:30 a 14:00; el grupo es de máximo 10 personas y todos cocinan; y el punto de encuentro es San José de Maipo, adonde llega el transporte público.\u003c/p>\u003ch2>Cuánto cuesta y por qué\u003c/h2>\u003cp>El precio referencial es de $28.000 por persona. Una excursión de día completo con transporte y almuerzo cuesta $39.000 (Tur.com, s. f.). Con 7 personas los ingresos cubren los costos estimados de una salida; con 6 no, por eso el mínimo es 7.\u003c/p>\u003cp>Todavía son supuestos: queremos validar si pagarías ese precio y si prefieres medio día a un día completo.\u003c/p>",
+   "img": "bandeja",
+   "t": "Fernanda no quiere mirar: quiere meter las manos",
+   "r": "Diseñamos la experiencia pensando en una persona concreta. Así ella decidió el horario, el tamaño del grupo y el precio.",
+   "c": "<p class=\"entra\">Fernanda es un personaje que inventamos, pero seguro conoces a alguien como ella. Tiene 34 años, trabaja en una oficina en Santiago y el sábado quiere salir con su pareja. No le interesa pasar el día arriba de un bus ni sentarse a mirar cómo otro cocina. Quiere hacer algo con las manos y volver a casa con algo que contar.<\/p><blockquote class=\"cita\">No queremos que mires una demostración. Queremos que te vayas con harina hasta los codos.<\/blockquote><h2>Lo que le pedimos a la experiencia<\/h2><p>Que dure medio día y le deje la tarde libre. Que pueda volver antes del taco. Y, sobre todo, que cocine de verdad: amasar, armar sus propias empanadas, cortar el pebre. No recibir la comida hecha.<\/p><h2>Tres decisiones que salieron de ella<\/h2><p><strong>Horario:<\/strong> de 10:30 a 14:00, tres horas y media. <strong>Grupo:<\/strong> máximo 10 personas, para que todos tengan su lugar en el mesón. <strong>Encuentro:<\/strong> en San José de Maipo, adonde llega el transporte público.<\/p><aside class=\"dato\"><b>10<\/b><span>personas como máximo por grupo. Todos cocinan, nadie se queda mirando.<\/span><\/aside><h2>Cuánto cuesta y por qué<\/h2><p>El precio referencial es de $28.000 por persona (estimación de septiembre de 2026). Como comparación, una excursión de día completo con transporte y almuerzo cuesta $39.000 (Tur.com, s. f.). Hicimos las cuentas: con 7 personas los ingresos cubren los costos de una salida y con 6 no. Por eso el grupo mínimo es de 7.<\/p><p>Todavía son supuestos y queremos validarlos contigo: ¿pagarías ese precio?, ¿prefieres medio día a un día completo?<\/p>",
    "f": [
     "Tur.com. (s. f.). Cajón del Maipo and El Yeso Reservoir Tour from Santiago.",
     "Expedia. (s. f.). Cajón del Maipo Including Wine with Picnic and Empanada.",
     "Equipo Manos a la masa. (2026). Estimación de costos."
    ],
    "a": [
-    "¿Te pasa lo mismo que a Fernanda?",
-    "Cuéntanos en los comentarios qué buscas en un panorama de medio día.",
+    "¿Eres un poco Fernanda?",
+    "Cuéntanos en los comentarios qué buscas en un panorama de medio día y si el precio te parece justo.",
     "#coment",
     "Dejar un comentario"
    ],
    "wp": 30,
-   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/20/visitante/"
+   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/20/visitante/",
+   "cat": "Quién viene",
+   "min": 4
   },
   {
    "id": "mesa",
    "autor": "Diego Maldonado",
    "fecha": "21 de octubre de 2026",
    "img": "horno",
-   "t": "De la masa a la mesa: cómo armamos la experiencia",
-   "r": "Por qué el horno de barro es el hilo de la mañana y para qué creamos un juego.",
-   "c": "\u003cp>La experiencia sigue el orden natural de una comida: masa, relleno, horno y mesa. El hilo conductor es el horno de barro, que está presente desde la bienvenida hasta el cierre.\u003c/p>\u003ch2>210 minutos bien repartidos\u003c/h2>\u003cp>Bienvenida (20 min), masa (45 min), pino y armado (45 min), horno y huerto (35 min), almuerzo (50 min) y cierre (15 min). En total, 3 horas y 30 minutos.\u003c/p>\u003ch2>Aprender y escaparse un rato\u003c/h2>\u003cp>Según Pine y Gilmore (1998), una experiencia puede ser de educación, escapismo, estética o entretenimiento. La nuestra integra dos: educación, porque aprendes una técnica que puedes repetir en casa, y escapismo, porque dejas de ser turista y cocinas en la casa de una productora del valle.\u003c/p>\u003ch2>Un juego antes de venir\u003c/h2>\u003cp>Creamos Sabores del Cajón, un escape room en Genially con cuatro desafíos: trivia del territorio, preparar ingredientes, cocinar en orden y montar el plato. Sirve para llegar sabiendo qué vas a cocinar. Es optativo y tiene una versión imprimible.\u003c/p>",
+   "t": "El horno se prende antes de que llegues",
+   "r": "Seis momentos, 210 minutos y un horno de barro que conecta toda la mañana. Así es por dentro la experiencia.",
+   "c": "<p class=\"entra\">Cuando cruzas el portón, la productora ya lleva un buen rato despierta. El pino lo dejó listo el día anterior, porque tiene que estar frío para armar, y el horno de barro lleva horas calentándose. Te pasa un delantal y un té, y empieza la mañana.<\/p><h2>Primero, la masa<\/h2><p>Harina, sal, manteca derretida y agua tibia, de a poco. Se amasa hasta que la masa queda lisa y no se pega en las manos. ¿Por qué manteca y no aceite? Porque así se hace en el campo: le da sabor y deja la masa más suave. Para quienes son vegetarianos hay masa con aceite.<\/p><h2>El repulgue, tu firma<\/h2><p>A cada disco le pones una cucharada de pino, un trozo de huevo y una aceituna. Después lo cierras doblando el borde con los dedos: eso es el repulgue. Cada persona arma sus dos empanadas, y ninguna queda igual a otra.<\/p><blockquote class=\"cita\">¿Y si me queda fea? Igual se come. Las primeras nunca salen perfectas.<\/blockquote><h2>Veinte minutos de huerto<\/h2><p>Mientras las empanadas se cuecen, unos 20 minutos, salimos al huerto a buscar cilantro y cebollín para el pebre, con la cordillera de fondo. ¿Cómo se sabe que el horno está listo? Por el color del barro y porque un poco de harina se dora rápido.<\/p><h2>Todo esto lo cocinaste tú<\/h2><p>A la mesa llegan las empanadas recién salidas del horno, el pan amasado y el pebre que acabas de picar. Lo compartes con personas que quizás no conocías. Te vas con la receta en una tarjeta y, si sobra, con una bolsa de papel para la casa.<\/p><aside class=\"dato\"><b>210 min<\/b><span>Bienvenida, masa, pino y armado, horno y huerto, almuerzo y cierre: seis momentos.<\/span><\/aside><h2>Por qué funciona<\/h2><p>Pine y Gilmore (1998) describen cuatro tipos de experiencia: educación, escapismo, estética y entretenimiento. La nuestra junta dos. Es educación, porque aprendes una técnica que puedes repetir en casa. Y es escapismo, porque por una mañana dejas de ser turista y cocinas en la casa de una productora del valle. Antes de venir puedes jugar Sabores del Cajón, nuestro escape room, para llegar sabiendo qué vas a cocinar.<\/p>",
    "f": [
     "Pine, B. J., y Gilmore, J. H. (1998). Welcome to the experience economy. Harvard Business Review, 76(4), 97-105.",
+    "Equipo Manos a la masa. (2026). Guion paso a paso de la experiencia [Documento técnico, apartado 5.3].",
     "Equipo Manos a la masa. (2026). Sabores del Cajón [Juego en Genially]."
    ],
    "a": [
-    "Pruébalo tú",
-    "Juega Sabores del Cajón y descubre qué vas a cocinar.",
+    "Llega sabiendo qué cocinarás",
+    "Juega Sabores del Cajón: cuatro desafíos antes de ponerte el delantal.",
     "#juega",
     "Ir al juego"
    ],
    "wp": 31,
-   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/21/mesa/"
+   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/21/mesa/",
+   "cat": "La experiencia",
+   "min": 5
   },
   {
    "id": "valle",
    "autor": "Ivanna Aros",
    "fecha": "22 de octubre de 2026",
    "img": "ladera",
-   "t": "Cuidar el valle y planificar bien tu visita",
-   "r": "Compost, leña de origen conocido, qué pasa si llueve y lo que aprendimos probando la masa.",
-   "c": "\u003cp>Una experiencia en el Cajón tiene que dejar algo en el valle y no quitarle. Por eso definimos medidas concretas.\u003c/p>\u003ch2>Lo que cuidamos\u003c/h2>\u003cp>Las cáscaras y restos de verduras se compostan en el huerto de la productora. El horno usa leña de proveedores identificados, sin bosque nativo. Los ingredientes se compran en el comercio de San José de Maipo y la productora recibe un pago por cada salida.\u003c/p>\u003ch2>Si algo sale distinto\u003c/h2>\u003cp>Si se corta el camino, avisamos con anticipación y puedes reprogramar sin costo. Si el horno no alcanza temperatura, se usa el horno a gas de la cocina. Si llueve, el paso por el huerto se acorta y el resto se hace bajo techo.\u003c/p>\u003ch2>Lo que aprendimos probando\u003c/h2>\u003cp>Ensayamos en una cocina de casa la masa y el armado. Se hizo en unos 40 minutos, dentro de los 90 que planificamos, pero un mesón de casa alcanza para una sola persona. Por eso el taller necesita un mesón largo, con un puesto cada dos personas.\u003c/p>",
+   "t": "Lo que el valle nos presta",
+   "r": "Compost, leña de origen conocido, un plan B si llueve y lo que aprendimos al probar la masa en casa.",
+   "c": "<p class=\"entra\">Una experiencia en el Cajón usa el agua, la leña, el huerto y el tiempo de alguien que vive ahí. Nos hicimos una pregunta simple: ¿qué le queda al valle cuando nos vamos? Estas son nuestras respuestas.<\/p><h2>Lo que vuelve a la tierra<\/h2><p>Las cáscaras y los restos de verdura van al compost del huerto de la productora. El horno usa leña de proveedores identificados, nunca de bosque nativo. Los ingredientes se compran en el comercio de San José de Maipo, y la productora recibe un pago por cada salida.<\/p><blockquote class=\"cita\">La pregunta no fue cuánto nos llevamos del valle, sino qué le queda cuando nos vamos.<\/blockquote><h2>Si el día sale distinto<\/h2><p>La montaña no siempre coopera, así que dejamos un plan B para cada caso. Si se corta el camino, avisamos con anticipación y puedes reprogramar sin costo. Si el horno no alcanza la temperatura, usamos el horno a gas de la cocina. Si llueve, la pasada por el huerto se acorta y el resto se hace bajo techo.<\/p><h2>Lo que nos enseñó la prueba<\/h2><p>Antes de diseñar la mañana en el papel, ensayamos la masa y el armado en una cocina de casa. Nos tomó unos 40 minutos, menos de los 90 que habíamos planificado. Pero descubrimos algo que no esperábamos: en un mesón de casa cabe una sola persona trabajando cómoda. Por eso el taller necesita un mesón largo, con un puesto cada dos personas.<\/p><aside class=\"dato\"><b>40 de 90<\/b><span>minutos que nos tomó la masa y el armado en la prueba. Sobró tiempo, pero faltó mesón.<\/span><\/aside>",
    "f": [
     "Meteored. (s. f.-b). Cajón del Maipo: escapada a los Andes a menos de una hora de Santiago.",
     "Equipo Manos a la masa. (2026). Prueba de masa y armado, octubre de 2026."
    ],
    "a": [
-    "¿Tienes una restricción alimentaria?",
+    "¿Tienes alguna restricción alimentaria?",
     "Escríbenos antes de reservar y te contamos qué podemos ofrecer.",
     "#contacto",
     "Escribirnos"
    ],
    "wp": 32,
-   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/22/valle/"
+   "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/22/valle/",
+   "cat": "Lo que cuidamos",
+   "min": 4
   }
  ]
 }
@@ -1243,7 +1271,7 @@ $("#insta").innerHTML=["tabla","yesoT","amasar","verde","horno","aerea"].map(k=>
 
 /* bitácora */
 const E=D.E;
-$("#entradas").innerHTML=E.map((e,i)=>`<a class="card" href="#/bitacora/${e.id}"><div class="foto"><img src="${src(e.img,1000)}" alt="${alt(e.img)}" loading="lazy"></div><div class="cuerpo"><p class="meta"><b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h3 data-k="E.${i}.t">${esc(e.t)}</h3><p data-k="E.${i}.r">${esc(e.r)}</p><span class="leer">leer la entrada</span><span class="ncom" data-wp="${e.wp}"></span></div></a>`).join("");
+$("#entradas").innerHTML=E.map((e,i)=>`<a class="card${i?"":" destacada"}" href="#/bitacora/${e.id}"><div class="foto"><img src="${src(e.img,i?1000:1600)}" alt="${alt(e.img)}" loading="lazy"><span class="num">0${i+1}</span><span class="cat" data-k="E.${i}.cat">${esc(e.cat||"")}</span></div><div class="cuerpo"><p class="meta"><b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span> · ${e.min||4} min de lectura</p><h3 data-k="E.${i}.t">${esc(e.t)}</h3><p data-k="E.${i}.r">${esc(e.r)}</p><span class="leer">leer la entrada</span><span class="ncom" data-wp="${e.wp}"></span></div></a>`).join("");
 const art=$("#articulo"),A=$("#art");
 function cargarComentarios(e){const ul=$("#lc");
   fetch(`https://public-api.wordpress.com/rest/v1.1/sites/258155277/posts/${e.wp}/replies/?order=ASC&number=100`).then(r=>r.json()).then(j=>{
@@ -1252,7 +1280,7 @@ function cargarComentarios(e){const ul=$("#lc");
   }).catch(()=>{ul.innerHTML=`<li class="vacio">No pudimos cargar los comentarios. Puedes verlos en <a href="${e.wpUrl}#comments" target="_blank" rel="noopener">nuestra bitácora en WordPress</a>.</li>`})}
 function abrir(id){const i=E.findIndex(x=>x.id===id),e=E[i];if(!e)return;
   $("#artHero").style.backgroundImage=`url(${src(e.img,2000)})`;$("#artHero").setAttribute("aria-label",alt(e.img));
-  A.innerHTML=`<p class="meta">Escrito por <b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h1 id="artT" data-k="E.${i}.t">${esc(e.t)}</h1><figcaption>Imagen: ${alt(e.img)}. <a href="${F[e.img][3]}" target="_blank" rel="noopener">${cred(e.img)}</a></figcaption>
+  A.innerHTML=`<p class="art-cat"><span data-k="E.${i}.cat">${esc(e.cat||"")}</span> · ${e.min||4} min de lectura</p><p class="meta">Escrito por <b data-k="E.${i}.autor">${esc(e.autor)}</b> · <span data-k="E.${i}.fecha">${esc(e.fecha)}</span></p><h1 id="artT" data-k="E.${i}.t">${esc(e.t)}</h1><p class="art-bajada" data-k="E.${i}.r">${esc(e.r)}</p><figcaption>Imagen: ${alt(e.img)}. <a href="${F[e.img][3]}" target="_blank" rel="noopener">${cred(e.img)}</a></figcaption>
   <div data-k="E.${i}.c" data-html>${e.c}</div>
   <div class="fuentes"><strong>Fuentes de esta entrada</strong><ul>${e.f.map((x,j)=>`<li data-k="E.${i}.f.${j}">${esc(x)}</li>`).join("")}</ul></div>
   <div class="accion"><h2 data-k="E.${i}.a.0">${esc(e.a[0])}</h2><p data-k="E.${i}.a.1">${esc(e.a[1])}</p><a class="btn blanco" href="${e.a[2]}" data-ir data-k="E.${i}.a.3">${esc(e.a[3])}</a></div>
