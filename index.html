@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://manosalamasacajon.wordpress.com/wp-content/uploads/2026/10/tabla-empanadas-pebre.jpg?w=1200">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Dancing+Script:wght@500..700&display=swap" rel="stylesheet">
 <style>
 :root{
   --nieve:#f7fbfa;
@@ -22,13 +22,13 @@
   --musgo:#4d7c4a;
   --piedra:#ece5d8;      /* piedra y harina */
   --miel:#e7a248;        /* empanada recién horneada */
-  --tinta:#16393f;
-  --tinta-2:#4f6d71;
+  --tinta:#1d1b1a;
+  --tinta-2:#55504c;
   --vidrio:rgba(255,255,255,.8);
   --linea:rgba(22,57,63,.12);
-  --serif:"DM Serif Display",Georgia,serif;
-  --sans:"Manrope",system-ui,sans-serif;
-  --mano:"Caveat",cursive;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"DM Sans",system-ui,sans-serif;
+  --mano:"Dancing Script",cursive;
   --r:30px;
 }
 *{box-sizing:border-box}
@@ -39,7 +39,8 @@ a{color:inherit}
 button{font:inherit}
 :focus-visible{outline:3px solid var(--yeso);outline-offset:3px;border-radius:6px}
 .wrap{width:min(1200px,100% - 32px);margin-inline:auto}
-h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.02;letter-spacing:-.01em}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.04;letter-spacing:-.02em;font-optical-sizing:auto}
+h1 em,h2 em,h3 em{font-weight:350}
 p{margin:0 0 1em}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:-999px;z-index:999}.skip:focus{left:16px;top:16px;background:#fff;padding:8px 12px}
@@ -81,7 +82,7 @@ p{margin:0 0 1em}
 .hero-foto{position:absolute;inset:0;will-change:clip-path;background:var(--piedra)}
 .hero-foto img{width:100%;height:100%;object-fit:cover;object-position:center 50%}
 .hero-foto::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(70,40,34,.25) 20%,rgba(70,40,34,.55));opacity:var(--osc,0)}
-.hero-tit{position:absolute;left:0;right:0;top:clamp(48px,8vh,100px);text-align:center;color:#5b3f3a;padding:0 16px;will-change:transform,opacity;pointer-events:none}
+.hero-tit{position:absolute;left:0;right:0;top:clamp(48px,8vh,100px);text-align:center;color:var(--tinta);padding:0 16px;will-change:transform,opacity;pointer-events:none}
 .hero-tit h1{font-size:clamp(54px,9vw,150px);line-height:.9;letter-spacing:-.01em}
 .hero-tit h1 em{color:#c4877d;font-style:italic}
 .hero-tit p{font:700 clamp(24px,2.4vw,32px)/1.1 var(--mano);margin-top:8px;color:#5f7d68}
@@ -90,13 +91,13 @@ p{margin:0 0 1em}
 .pastilla i{width:4px;height:4px;border-radius:50%;background:var(--tinta-2);margin:0 4px}
 .sticker{position:absolute;left:50%;top:56%;width:clamp(84px,8.5vw,128px);aspect-ratio:1;will-change:transform,opacity;pointer-events:none}
 .sticker img{width:100%;height:100%;object-fit:cover;border-radius:22px;border:6px solid #fffaf6;box-shadow:0 18px 36px -16px rgba(91,63,58,.45);background:#fff}
-.sticker span{position:absolute;left:50%;top:100%;transform:translateX(-50%) rotate(-4deg);margin-top:8px;font:700 clamp(20px,2vw,28px)/1 var(--mano);color:#5b3f3a;white-space:nowrap}
+.sticker span{position:absolute;left:50%;top:100%;transform:translateX(-50%) rotate(-4deg);margin-top:8px;font:700 clamp(20px,2vw,28px)/1 var(--mano);color:var(--tinta);white-space:nowrap}
 .hero-final{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:0 16px;opacity:0;will-change:opacity}
 .hero-final h2{font-size:clamp(38px,5.4vw,84px);line-height:1;max-width:13ch;margin:0 auto 26px;text-shadow:0 4px 30px rgba(70,40,34,.6)}
 .hero-final .acc{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.pista{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);color:#5b3f3a;font:700 13.5px var(--sans);display:flex;align-items:center;gap:8px}
-.pista i{width:20px;height:32px;border:2px solid #5b3f3a;border-radius:12px;position:relative}
-.pista i::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;border-radius:2px;background:#5b3f3a;animation:rueda 1.6s infinite}
+.pista{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);color:var(--tinta);font:700 13.5px var(--sans);display:flex;align-items:center;gap:8px}
+.pista i{width:20px;height:32px;border:2px solid var(--tinta);border-radius:12px;position:relative}
+.pista i::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;border-radius:2px;background:var(--tinta);animation:rueda 1.6s infinite}
 @keyframes rueda{to{opacity:0;transform:translateY(10px)}}
 
 /* secciones */
@@ -276,7 +277,7 @@ legend{font:800 16px var(--sans);margin-bottom:10px;padding:0}
 @media (max-width:760px){.entradas .destacada{grid-template-columns:1fr}.destacada .foto{min-height:240px}}
 .card .foto{position:relative}
 .card .num{position:absolute;left:18px;bottom:10px;font:400 clamp(44px,5vw,72px)/1 var(--serif);color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.35)}
-.card .cat{position:absolute;left:16px;top:16px;background:rgba(255,250,246,.92);color:#5b3f3a;font:700 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.card .cat{position:absolute;left:16px;top:16px;background:rgba(255,250,246,.92);color:var(--tinta);font:700 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
 .card .foto img{transition:transform .6s}.card:hover .foto img{transform:scale(1.05)}
 .art-cat{font:700 12.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#c4877d;margin:0 0 4px}
 .art-bajada{font-size:21px;line-height:1.5;color:var(--tinta-2);margin:0 0 14px}
