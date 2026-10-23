@@ -282,6 +282,14 @@ legend{font:800 16px var(--sans);margin-bottom:10px;padding:0}
 .art-bajada{font-size:21px;line-height:1.5;color:var(--tinta-2);margin:0 0 14px}
 .art .entra::first-letter{float:left;font:400 84px/.8 var(--serif);color:#c4877d;margin:8px 12px 0 0}
 .art .entra{font-size:19.5px}
+.art ul.linea,.art ul.check{list-style:none;padding:0;margin:28px 0}
+.linea li{display:grid;grid-template-columns:minmax(92px,auto) 1fr;gap:18px;padding:14px 0;border-top:1px solid var(--linea)}
+.linea li:last-child{border-bottom:1px solid var(--linea)}
+.linea b{font:400 22px/1.2 var(--serif);color:#c4877d;white-space:nowrap}
+.linea span{font-size:17px;line-height:1.6}
+.check li{position:relative;padding:10px 0 10px 40px;font-size:17.5px}
+.check li::before{content:"";position:absolute;left:0;top:12px;width:24px;height:24px;border-radius:50%;background:#eef6f0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23c4877d' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+@media (max-width:520px){.linea li{grid-template-columns:1fr;gap:4px}}
 .cita{margin:38px 0;padding:6px 0 6px 26px;border-left:4px solid #c4877d;font:400 italic clamp(26px,3vw,34px)/1.25 var(--serif);color:var(--tinta)}
 .dato{display:flex;gap:18px;align-items:center;margin:30px 0;padding:20px 24px;border-radius:22px;background:linear-gradient(120deg,#fdf1ec,#eef6f0)}
 .dato b{font:400 clamp(36px,4.4vw,52px)/1 var(--serif);color:#c4877d;white-space:nowrap}
@@ -640,8 +648,8 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
   <div class="wrap">
     <div class="tarjeta">
       <div class="cab">
-        <div><span class="etiqueta">Bitácora</span><h2 class="h2">Lo que no cabe en una foto</h2></div>
-        <p class="bajada">El valle, quien viene, la cocina por dentro y lo que cuidamos: cuatro historias contadas por quienes diseñamos esta mañana. Léelas, déjanos tu comentario y suscríbete para recibir las próximas.</p>
+        <div><span class="etiqueta">Bitácora</span><h2 class="h2">Antes de subir al Cajón, lee esto</h2></div>
+        <p class="bajada">Un valle andino a una hora de Santiago, un horno de barro que te espera encendido y un almuerzo que cocinas tú. Cuatro historias para planear tu escapada. Comenta, compártelas y suscríbete para recibir las próximas.</p>
       </div>
       <div class="entradas" id="entradas" data-render></div>
     </div>
@@ -1020,26 +1028,29 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
    "id": "destino",
    "autor": "Javiera Cerna",
    "fecha": "19 de octubre de 2026",
-   "img": "aerea",
-   "t": "A 48 kilómetros, otro ritmo",
-   "r": "Sales de Santiago con la ciudad encima y, una hora después, el aire huele a leña y a pan. Por qué elegimos cocinar en San José de Maipo.",
-   "c": "<p class=\"entra\">Hay un momento, subiendo por el camino al Volcán, en que la ciudad se queda atrás de golpe. Los cerros se cierran, el río Maipo suena más fuerte que el tráfico y aparecen los letreros escritos a mano: <em>empanadas de horno<\/em>, <em>pan amasado<\/em>, <em>nueces<\/em>. Ahí entendimos que la experiencia tenía que ser aquí.<\/p><h2>Cerca para ir, lejos para desconectarse<\/h2><p>El Cajón del Maipo está a unos 48 km de Santiago (Accor, s. f.). Es lo bastante cerca para ir y volver en el día sin apuro, y lo bastante lejos para que se sienta como un viaje. Eso pesó mucho: queríamos una mañana completa, no una jornada de bus.<\/p><aside class=\"dato\"><b>48 km<\/b><span>separan Santiago del Cajón del Maipo. Una mañana de cocina cabe sin perder el día.<\/span><\/aside><h2>El sabor está al borde del camino<\/h2><p>En el Cajón la comida no está escondida en restaurantes: se reparte en pequeños locales a lo largo de la ruta. Lo que más se repite son las empanadas cocidas en horno de barro, el pan amasado y los frutos secos de huertas caseras (Chile Travel, s. f.; La Hora, 2022). No inventamos un menú: tomamos esos tres sabores y los pusimos en tus manos.<\/p><blockquote class=\"cita\">No inventamos un menú. Tomamos lo que el valle ya cocina y lo pusimos en tus manos.<\/blockquote><h2>Un pueblo con más de dos siglos<\/h2><p>La villa de San José de Maipo fue fundada el 16 de julio de 1792 (Municipalidad de San José de Maipo, s. f.). Es nuestro punto de encuentro por su historia y también por algo práctico: el transporte público llega hasta ahí (Meteored, s. f.-a).<\/p><h2>Por qué en primavera<\/h2><p>El Cajón suele mostrarse como destino de aventura: rafting, trekking, canopy (Chile Travel, s. f.). Vimos espacio para algo más pausado, donde la comida sea la protagonista. Pero el valle pone sus reglas: en otoño e invierno algunos caminos se cierran por lluvia o nieve (Meteored, s. f.-b). En primavera, en cambio, el huerto tiene hierbas frescas y los frutales están en flor. Por eso cocinamos en esa época.<\/p>",
+   "img": "yesoT",
+   "t": "Los Andes empiezan a una hora de Santiago",
+   "r": "Agua turquesa, ríos que se oyen antes de verse y pueblos donde la empanada sale del horno de barro. El Cajón del Maipo es la escapada que tienes al lado y todavía no te has dado.",
+   "c": "<p class=\"entra\">Sales de Santiago con el café en la mano. Una hora después la ciudad desaparece del espejo retrovisor, el río Maipo corre al lado del camino y los cerros se levantan hasta tocar la nieve. Bajas la ventana y huele a leña. Bienvenido al Cajón del Maipo.<\/p><h2>Tan cerca que no hay excusa<\/h2><p>Son unos 48 km desde Santiago (Accor, s. f.). Puedes ir y volver en el día sin pasar la mañana en la carretera. Llegas a San José de Maipo, un pueblo fundado en 1792 (Municipalidad de San José de Maipo, s. f.), en auto o en transporte público (Meteored, s. f.-a).<\/p><aside class=\"dato\"><b>48 km<\/b><span>entre Santiago y el Cajón. Menos que muchos trayectos dentro de la misma ciudad.<\/span><\/aside><h2>Un valle con varias caras<\/h2><p>Si buscas adrenalina, el río Maipo tiene rafting con rápidos de clase III y IV, y en San Alfonso hay canopy sobre el río (Calendario Chile, 2026; CNN Chile, 2019). Si prefieres la calma, puedes hacer cabalgatas con arrieros locales, subir al Embalse El Yeso, de aguas turquesa a unos 2.500 metros de altura, o caminar hasta la Laguna Morales en El Morado, que tiene su mejor época de octubre a abril (Calendario Chile, 2026; Meteored, 2025).<\/p><blockquote class=\"cita\">El Cajón se conoce por la aventura. Nosotros te invitamos a conocerlo por la cocina.<\/blockquote><h2>El sabor que no sale en las postales<\/h2><p>Lo que pocos cuentan es que el Cajón también se come. A lo largo del camino aparecen locales con empanadas de horno de barro, pan amasado y frutos secos de huertas caseras (Chile Travel, s. f.; La Hora, 2022). Esa tradición es el corazón de Manos a la masa: en vez de comprarla al paso, la cocinas tú.<\/p><h2>Cuándo venir<\/h2><p>En primavera. En otoño e invierno la lluvia y la nieve pueden cerrar caminos (Meteored, s. f.-b). En primavera, en cambio, los frutales están en flor, el huerto tiene hierbas frescas y la cordillera todavía tiene nieve en las cumbres.<\/p>",
    "f": [
     "Accor. (s. f.). ¿Qué hacer en Cajón del Maipo?",
+    "Calendario Chile. (2026). Qué ver en el Cajón del Maipo: guía de atractivos, rutas y consejos.",
     "Chile Travel. (s. f.). Cajón del Maipo [Ficha de destino].",
+    "CNN Chile. (24 de mayo de 2019). Senderismo, cabalgatas y rafting: todos los tours y atractivos del Cajón del Maipo.",
     "La Hora. (15 de noviembre de 2022). 10 lugares turísticos en Cajón del Maipo que debes visitar.",
+    "Meteored. (2025). El monumento natural con laguna y glaciar a dos horas de Santiago.",
     "Meteored. (s. f.-a; s. f.-b). Notas sobre el Cajón del Maipo.",
     "Municipalidad de San José de Maipo. (s. f.). Turismo."
    ],
    "a": [
-    "¿Te imaginas aquí?",
-    "En la ficha práctica están el acceso, el horario y el mapa para llegar.",
-    "#ficha",
-    "Ver la ficha práctica"
+    "Arma tu día en el Cajón",
+    "Mira qué más puedes hacer en la tarde: rafting, El Yeso, cabalgatas y termas.",
+    "#complementa",
+    "Complementa tu día"
    ],
    "wp": 28,
    "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/19/destino/",
-   "cat": "El territorio",
+   "cat": "Destino",
    "min": 4
   },
   {
@@ -1047,57 +1058,55 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
    "autor": "Catalina Lobos",
    "fecha": "20 de octubre de 2026",
    "img": "bandeja",
-   "t": "Fernanda no quiere mirar: quiere meter las manos",
-   "r": "Diseñamos la experiencia pensando en una persona concreta. Así ella decidió el horario, el tamaño del grupo y el precio.",
-   "c": "<p class=\"entra\">Fernanda es un personaje que inventamos, pero seguro conoces a alguien como ella. Tiene 34 años, trabaja en una oficina en Santiago y el sábado quiere salir con su pareja. No le interesa pasar el día arriba de un bus ni sentarse a mirar cómo otro cocina. Quiere hacer algo con las manos y volver a casa con algo que contar.<\/p><blockquote class=\"cita\">No queremos que mires una demostración. Queremos que te vayas con harina hasta los codos.<\/blockquote><h2>Lo que le pedimos a la experiencia<\/h2><p>Que dure medio día y le deje la tarde libre. Que pueda volver antes del taco. Y, sobre todo, que cocine de verdad: amasar, armar sus propias empanadas, cortar el pebre. No recibir la comida hecha.<\/p><h2>Tres decisiones que salieron de ella<\/h2><p><strong>Horario:<\/strong> de 10:30 a 14:00, tres horas y media. <strong>Grupo:<\/strong> máximo 10 personas, para que todos tengan su lugar en el mesón. <strong>Encuentro:<\/strong> en San José de Maipo, adonde llega el transporte público.<\/p><aside class=\"dato\"><b>10<\/b><span>personas como máximo por grupo. Todos cocinan, nadie se queda mirando.<\/span><\/aside><h2>Cuánto cuesta y por qué<\/h2><p>El precio referencial es de $28.000 por persona (estimación de septiembre de 2026). Como comparación, una excursión de día completo con transporte y almuerzo cuesta $39.000 (Tur.com, s. f.). Hicimos las cuentas: con 7 personas los ingresos cubren los costos de una salida y con 6 no. Por eso el grupo mínimo es de 7.<\/p><p>Todavía son supuestos y queremos validarlos contigo: ¿pagarías ese precio?, ¿prefieres medio día a un día completo?<\/p>",
+   "t": "Cambia el bus turístico por un delantal",
+   "r": "Hay viajes que se miran por la ventana y otros que se viven con las manos. ¿Esta experiencia es para ti? Haz el test.",
+   "c": "<p class=\"entra\">Ya conoces el típico paseo: subes a un bus, te bajas a sacar fotos, almuerzas lo que te sirven y vuelves cansado. Esta vez te proponemos lo contrario: llegar, ponerte un delantal y salir de la cocina con tu almuerzo hecho por ti.<\/p><h2>Es para ti si…<\/h2><ul class=\"check\"><li>Quieres salir de Santiago sin perder todo el sábado.<\/li><li>Prefieres hacer las cosas a mirarlas.<\/li><li>Te gusta la comida casera y quieres aprender a hacerla.<\/li><li>Buscas un panorama con tu pareja o con amigos.<\/li><li>Te tinca conversar con gente nueva alrededor de una mesa larga.<\/li><\/ul><p>Si marcaste tres o más, ya sabes dónde vas a estar un sábado de primavera.<\/p><h2>Hecho a la medida de quien viene<\/h2><p>Diseñamos la experiencia pensando en Fernanda, una visitante que inventamos: 34 años, trabaja en una oficina en Santiago y quiere un panorama de medio día. De lo que ella necesita salieron las reglas del juego.<\/p><ul class=\"linea\"><li><b>10:30 a 14:00<\/b><span>Medio día. Te queda la tarde libre para seguir paseando o volver antes del taco.<\/span><\/li><li><b>Máximo 10<\/b><span>Grupo chico. Todos tienen su puesto en el mesón y nadie se queda mirando.<\/span><\/li><li><b>$28.000<\/b><span>Precio referencial por persona (estimación de septiembre de 2026). Incluye taller, delantal, huerto y almuerzo con jugo de fruta. No incluye el traslado.<\/span><\/li><\/ul><blockquote class=\"cita\">No viniste a mirar una demostración. Viniste a irte con harina hasta los codos.<\/blockquote><h2>¿Por qué ese precio?<\/h2><p>Una excursión de día completo con transporte y almuerzo cuesta $39.000 (Tur.com, s. f.). Aquí pagas menos, cocinas tú y conoces a quien vive en el valle. Con 7 personas por salida cubrimos los costos, así que el grupo mínimo es de 7. Todavía es una propuesta, y tu opinión nos ayuda a ajustarla.<\/p>",
    "f": [
     "Tur.com. (s. f.). Cajón del Maipo and El Yeso Reservoir Tour from Santiago.",
-    "Expedia. (s. f.). Cajón del Maipo Including Wine with Picnic and Empanada.",
-    "Equipo Manos a la masa. (2026). Estimación de costos."
+    "Equipo Manos a la masa. (2026). Perfil de visitante y estimación de costos [Documento técnico]."
    ],
    "a": [
-    "¿Eres un poco Fernanda?",
-    "Cuéntanos en los comentarios qué buscas en un panorama de medio día y si el precio te parece justo.",
+    "¿Cuántas marcaste?",
+    "Cuéntanos en los comentarios con quién vendrías y si el precio te parece justo.",
     "#coment",
     "Dejar un comentario"
    ],
    "wp": 30,
    "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/20/visitante/",
-   "cat": "Quién viene",
-   "min": 4
+   "cat": "Para ti",
+   "min": 3
   },
   {
    "id": "mesa",
    "autor": "Diego Maldonado",
    "fecha": "21 de octubre de 2026",
    "img": "horno",
-   "t": "El horno se prende antes de que llegues",
-   "r": "Seis momentos, 210 minutos y un horno de barro que conecta toda la mañana. Así es por dentro la experiencia.",
-   "c": "<p class=\"entra\">Cuando cruzas el portón, la productora ya lleva un buen rato despierta. El pino lo dejó listo el día anterior, porque tiene que estar frío para armar, y el horno de barro lleva horas calentándose. Te pasa un delantal y un té, y empieza la mañana.<\/p><h2>Primero, la masa<\/h2><p>Harina, sal, manteca derretida y agua tibia, de a poco. Se amasa hasta que la masa queda lisa y no se pega en las manos. ¿Por qué manteca y no aceite? Porque así se hace en el campo: le da sabor y deja la masa más suave. Para quienes son vegetarianos hay masa con aceite.<\/p><h2>El repulgue, tu firma<\/h2><p>A cada disco le pones una cucharada de pino, un trozo de huevo y una aceituna. Después lo cierras doblando el borde con los dedos: eso es el repulgue. Cada persona arma sus dos empanadas, y ninguna queda igual a otra.<\/p><blockquote class=\"cita\">¿Y si me queda fea? Igual se come. Las primeras nunca salen perfectas.<\/blockquote><h2>Veinte minutos de huerto<\/h2><p>Mientras las empanadas se cuecen, unos 20 minutos, salimos al huerto a buscar cilantro y cebollín para el pebre, con la cordillera de fondo. ¿Cómo se sabe que el horno está listo? Por el color del barro y porque un poco de harina se dora rápido.<\/p><h2>Todo esto lo cocinaste tú<\/h2><p>A la mesa llegan las empanadas recién salidas del horno, el pan amasado y el pebre que acabas de picar. Lo compartes con personas que quizás no conocías. Te vas con la receta en una tarjeta y, si sobra, con una bolsa de papel para la casa.<\/p><aside class=\"dato\"><b>210 min<\/b><span>Bienvenida, masa, pino y armado, horno y huerto, almuerzo y cierre: seis momentos.<\/span><\/aside><h2>Por qué funciona<\/h2><p>Pine y Gilmore (1998) describen cuatro tipos de experiencia: educación, escapismo, estética y entretenimiento. La nuestra junta dos. Es educación, porque aprendes una técnica que puedes repetir en casa. Y es escapismo, porque por una mañana dejas de ser turista y cocinas en la casa de una productora del valle. Antes de venir puedes jugar Sabores del Cajón, nuestro escape room, para llegar sabiendo qué vas a cocinar.<\/p>",
+   "t": "210 minutos en la cocina de campo",
+   "r": "Del primer té al último bocado: así se vive, hora por hora, una mañana amasando en el Cajón del Maipo.",
+   "c": "<p class=\"entra\">El horno de barro se prende temprano, mucho antes de que llegues. Cuando cruzas el portón ya está tomando temperatura, el pino está listo desde el día anterior y en el patio hay té caliente esperándote. Esto es lo que viene.<\/p><ul class=\"linea\"><li><b>10:30<\/b><span><strong>Bienvenida.<\/strong> Delantal, té y la productora que te va a acompañar. No necesitas saber cocinar.<\/span><\/li><li><b>10:50<\/b><span><strong>Las manos en la masa.<\/strong> Harina, sal, manteca y agua tibia. Amasas hasta que la masa no se pega. También haces la del pan amasado.<\/span><\/li><li><b>11:35<\/b><span><strong>Tu repulgue.<\/strong> Pino, huevo y aceituna en cada disco. Cierras doblando el borde con los dedos: esa es tu firma.<\/span><\/li><li><b>12:20<\/b><span><strong>Horno y huerto.<\/strong> Mientras las empanadas se cuecen, sales a buscar cilantro y cebollín para el pebre con la cordillera de fondo.<\/span><\/li><li><b>12:55<\/b><span><strong>A la mesa.<\/strong> Empanadas recién salidas, pan caliente y el pebre que acabas de picar, en una mesa larga compartida.<\/span><\/li><li><b>13:45<\/b><span><strong>Hasta pronto.<\/strong> Te llevas la receta en una tarjeta y lo que sobró en una bolsa de papel.<\/span><\/li><\/ul><blockquote class=\"cita\">¿Y si me queda fea? Igual se come. Las primeras nunca salen perfectas.<\/blockquote><h2>Secretos de la cocina de campo<\/h2><p>¿Por qué el pino se hace el día antes? Porque frío no moja la masa y la empanada no se rompe. ¿Por qué manteca? Porque así se hace en el campo: da sabor y deja la masa suave (y hay versión con aceite para vegetarianos). ¿Cómo se sabe que el horno está listo? Por el color del barro y porque un poco de harina se dora al tiro.<\/p><h2>Aprendes y te desconectas<\/h2><p>Según Pine y Gilmore (1998), las experiencias pueden ser de educación, escapismo, estética o entretenimiento. Aquí se juntan dos: aprendes una técnica que vas a repetir en tu casa y, por unas horas, dejas de ser turista para cocinar en la casa de alguien del valle.<\/p>",
    "f": [
     "Pine, B. J., y Gilmore, J. H. (1998). Welcome to the experience economy. Harvard Business Review, 76(4), 97-105.",
-    "Equipo Manos a la masa. (2026). Guion paso a paso de la experiencia [Documento técnico, apartado 5.3].",
-    "Equipo Manos a la masa. (2026). Sabores del Cajón [Juego en Genially]."
+    "Equipo Manos a la masa. (2026). Guion paso a paso de la experiencia [Documento técnico, apartado 5.3]."
    ],
    "a": [
-    "Llega sabiendo qué cocinarás",
-    "Juega Sabores del Cajón: cuatro desafíos antes de ponerte el delantal.",
+    "Llega sabiendo qué vas a cocinar",
+    "Juega Sabores del Cajón, nuestro escape room de cuatro desafíos.",
     "#juega",
     "Ir al juego"
    ],
    "wp": 31,
    "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/21/mesa/",
    "cat": "La experiencia",
-   "min": 5
+   "min": 4
   },
   {
    "id": "valle",
    "autor": "Ivanna Aros",
    "fecha": "22 de octubre de 2026",
    "img": "ladera",
-   "t": "Lo que el valle nos presta",
-   "r": "Compost, leña de origen conocido, un plan B si llueve y lo que aprendimos al probar la masa en casa.",
-   "c": "<p class=\"entra\">Una experiencia en el Cajón usa el agua, la leña, el huerto y el tiempo de alguien que vive ahí. Nos hicimos una pregunta simple: ¿qué le queda al valle cuando nos vamos? Estas son nuestras respuestas.<\/p><h2>Lo que vuelve a la tierra<\/h2><p>Las cáscaras y los restos de verdura van al compost del huerto de la productora. El horno usa leña de proveedores identificados, nunca de bosque nativo. Los ingredientes se compran en el comercio de San José de Maipo, y la productora recibe un pago por cada salida.<\/p><blockquote class=\"cita\">La pregunta no fue cuánto nos llevamos del valle, sino qué le queda cuando nos vamos.<\/blockquote><h2>Si el día sale distinto<\/h2><p>La montaña no siempre coopera, así que dejamos un plan B para cada caso. Si se corta el camino, avisamos con anticipación y puedes reprogramar sin costo. Si el horno no alcanza la temperatura, usamos el horno a gas de la cocina. Si llueve, la pasada por el huerto se acorta y el resto se hace bajo techo.<\/p><h2>Lo que nos enseñó la prueba<\/h2><p>Antes de diseñar la mañana en el papel, ensayamos la masa y el armado en una cocina de casa. Nos tomó unos 40 minutos, menos de los 90 que habíamos planificado. Pero descubrimos algo que no esperábamos: en un mesón de casa cabe una sola persona trabajando cómoda. Por eso el taller necesita un mesón largo, con un puesto cada dos personas.<\/p><aside class=\"dato\"><b>40 de 90<\/b><span>minutos que nos tomó la masa y el armado en la prueba. Sobró tiempo, pero faltó mesón.<\/span><\/aside>",
+   "t": "Viaja, cocina y deja el valle mejor que como lo encontraste",
+   "r": "Lo que comes viene del valle y lo que pagas se queda en el valle. Así funciona un panorama que cuida el lugar que visitas.",
+   "c": "<p class=\"entra\">El Cajón del Maipo recibe a mucha gente cada fin de semana. La pregunta que nos hicimos es simple: cuando el grupo se va, ¿qué le queda al valle? Diseñamos la experiencia para que la respuesta sea buena.<\/p><h2>Tu visita, puertas adentro<\/h2><ul class=\"check\"><li>Los ingredientes se compran en el comercio de San José de Maipo.<\/li><li>La productora recibe un pago por cada salida.<\/li><li>Las cáscaras y restos de verdura van al compost del huerto.<\/li><li>El horno usa leña de proveedores identificados, nunca de bosque nativo.<\/li><\/ul><blockquote class=\"cita\">Lo que comes viene del valle. Lo que pagas se queda en el valle.<\/blockquote><h2>Si la montaña cambia los planes<\/h2><p>La cordillera tiene su propio carácter, así que hay un plan B para cada caso. Si se corta el camino, te avisamos con anticipación y reprogramas sin costo. Si el horno de barro no alcanza la temperatura, se usa el horno a gas. Si llueve, la pasada por el huerto se acorta y el resto se hace bajo techo.<\/p><h2>Lo probamos antes de invitarte<\/h2><p>Antes de ofrecer la experiencia la ensayamos en una cocina de casa. La masa y el armado tomaron unos 40 minutos de los 90 planificados, así que el tiempo alcanza. Pero en un mesón de casa cabía una sola persona cómoda, por eso el taller tendrá un mesón largo, con un puesto cada dos personas.<\/p><aside class=\"dato\"><b>40 de 90<\/b><span>minutos que tomó la masa y el armado en nuestra prueba. Sobró tiempo y faltó mesón.<\/span><\/aside>",
    "f": [
     "Meteored. (s. f.-b). Cajón del Maipo: escapada a los Andes a menos de una hora de Santiago.",
     "Equipo Manos a la masa. (2026). Prueba de masa y armado, octubre de 2026."
@@ -1110,8 +1119,8 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
    ],
    "wp": 32,
    "wpUrl": "https://manosalamasacajon.wordpress.com/2026/10/22/valle/",
-   "cat": "Lo que cuidamos",
-   "min": 4
+   "cat": "Turismo responsable",
+   "min": 3
   }
  ]
 }
