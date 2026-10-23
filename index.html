@@ -74,11 +74,16 @@ p{margin:0 0 1em}
 }
 
 /* inicio */
-.hero{height:300vh;position:relative}
+.hero{height:330vh;position:relative}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:linear-gradient(180deg,#fdf3ee,#f6e4dd 55%,#e9f1ec)}
 .hero-paisaje{position:absolute;inset:0;background:center/cover no-repeat;filter:saturate(.62) brightness(1.08) contrast(.92)}
 .hero-paisaje::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,243,238,.9) 0%,rgba(250,232,226,.55) 42%,rgba(253,243,238,.88) 100%)}
-.emp{position:absolute;left:50%;top:0;width:var(--d,380px);margin-left:calc(var(--d,380px)/-2);aspect-ratio:400/222;perspective:1400px;will-change:transform,opacity;transform-origin:50% 50%}
+.carga{position:absolute;left:50%;top:0;width:var(--tw,480px);margin-left:calc(var(--tw,480px)/-2);height:var(--ch,300px);transform-origin:50% 100%;will-change:transform,opacity;z-index:4}
+.emp{position:absolute;left:50%;top:0;width:var(--d,380px);margin-left:calc(var(--d,380px)/-2);aspect-ratio:400/222;perspective:1400px;will-change:transform}
+.emp .flota-suave{position:absolute;inset:0;animation:respira 4s ease-in-out infinite}
+@keyframes respira{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.lata{position:absolute;left:0;bottom:0;width:100%;aspect-ratio:400/110;will-change:transform,opacity}
+.lata svg{width:100%;height:100%;overflow:visible;display:block}
 .horno{position:absolute;left:50%;top:0;width:var(--wo,480px);margin-left:calc(var(--wo,480px)/-2);aspect-ratio:400/300;opacity:0;pointer-events:none;will-change:transform,opacity}
 .horno svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 #horno{z-index:0}#hornoF{z-index:3}.resplandor{z-index:0}.ingr{z-index:5}.lineas{z-index:5}.hero-tit,.hero-final{z-index:6}
@@ -491,7 +496,8 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
 <path class="llama l2" d="M188,234 C186,218 198,212 198,198 C208,210 212,222 210,234 Z" fill="#ffe08a"/></g>
 <g fill="#6b3a22"><rect x="168" y="230" width="64" height="7" rx="3" transform="rotate(-6 200 233)"/><rect x="170" y="231" width="60" height="6" rx="3" transform="rotate(7 200 233)"/></g>
 </svg></div>
-    <div class="emp" id="emp" role="img" aria-label="Una empanada de horno que se abre y deja salir sus ingredientes">
+    <div class="carga" id="carga">
+    <div class="emp" id="emp" role="img" aria-label="Una empanada de horno que entra en una latita al horno de barro"><div class="flota-suave" id="flotaE">
       <div class="sombra"></div>
       <div class="brillo" id="brillo"></div>
       <div class="base"><svg viewBox="0 0 400 222" class="emp-svg"><path d="M8,212 A192,202 0 0 1 392,212 Z" fill="#efcf96" filter="url(#fMasa)"/>
@@ -505,17 +511,27 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
 <g clip-path="url(#cDomo)" fill="#a8581f" opacity=".22" filter="url(#fSuave)"><circle cx="250" cy="150" r="22"/><circle cx="120" cy="170" r="16"/><circle cx="300" cy="90" r="14"/></g></svg></div><div class="cara dorso"><svg viewBox="0 0 400 222" class="emp-svg"><g filter="url(#fMasa)"><path d="M8,212 A192,202 0 0 1 392,212 Z" fill="url(#gInterior)"/><g fill="#efcf96" stroke="#d9a861" stroke-opacity=".5" stroke-width="1.2"><ellipse cx="19.5" cy="197.7" rx="17" ry="10.5" transform="rotate(134.1 19.5 197.7)"/><ellipse cx="23.5" cy="169.5" rx="17" ry="10.5" transform="rotate(142.2 23.5 169.5)"/><ellipse cx="31.5" cy="142.2" rx="17" ry="10.5" transform="rotate(150.4 31.5 142.2)"/><ellipse cx="43.2" cy="116.5" rx="17" ry="10.5" transform="rotate(158.7 43.2 116.5)"/><ellipse cx="58.5" cy="92.9" rx="17" ry="10.5" transform="rotate(167.1 58.5 92.9)"/><ellipse cx="76.9" cy="72.0" rx="17" ry="10.5" transform="rotate(175.6 76.9 72.0)"/><ellipse cx="98.0" cy="54.2" rx="17" ry="10.5" transform="rotate(184.3 98.0 54.2)"/><ellipse cx="121.5" cy="39.9" rx="17" ry="10.5" transform="rotate(193.1 121.5 39.9)"/><ellipse cx="146.6" cy="29.5" rx="17" ry="10.5" transform="rotate(202.0 146.6 29.5)"/><ellipse cx="173.0" cy="23.1" rx="17" ry="10.5" transform="rotate(211.0 173.0 23.1)"/><ellipse cx="200.0" cy="21.0" rx="17" ry="10.5" transform="rotate(-140.0 200.0 21.0)"/><ellipse cx="227.0" cy="23.1" rx="17" ry="10.5" transform="rotate(-131.0 227.0 23.1)"/><ellipse cx="253.4" cy="29.5" rx="17" ry="10.5" transform="rotate(-122.0 253.4 29.5)"/><ellipse cx="278.5" cy="39.9" rx="17" ry="10.5" transform="rotate(-113.1 278.5 39.9)"/><ellipse cx="302.0" cy="54.2" rx="17" ry="10.5" transform="rotate(-104.3 302.0 54.2)"/><ellipse cx="323.1" cy="72.0" rx="17" ry="10.5" transform="rotate(-95.6 323.1 72.0)"/><ellipse cx="341.5" cy="92.9" rx="17" ry="10.5" transform="rotate(-87.1 341.5 92.9)"/><ellipse cx="356.8" cy="116.5" rx="17" ry="10.5" transform="rotate(-78.7 356.8 116.5)"/><ellipse cx="368.5" cy="142.2" rx="17" ry="10.5" transform="rotate(-70.4 368.5 142.2)"/><ellipse cx="376.5" cy="169.5" rx="17" ry="10.5" transform="rotate(-62.2 376.5 169.5)"/><ellipse cx="380.5" cy="197.7" rx="17" ry="10.5" transform="rotate(-54.1 380.5 197.7)"/></g></g>
 <g clip-path="url(#cDomo)" opacity=".5"><ellipse cx="200" cy="205" rx="150" ry="40" fill="#e2b679" filter="url(#fSuave)"/></g></svg></div></div>
       <div class="vapor" id="vapor"><i></i><i></i><i></i></div>
+    </div></div>
+    <div class="lata" id="lata"><svg viewBox="0 0 400 110" aria-hidden="true">
+<defs><linearGradient id="gLata" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f1ee"/><stop offset=".5" stop-color="#d9d6d4"/><stop offset="1" stop-color="#b9b3b1"/></linearGradient>
+<linearGradient id="gBorde" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#cfc8c6"/><stop offset=".3" stop-color="#fbfaf9"/><stop offset=".7" stop-color="#e6e1df"/><stop offset="1" stop-color="#c4bdbb"/></linearGradient></defs>
+<ellipse cx="200" cy="100" rx="190" ry="9" fill="rgba(150,90,70,.25)" filter="url(#fSuave)"/>
+<path d="M16,30 L384,30 L366,84 Q364,92 354,92 L46,92 Q36,92 34,84 Z" fill="url(#gLata)"/>
+<path d="M60,30 C90,20 120,34 150,24 C180,16 220,32 250,22 C285,14 315,30 342,22 L346,36 L56,36 Z" fill="#f7ecdc" stroke="#ecdcc4" stroke-width="1"/>
+<rect x="6" y="24" width="388" height="12" rx="6" fill="url(#gBorde)"/>
+<path d="M40,52 L360,52" stroke="#fff" stroke-opacity=".5" stroke-width="2"/>
+</svg></div>
     </div>
     <div class="horno" id="hornoF" aria-hidden="true"><svg viewBox="0 0 400 300" class="horno-frente" aria-hidden="true">
-<radialGradient id="gBarro" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#ecc08e"/><stop offset=".6" stop-color="#d79a63"/><stop offset="1" stop-color="#b8723f"/></radialGradient>
+<radialGradient id="gBarro" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#f6d3b6"/><stop offset=".6" stop-color="#e3a98a"/><stop offset="1" stop-color="#c98468"/></radialGradient>
 <rect x="44" y="258" width="312" height="10" rx="4" fill="#cfa77c"/>
 <path d="M30,262 h340 v30 h-340 Z" fill="#ead8bd" filter="url(#fMasa)"/>
 <g stroke="#d3b896" stroke-width="2" fill="none"><path d="M30,277 h340"/><path d="M80,262 v15 M150,262 v15 M220,262 v15 M290,262 v15 M115,277 v15 M185,277 v15 M255,277 v15 M325,277 v15"/></g>
 <path fill-rule="evenodd" fill="url(#gBarro)" filter="url(#fMasa)" d="M48,262 C48,120 120,46 200,46 C280,46 352,120 352,262 Z M136,262 L136,236 Q136,152 200,150 Q264,152 264,236 L264,262 Z"/>
-<path d="M126,262 L126,236 Q126,142 200,140 Q274,142 274,236 L274,262" fill="none" stroke="#a9612f" stroke-width="12" stroke-dasharray="16 4" stroke-linejoin="round"/>
-<rect x="104" y="58" width="26" height="42" rx="4" fill="#b8723f" transform="rotate(-12 117 79)"/>
+<path d="M126,262 L126,236 Q126,142 200,140 Q274,142 274,236 L274,262" fill="none" stroke="#c27a5f" stroke-width="12" stroke-dasharray="16 4" stroke-linejoin="round"/>
+<rect x="104" y="58" width="26" height="42" rx="4" fill="#cf8d72" transform="rotate(-12 117 79)"/>
 <ellipse cx="150" cy="105" rx="62" ry="28" fill="#fff4e2" opacity=".28" filter="url(#fSuave)" transform="rotate(-25 150 105)"/>
-<g fill="#c3804b" opacity=".55"><circle cx="270" cy="120" r="4"/><circle cx="96" cy="190" r="3"/><circle cx="310" cy="200" r="3.5"/><circle cx="240" cy="85" r="3"/></g>
+<g fill="#c98468" opacity=".5"><circle cx="270" cy="120" r="4"/><circle cx="96" cy="190" r="3"/><circle cx="310" cy="200" r="3.5"/><circle cx="240" cy="85" r="3"/></g>
 </svg><div class="humo" id="humo"><i></i><i></i><i></i></div></div>
     <div id="stickers" data-render></div>
     <div class="hero-tit" id="heroTit">
@@ -1345,37 +1361,36 @@ document.querySelectorAll("[data-fondo]").forEach(s=>ioF.observe(s));fondo("verd
 $("#heroPaisaje").style.backgroundImage=`url(${src("yeso",2000)})`;
 $("#stickers").innerHTML=D.ING.map((s,i)=>`<div class="ingr${s[1]?"":" deco"}" id="st${i}" style="--dl:${(i*.41)%2.2}s"><div class="flota"><img src="img/3d/${s[0]}.png" alt="" style="${s[0]==="aceituna"?"filter:brightness(.42) saturate(.5) drop-shadow(0 12px 14px rgba(150,90,70,.22))":""}">${s[1]?`<span data-k="ING.${i}.1">${esc(s[1])}</span>`:""}</div></div>`).join("");
 $("#lineas").innerHTML="";$("#stickers").innerHTML="";
-const hero=$(".hero"),emp=$("#emp"),tapa=$("#tapa"),brillo=$("#brillo"),vapor=$("#vapor"),ht=$("#heroTit"),hfin=$("#heroFinal"),pista=$("#pista"),hornoA=$("#horno"),hornoF=$("#hornoF"),humo=$("#humo"),resp=$("#resplandor");
-function heroFrame(){
-  const r=hero.getBoundingClientRect(),tot=hero.offsetHeight-innerHeight;if(r.bottom<0)return;
-  const p=reduce?0:cl(-r.top/tot);
+const hero=$(".hero"),carga=$("#carga"),emp=$("#emp"),lata=$("#lata"),tapa=$("#tapa"),brillo=$("#brillo"),vapor=$("#vapor"),ht=$("#heroTit"),hfin=$("#heroFinal"),pista=$("#pista"),hornoA=$("#horno"),hornoF=$("#hornoF"),humo=$("#humo"),resp=$("#resplandor");
+const suave=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+let pCur=0,pObj=0,corriendo=false;
+function pintar(p){
   const W=innerWidth,H=innerHeight,mob=W<700;
-  const d=Math.round(mob?Math.min(W*.74,330):Math.min(W*.34,H*.62,460)),eh=d*222/400;
-  emp.style.setProperty("--d",d+"px");
-  /* fases */
-  const mv=eio(cl((p-.02)/.16)),lid=0;
-  const hornoIn=eio(cl((p-.1)/.16)),entra=eio(cl((p-.22)/.18)),mete=eio(cl((p-.4)/.08)),fuego=cl((p-.46)/.12),fin=eio(cl((p-.58)/.16));
+  const d=Math.round(mob?Math.min(W*.58,260):Math.min(W*.26,H*.4,340)),eh=d*222/400,tw=Math.round(d*1.3),lh=tw*110/400,ch=eh+lh*.78;
+  carga.style.setProperty("--tw",tw+"px");carga.style.setProperty("--ch",ch+"px");emp.style.setProperty("--d",d+"px");
+  const tin=suave(cl((p-.03)/.17)),land=suave(cl((p-.12)/.12)),hornoIn=suave(cl((p-.16)/.2)),entra=suave(cl((p-.27)/.2)),mete=suave(cl((p-.44)/.09)),fuego=cl((p-.5)/.12),fin=suave(cl((p-.6)/.16));
   /* horno */
-  const wo=Math.round((mob?Math.min(W*.86,380):Math.min(W*.4,H*.78,540))*(1-fin*.18)),ho=wo*.75,oy=H*.985-ho+(1-hornoIn)*60;
-  [hornoA,hornoF].forEach(h=>{h.style.setProperty("--wo",wo+"px");h.style.transform=`translateY(${oy}px)`;h.style.opacity=hornoIn});
-  resp.style.setProperty("--wo",wo*1.3+"px");resp.style.transform=`translateY(${oy+ho*.62-wo*.65}px) scale(${.7+fuego*.5})`;resp.style.opacity=hornoIn*(.35+fuego*.6);
+  const wo=Math.round((mob?Math.min(W*.86,380):Math.min(W*.4,H*.78,540))*(1-fin*.15)),ho=wo*.75,oy=H*.985-ho+(1-hornoIn)*90;
+  [hornoA,hornoF].forEach(h=>{h.style.setProperty("--wo",wo+"px");h.style.transform=`translateY(${oy}px) scale(${.92+.08*hornoIn})`;h.style.transformOrigin="50% 100%";h.style.opacity=hornoIn});
+  resp.style.setProperty("--wo",wo*1.3+"px");resp.style.transform=`translateY(${oy+ho*.62-wo*.65}px) scale(${.7+fuego*.5})`;resp.style.opacity=hornoIn*(.3+fuego*.65);
   humo.style.opacity=fuego;
-  /* empanada */
-  const hinge0=H*(mob?.7:.74),hingeC=H*(mob?.56:.6),hinge=hinge0+(hingeC-hinge0)*mv;
-  const cY0=hinge-eh*.455;
-  const mouthX=W/2,mouthY=oy+ho*(212/300),enc=eio(cl((p-.2)/.12)),sc=(1+((wo*.27)/d-1)*enc)*(1-mete*.35);
-  const cY=cY0+(mouthY+wo*.04-cY0)*entra-mete*wo*.02;
-  emp.style.transform=`translate(${(mouthX-W/2)*entra}px,${cY-eh/2}px) scale(${sc})`;
-  emp.style.opacity=1-cl((p-.46)/.04);
-  emp.style.zIndex=mete>.05?2:4;
-  tapa.style.transform=`rotateX(${-176*lid}deg)`;
-  brillo.style.opacity=lid;vapor.style.opacity=lid;
+  /* latita y empanada */
+  lata.style.transform=`translateX(${(1-tin)*-(W*.75)}px) rotate(${(1-tin)*-6}deg)`;lata.style.opacity=tin;
+  emp.style.transform=`translateY(${-(1-land)*eh*.25}px) rotate(${(1-land)*-3}deg)`;
+  const y0=H*(mob?.8:.9)-(H*(mob?.12:.16))*tin,yM=oy+ho*(236/300),arco=Math.sin(Math.PI*entra)*H*.06;
+  const sc=(1+((wo*.31)/tw-1)*entra)*(1-mete*.28);
+  const yb=y0+(yM-y0)*entra-arco-mete*ho*.035;
+  carga.style.transform=`translateY(${yb-ch}px) scale(${sc})`;
+  carga.style.zIndex=mete>.02?2:4;carga.style.opacity=1-cl((p-.5)/.05);
   ht.style.opacity=1-cl(p/.12);ht.style.transform=`translateY(${-p*220}px)`;
   pista.style.opacity=1-cl(p/.04);
-  hfin.style.opacity=fin;hfin.style.transform=`translateY(${(1-fin)*50}px) scale(${.94+.06*fin})`;hfin.style.pointerEvents=p>.68?"auto":"none";
+  hfin.style.opacity=fin;hfin.style.transform=`translateY(${(1-fin)*40}px)`;hfin.style.pointerEvents=p>.7?"auto":"none";
 }
-let tk=false;addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{heroFrame();tk=false})},{passive:true});
-addEventListener("resize",heroFrame);heroFrame();
+function heroFrame(){const r=hero.getBoundingClientRect(),tot=hero.offsetHeight-innerHeight;if(r.bottom<0&&pCur===pObj)return;
+  pObj=reduce?0:cl(-r.top/tot);if(!corriendo){corriendo=true;requestAnimationFrame(pasoHero)}}
+function pasoHero(){pCur+=(pObj-pCur)*.12;if(Math.abs(pObj-pCur)<.0004)pCur=pObj;pintar(pCur);if(pCur!==pObj)requestAnimationFrame(pasoHero);else corriendo=false}
+addEventListener("scroll",heroFrame,{passive:true});
+addEventListener("resize",()=>{pintar(pCur)});heroFrame();pintar(0);
 
 /* historia */
 $("#pol1").src=src("horneando",900);$("#pol1").alt=alt("horneando");$("#pol2").src=src("yeso",900);
