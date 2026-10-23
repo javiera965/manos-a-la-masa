@@ -84,6 +84,8 @@ p{margin:0 0 1em}
 @keyframes respira{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .lata{position:absolute;left:0;bottom:0;width:100%;aspect-ratio:400/110;will-change:transform,opacity}
 .lata svg{width:100%;height:100%;overflow:visible;display:block}
+.guante{position:absolute;left:0;top:0;width:var(--mw,180px);aspect-ratio:200/150;z-index:5;pointer-events:none;will-change:transform,opacity;transform-origin:10% 50%}
+.guante svg{width:100%;height:100%;overflow:visible;display:block;filter:drop-shadow(0 14px 16px rgba(150,80,80,.22))}
 .horno{position:absolute;left:50%;top:0;width:var(--wo,480px);margin-left:calc(var(--wo,480px)/-2);aspect-ratio:400/300;opacity:0;pointer-events:none;will-change:transform,opacity}
 .horno svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 #horno{z-index:0}#hornoF{z-index:3}.resplandor{z-index:0}.ingr{z-index:5}.lineas{z-index:5}.hero-tit,.hero-final{z-index:6}
@@ -533,6 +535,19 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
 <ellipse cx="150" cy="105" rx="62" ry="28" fill="#fff4e2" opacity=".28" filter="url(#fSuave)" transform="rotate(-25 150 105)"/>
 <g fill="#c98468" opacity=".5"><circle cx="270" cy="120" r="4"/><circle cx="96" cy="190" r="3"/><circle cx="310" cy="200" r="3.5"/><circle cx="240" cy="85" r="3"/></g>
 </svg><div class="humo" id="humo"><i></i><i></i><i></i></div></div>
+    <div class="guante" id="guante" aria-hidden="true"><svg viewBox="0 0 200 150">
+<defs><pattern id="pPuntos" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#f6c9cd"/><circle cx="4" cy="4" r="1.8" fill="#fff"/><circle cx="11" cy="11" r="1.8" fill="#fff"/></pattern>
+<linearGradient id="gGuante" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#b0606a" stop-opacity=".18"/></linearGradient></defs>
+<path d="M150,46 C112,36 54,38 24,60 C6,74 12,100 40,106 C78,114 124,112 152,104 Z" fill="url(#pPuntos)"/>
+<path d="M150,46 C112,36 54,38 24,60 C6,74 12,100 40,106 C78,114 124,112 152,104 Z" fill="url(#gGuante)" stroke="#e39aa3" stroke-width="2"/>
+<path d="M128,48 C120,22 92,12 74,22 C62,30 70,46 92,52 Z" fill="url(#pPuntos)" stroke="#e39aa3" stroke-width="2"/>
+<path d="M128,48 C120,22 92,12 74,22 C62,30 70,46 92,52 Z" fill="url(#gGuante)"/>
+<path d="M40,96 C76,104 118,102 146,96" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="4 4" opacity=".9"/>
+<path d="M34,70 C60,56 104,52 144,58" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="4 4" opacity=".9"/>
+<rect x="146" y="38" width="46" height="76" rx="12" fill="#eaa7ae"/>
+<g stroke="#f7d3d6" stroke-width="3" stroke-linecap="round"><path d="M157,46 v60"/><path d="M169,44 v64"/><path d="M181,46 v60"/></g>
+<path d="M188,44 c8,-6 10,-16 4,-22" fill="none" stroke="#eaa7ae" stroke-width="3" stroke-linecap="round"/>
+</svg></div>
     <div id="stickers" data-render></div>
     <div class="hero-tit" id="heroTit">
       <h1>Manos <em>a la masa</em></h1>
@@ -1361,7 +1376,7 @@ document.querySelectorAll("[data-fondo]").forEach(s=>ioF.observe(s));fondo("verd
 $("#heroPaisaje").style.backgroundImage=`url(${src("yeso",2000)})`;
 $("#stickers").innerHTML=D.ING.map((s,i)=>`<div class="ingr${s[1]?"":" deco"}" id="st${i}" style="--dl:${(i*.41)%2.2}s"><div class="flota"><img src="img/3d/${s[0]}.png" alt="" style="${s[0]==="aceituna"?"filter:brightness(.42) saturate(.5) drop-shadow(0 12px 14px rgba(150,90,70,.22))":""}">${s[1]?`<span data-k="ING.${i}.1">${esc(s[1])}</span>`:""}</div></div>`).join("");
 $("#lineas").innerHTML="";$("#stickers").innerHTML="";
-const hero=$(".hero"),carga=$("#carga"),emp=$("#emp"),lata=$("#lata"),tapa=$("#tapa"),brillo=$("#brillo"),vapor=$("#vapor"),ht=$("#heroTit"),hfin=$("#heroFinal"),pista=$("#pista"),hornoA=$("#horno"),hornoF=$("#hornoF"),humo=$("#humo"),resp=$("#resplandor");
+const hero=$(".hero"),guante=$("#guante"),carga=$("#carga"),emp=$("#emp"),lata=$("#lata"),tapa=$("#tapa"),brillo=$("#brillo"),vapor=$("#vapor"),ht=$("#heroTit"),hfin=$("#heroFinal"),pista=$("#pista"),hornoA=$("#horno"),hornoF=$("#hornoF"),humo=$("#humo"),resp=$("#resplandor");
 const suave=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
 let pCur=0,pObj=0,corriendo=false;
 function pintar(p){
@@ -1375,13 +1390,18 @@ function pintar(p){
   resp.style.setProperty("--wo",wo*1.3+"px");resp.style.transform=`translateY(${oy+ho*.62-wo*.65}px) scale(${.7+fuego*.5})`;resp.style.opacity=hornoIn*(.3+fuego*.65);
   humo.style.opacity=fuego;
   /* latita y empanada */
-  lata.style.transform=`translateX(${(1-tin)*-(W*.75)}px) rotate(${(1-tin)*-6}deg)`;lata.style.opacity=tin;
+  const lx=(1-tin)*(W*.75);lata.style.transform=`translateX(${lx}px) rotate(${(1-tin)*6}deg)`;lata.style.opacity=tin;
   emp.style.transform=`translateY(${-(1-land)*eh*.25}px) rotate(${(1-land)*-3}deg)`;
   const y0=H*(mob?.8:.9)-(H*(mob?.12:.16))*tin,yM=oy+ho*(236/300),arco=Math.sin(Math.PI*entra)*H*.06;
   const sc=(1+((wo*.31)/tw-1)*entra)*(1-mete*.28);
   const yb=y0+(yM-y0)*entra-arco-mete*ho*.035;
   carga.style.transform=`translateY(${yb-ch}px) scale(${sc})`;
   carga.style.zIndex=mete>.02?2:4;carga.style.opacity=1-cl((p-.5)/.05);
+  const suelta=suave(cl((p-.5)/.1)),mw=Math.max(tw*.46*sc,mob?70:96);
+  const gx=W/2+(tw*.43+lx)*sc+suelta*W*.35,gy=yb-lh*.86*sc+suelta*H*.12;
+  guante.style.setProperty("--mw",mw+"px");
+  guante.style.transform=`translate(${gx-mw*.1}px,${gy-mw*.75*.5}px) rotate(${(1-tin)*6-suelta*12}deg)`;
+  guante.style.opacity=cl(tin*1.5)*(1-suelta);
   ht.style.opacity=1-cl(p/.12);ht.style.transform=`translateY(${-p*220}px)`;
   pista.style.opacity=1-cl(p/.04);
   hfin.style.opacity=fin;hfin.style.transform=`translateY(${(1-fin)*40}px)`;hfin.style.pointerEvents=p>.7?"auto":"none";
