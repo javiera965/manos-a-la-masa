@@ -656,7 +656,7 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
         <div class="cv"><b id="nSus">–</b><span>suscriptores a la bitácora</span></div>
         <div class="cv"><b id="nCom">–</b><span>comentarios en la bitácora</span></div>
         <div class="cv compartir"><span>Ayúdanos a llegar a más personas</span>
-          <div class="acc-comp"><a class="btn miel chico" id="shWsp" target="_blank" rel="noopener">Compartir por WhatsApp</a><button class="btn blanco chico" id="shCopy" type="button">Copiar link</button><a class="btn yeso chico" href="#contacto">Suscribirme</a></div>
+          <div class="acc-comp"><a class="btn miel chico" id="shWsp" target="_blank" rel="noopener">Compartir por WhatsApp</a><button class="btn blanco chico" id="shCopy" type="button">Copiar link</button><a class="btn yeso chico" href="https://manosalamasacajon.wordpress.com/suscribete/" target="_blank" rel="noopener">Suscribirme</a></div>
           <small id="shOk" class="ok" hidden>Link copiado.</small></div>
         <div class="cv qr"><canvas id="qr" width="132" height="132" aria-label="Código QR del sitio Manos a la masa"></canvas><span>Escanea para abrir el sitio</span></div>
       </div>
@@ -687,8 +687,8 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
           <a class="btn miel" id="btnWsp2" href="#contacto">Escribir por WhatsApp</a>
           <h3 style="font-size:26px;margin:28px 0 4px">Recibe las novedades</h3>
           <p class="nota" style="margin:0">Te avisamos por correo cuando publiquemos en la bitácora o abramos fechas.</p>
-          <form class="sus" id="formSus" action="https://subscribe.wordpress.com" method="post" target="_blank" accept-charset="utf-8" data-noedit><input type="hidden" name="action" value="subscribe"><input type="hidden" name="blog_id" value="258155277"><input type="hidden" name="source" value="https://javiera965.github.io/manos-a-la-masa/"><input type="hidden" name="sub-type" value="widget"><input type="hidden" name="redirect_fragment" value="suscripcion"><label class="sr" for="correo">Tu correo</label><input id="correo" name="email" type="email" required placeholder="tu@correo.cl" autocomplete="email"><button class="btn yeso" type="submit">Suscribirme</button></form>
-          <p class="ok" id="okSus" hidden>Revisa tu correo: te enviamos un enlace para confirmar la suscripción.</p>
+          <div class="sus" data-noedit><a class="btn yeso" href="https://manosalamasacajon.wordpress.com/suscribete/" target="_blank" rel="noopener">Suscribirme a la bitácora</a></div>
+          <p class="nota" style="margin-top:10px">Se abre nuestra página de suscripción en WordPress. Escribe tu correo, pincha Suscribirme y confirma desde el correo que te llega.</p>
         </div>
         <form class="blanco fcon" id="formCon">
           <h3 style="font-size:26px">Envíanos una consulta</h3>
@@ -1251,10 +1251,9 @@ function abrir(id){const i=E.findIndex(x=>x.id===id),e=E[i];if(!e)return;
   <div data-k="E.${i}.c" data-html>${e.c}</div>
   <div class="fuentes"><strong>Fuentes de esta entrada</strong><ul>${e.f.map((x,j)=>`<li data-k="E.${i}.f.${j}">${esc(x)}</li>`).join("")}</ul></div>
   <div class="accion"><h2 data-k="E.${i}.a.0">${esc(e.a[0])}</h2><p data-k="E.${i}.a.1">${esc(e.a[1])}</p><a class="btn blanco" href="${e.a[2]}" data-ir data-k="E.${i}.a.3">${esc(e.a[3])}</a></div>
-  <section class="coment" id="coment"><h2>Comentarios</h2><div class="fc" data-noedit><ul class="lc" id="lc" style="margin:0"><li class="vacio">Cargando comentarios…</li></ul><a class="btn yeso" href="${e.wpUrl}#respond" target="_blank" rel="noopener" style="justify-self:start">Escribir un comentario</a><p class="nota" style="margin:0">Se abre nuestra bitácora en WordPress. Escribes tu nombre, tu correo y tu comentario, y aparece aquí cuando el equipo lo aprueba.</p></div></section>
-  <div class="fc" style="margin-top:28px" data-noedit><h2 style="font-size:28px;margin:0">Suscríbete a la bitácora</h2><p class="nota" style="margin:0">Te avisamos por correo cuando publiquemos una entrada nueva.</p><form class="sus" id="formSusArt" action="https://subscribe.wordpress.com" method="post" target="_blank" accept-charset="utf-8"><input type="hidden" name="action" value="subscribe"><input type="hidden" name="blog_id" value="258155277"><input type="hidden" name="source" value="https://javiera965.github.io/manos-a-la-masa/"><input type="hidden" name="sub-type" value="widget"><input type="hidden" name="redirect_fragment" value="suscripcion"><label class="sr" for="correoArt">Tu correo</label><input id="correoArt" name="email" type="email" required placeholder="tu@correo.cl" autocomplete="email"><button class="btn yeso" type="submit">Suscribirme</button></form><p class="ok" id="okSusArt" hidden>Revisa tu correo: te enviamos un enlace para confirmar la suscripción.</p></div>`;
+  <section class="coment" id="coment"><h2>Comentarios</h2><div class="fc" data-noedit><ul class="lc" id="lc" style="margin:0"><li class="vacio">Cargando comentarios…</li></ul><a class="btn yeso" href="${e.wpUrl}#respond" target="_blank" rel="noopener" style="justify-self:start">Escribir un comentario</a><p class="nota" style="margin:0">Se abre esta entrada en WordPress. Al final escribe tu comentario, pincha <b>"Añade tu nombre"</b> para poner tu nombre y correo, y luego pincha <b>Comentario</b>. Aparece aquí al recargar.</p></div></section>
+  <div class="fc" style="margin-top:28px" data-noedit><h2 style="font-size:28px;margin:0">Suscríbete a la bitácora</h2><p class="nota" style="margin:0">Te avisamos por correo cuando publiquemos una entrada nueva.</p><div class="sus"><a class="btn yeso" href="https://manosalamasacajon.wordpress.com/suscribete/" target="_blank" rel="noopener">Suscribirme a la bitácora</a></div></div>`;
   art.hidden=false;document.body.style.overflow="hidden";art.scrollTop=0;
-  susOk($("#formSusArt"),$("#okSusArt"));
   cargarComentarios(e);
   A.querySelector("[data-ir]").onclick=ev=>{ev.preventDefault();if(document.body.classList.contains("editando"))return;const h=ev.currentTarget.getAttribute("href");if(h==="#coment"){$("#coment").scrollIntoView({behavior:"smooth"});return}cerrar();setTimeout(()=>$(h).scrollIntoView({behavior:"smooth"}),60)};
   if(document.body.classList.contains("editando"))activarEdicion();
@@ -1265,8 +1264,6 @@ addEventListener("keydown",e=>{if(e.key==="Escape"&&!art.hidden&&!document.body.
 function ruta(){const m=location.hash.match(/^#\/bitacora\/(.+)$/);if(m)abrir(m[1]);else if(!art.hidden){art.hidden=true;document.body.style.overflow=""}}
 addEventListener("hashchange",ruta);ruta();
 
-susOk($("#formSus"),$("#okSus"));
-susOk($("#formSus"),$("#okSus"));
 $("#formCon").onsubmit=e=>{e.preventDefault();$("#okCon").hidden=false;e.target.reset()};
 
 /* números en vivo, compartir y QR */
