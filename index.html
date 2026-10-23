@@ -74,7 +74,7 @@ p{margin:0 0 1em}
 }
 
 /* inicio */
-.hero{height:420vh;position:relative}
+.hero{height:300vh;position:relative}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:linear-gradient(180deg,#fdf3ee,#f6e4dd 55%,#e9f1ec)}
 .hero-paisaje{position:absolute;inset:0;background:center/cover no-repeat;filter:saturate(.62) brightness(1.08) contrast(.92)}
 .hero-paisaje::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,243,238,.9) 0%,rgba(250,232,226,.55) 42%,rgba(253,243,238,.88) 100%)}
@@ -860,8 +860,7 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
     <li><a href="https://www.sanjosedemaipo.cl/turismo/" target="_blank" rel="noopener">Municipalidad de San José de Maipo (s. f.). Turismo</a></li>
   </ul>
   <p><b>Fotografías</b> (Pexels, Unsplash y Wikimedia Commons)</p>
-  <ul class="creditos" id="creditos" data-render></ul>
-  <p><b>Ilustraciones 3D de ingredientes</b>: <a href="https://github.com/microsoft/fluentui-emoji" target="_blank" rel="noopener">Fluent Emoji, Microsoft (licencia MIT)</a></p></div>
+  <ul class="creditos" id="creditos" data-render></ul></div>
   <form method="dialog"><button class="btn">Cerrar</button></form></dialog>
 
 <div class="articulo" id="articulo" hidden role="dialog" aria-modal="true" aria-labelledby="artT">
@@ -1345,7 +1344,7 @@ document.querySelectorAll("[data-fondo]").forEach(s=>ioF.observe(s));fondo("verd
 /* INICIO */
 $("#heroPaisaje").style.backgroundImage=`url(${src("yeso",2000)})`;
 $("#stickers").innerHTML=D.ING.map((s,i)=>`<div class="ingr${s[1]?"":" deco"}" id="st${i}" style="--dl:${(i*.41)%2.2}s"><div class="flota"><img src="img/3d/${s[0]}.png" alt="" style="${s[0]==="aceituna"?"filter:brightness(.42) saturate(.5) drop-shadow(0 12px 14px rgba(150,90,70,.22))":""}">${s[1]?`<span data-k="ING.${i}.1">${esc(s[1])}</span>`:""}</div></div>`).join("");
-$("#lineas").innerHTML=D.ING.map((s,i)=>s[1]?`<line id="ln${i}"/>`:"").join("");
+$("#lineas").innerHTML="";$("#stickers").innerHTML="";
 const hero=$(".hero"),emp=$("#emp"),tapa=$("#tapa"),brillo=$("#brillo"),vapor=$("#vapor"),ht=$("#heroTit"),hfin=$("#heroFinal"),pista=$("#pista"),hornoA=$("#horno"),hornoF=$("#hornoF"),humo=$("#humo"),resp=$("#resplandor");
 function heroFrame(){
   const r=hero.getBoundingClientRect(),tot=hero.offsetHeight-innerHeight;if(r.bottom<0)return;
@@ -1354,8 +1353,8 @@ function heroFrame(){
   const d=Math.round(mob?Math.min(W*.74,330):Math.min(W*.34,H*.62,460)),eh=d*222/400;
   emp.style.setProperty("--d",d+"px");
   /* fases */
-  const mv=eio(cl((p-.02)/.16)),abre=eio(cl((p-.05)/.13)),cierra=eio(cl((p-.4)/.1)),lid=abre*(1-cierra);
-  const hornoIn=eio(cl((p-.46)/.1)),entra=eio(cl((p-.54)/.1)),mete=eio(cl((p-.64)/.06)),fuego=cl((p-.68)/.1),fin=eio(cl((p-.76)/.14));
+  const mv=eio(cl((p-.02)/.16)),lid=0;
+  const hornoIn=eio(cl((p-.1)/.16)),entra=eio(cl((p-.22)/.18)),mete=eio(cl((p-.4)/.08)),fuego=cl((p-.46)/.12),fin=eio(cl((p-.58)/.16));
   /* horno */
   const wo=Math.round((mob?Math.min(W*.86,380):Math.min(W*.4,H*.78,540))*(1-fin*.18)),ho=wo*.75,oy=H*.985-ho+(1-hornoIn)*60;
   [hornoA,hornoF].forEach(h=>{h.style.setProperty("--wo",wo+"px");h.style.transform=`translateY(${oy}px)`;h.style.opacity=hornoIn});
@@ -1364,29 +1363,16 @@ function heroFrame(){
   /* empanada */
   const hinge0=H*(mob?.7:.74),hingeC=H*(mob?.56:.6),hinge=hinge0+(hingeC-hinge0)*mv;
   const cY0=hinge-eh*.455;
-  const mouthX=W/2,mouthY=oy+ho*(212/300),enc=eio(cl((p-.53)/.07)),sc=(1+((wo*.27)/d-1)*enc)*(1-mete*.35);
+  const mouthX=W/2,mouthY=oy+ho*(212/300),enc=eio(cl((p-.2)/.12)),sc=(1+((wo*.27)/d-1)*enc)*(1-mete*.35);
   const cY=cY0+(mouthY+wo*.04-cY0)*entra-mete*wo*.02;
   emp.style.transform=`translate(${(mouthX-W/2)*entra}px,${cY-eh/2}px) scale(${sc})`;
-  emp.style.opacity=1-cl((p-.68)/.04);
+  emp.style.opacity=1-cl((p-.46)/.04);
   emp.style.zIndex=mete>.05?2:4;
   tapa.style.transform=`rotateX(${-176*lid}deg)`;
   brillo.style.opacity=lid;vapor.style.opacity=lid;
   ht.style.opacity=1-cl(p/.12);ht.style.transform=`translateY(${-p*220}px)`;
   pista.style.opacity=1-cl(p/.04);
-  /* ingredientes: aparecen en corona y luego entran al relleno */
-  const cx=W/2,fillY=hinge-eh*.3,tcy=fillY-(mob?H*.02:H*.04);
-  const Rx=mob?W*.41:Math.min(W*.33,500),Ry=mob?H*.27:H*.3;
-  D.ING.forEach((s,i)=>{const el=document.getElementById("st"+i),sz=Math.round((mob?.7:1)*s[4]);
-    const k=eio(cl((p-.1-i*.012)/.14)),q=eio(cl((p-.27-i*.01)/.11));
-    const ang=s[2]*Math.PI/180,tx=cx+Math.cos(ang)*Rx*s[3],ty=tcy+Math.sin(ang)*Ry*s[3];
-    const x0=cx+(tx-cx)*k,y0=fillY+(ty-fillY)*k,x=x0+(cx-x0)*q,y=y0+(fillY-y0)*q;
-    el.style.setProperty("--s",sz+"px");
-    el.style.transform=`translate(${x-sz/2}px,${y-sz/2}px) rotate(${s[5]*k*(1-q)}deg) scale(${(.35+.65*k)*(1-q*.75)})`;
-    el.style.opacity=cl(k*1.4)*(1-cl((q-.6)/.4));el.style.filter=`blur(${(1-k)*8}px)`;
-    const ln=document.getElementById("ln"+i);if(ln){const dx=x-cx,dy=y-tcy,L=Math.hypot(dx,dy)||1,a=cl((k-.7)/.3)*(1-cl(q/.25));
-      ln.setAttribute("x1",cx+dx/L*Math.min(L*.5,L-sz*.7));ln.setAttribute("y1",tcy+dy/L*Math.min(L*.5,L-sz*.7));
-      ln.setAttribute("x2",x-dx/L*sz*.6);ln.setAttribute("y2",y-dy/L*sz*.6);ln.style.opacity=a*.8}});
-  hfin.style.opacity=fin;hfin.style.transform=`translateY(${(1-fin)*50}px) scale(${.94+.06*fin})`;hfin.style.pointerEvents=p>.84?"auto":"none";
+  hfin.style.opacity=fin;hfin.style.transform=`translateY(${(1-fin)*50}px) scale(${.94+.06*fin})`;hfin.style.pointerEvents=p>.68?"auto":"none";
 }
 let tk=false;addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{heroFrame();tk=false})},{passive:true});
 addEventListener("resize",heroFrame);heroFrame();
