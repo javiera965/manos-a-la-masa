@@ -128,13 +128,14 @@ p{margin:0 0 1em}
 @media (max-width:900px){.historia{grid-template-columns:1fr}}
 .historia .texto p{font-size:17.5px;color:var(--tinta-2)}
 .historia .texto p.grande{font-family:var(--serif);font-size:clamp(24px,2.3vw,31px);line-height:1.25;color:var(--tinta)}
-.polas{position:relative;min-height:520px}
+.polas{position:relative;aspect-ratio:1/.92;max-width:620px;margin:0 auto;width:100%}
 .pola{position:absolute;background:#fff;padding:12px 12px 52px;border-radius:6px;box-shadow:0 24px 50px -24px rgba(22,57,63,.55);margin:0}
 .pola img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;background:var(--niebla)}
 .pola figcaption{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:400 30px/1 var(--mano);color:var(--tinta)}
-.pola.p1{width:62%;left:0;top:20px;transform:rotate(-5deg)}
-.pola.p2{width:56%;right:0;top:170px;transform:rotate(4deg)}
-@media (max-width:560px){.polas{min-height:400px}}
+.pola.p1{width:50%;left:1%;top:2%;transform:rotate(-5deg);z-index:1}
+.pola.p2{width:50%;right:1%;top:22%;transform:rotate(4deg);z-index:2}
+.pola{transition:transform .4s}.pola:hover{transform:rotate(0) scale(1.04);z-index:3}
+@media (max-width:560px){.pola figcaption{font-size:24px}.pola{padding:8px 8px 42px}}
 .pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
 @media (max-width:640px){.pilares{grid-template-columns:1fr}}
 .pilar{background:#fff;border-radius:22px;padding:18px}
@@ -494,7 +495,7 @@ body.editando [contenteditable="true"]:hover,body.editando [contenteditable="tru
       </div>
       <div class="polas">
         <figure class="pola p1"><img id="pol1" alt="Mujer amasando a mano una masa de pan sobre una mesa enharinada"><figcaption>la masa, con tus manos</figcaption></figure>
-        <figure class="pola p2"><img id="pol2" alt="Valle verde del Cajón del Maipo al pie de un cerro con cielo celeste"><figcaption>y el valle de fondo</figcaption></figure>
+        <figure class="pola p2"><img id="pol2" alt="Embalse de aguas azules rodeado de cerros con cumbres nevadas"><figcaption>y el valle de fondo</figcaption></figure>
       </div>
     </div>
   </div>
@@ -1314,7 +1315,7 @@ let tk=false;addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimatio
 addEventListener("resize",heroFrame);heroFrame();
 
 /* historia */
-$("#pol1").src=src("horneando",900);$("#pol1").alt=alt("horneando");$("#pol2").src=src("verde",900);
+$("#pol1").src=src("horneando",900);$("#pol1").alt=alt("horneando");$("#pol2").src=src("yeso",900);
 
 /* experiencia */
 $("#historias").innerHTML=D.HIS.map((h,i)=>`<a class="hist" href="#trayecto"><div class="aro"><img src="${src(h[0],300)}" alt=""></div><span data-k="HIS.${i}.1">${esc(h[1])}</span></a>`).join("");
